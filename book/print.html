@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html lang="cn" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>计算机图形学基础</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Drawing on an impressive roster of experts in the field, Fundamentals of Computer Graphics, Fourth Edition offers an ideal resource for computer course curricula as well as a user-friendly personal or professional reference.
+Focusing on geometric intuition, the book gives the necessary information for understanding how images get onto the screen by using the complementary approaches of ray tracing and rasterization. It covers topics common to an introductory course, such as sampling theory, texture mapping, spatial data structure, and splines. It also includes a number of contributed chapters from authors known for their expertise and clear way of explaining concepts.
+Highlights of the Fourth Edition Include:
+1.Updated coverage of existing topics
+2.Major updates and improvements to several chapters, including texture mapping, graphics hardware, signal processing, and data structures
+3.A text now printed entirely in four-color to enhance illustrative figures of concepts
+The fourth edition of Fundamentals of Computer Graphics continues to provide an outstanding and comprehensive introduction to basic computer graphic technology and theory. It retains an informal and intuitive style while improving precision, consistency, and completeness of material, allowing aspiring and experienced graphics programmers to better understand and apply foundational principles to the development of efficient code in creating film, game, or web designs.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="chapter_0.html">前言</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_1_1.html"><strong aria-hidden="true">1.1.</strong> 图形区域</a></li><li class="chapter-item expanded "><a href="chapter_1_2.html"><strong aria-hidden="true">1.2.</strong> 主要应用</a></li><li class="chapter-item expanded "><a href="chapter_1_3.html"><strong aria-hidden="true">1.3.</strong> 图形API</a></li><li class="chapter-item expanded "><a href="chapter_1_4.html"><strong aria-hidden="true">1.4.</strong> 图形管道</a></li><li class="chapter-item expanded "><a href="chapter_1_5.html"><strong aria-hidden="true">1.5.</strong> 数值问题</a></li><li class="chapter-item expanded "><a href="chapter_1_6.html"><strong aria-hidden="true">1.6.</strong> 效率</a></li><li class="chapter-item expanded "><a href="chapter_1_7.html"><strong aria-hidden="true">1.7.</strong> 图形程序设计和编码</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">计算机图形学基础</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="前言"><a class="header" href="#前言">前言</a></h1>
+<p>  这一版的《计算机图形学基础》包括对有关纹理和图形硬件等章节的大量重写，并对全书进行了许多更正。现在全书中的图片都是彩色的。<br />
+<br/>
+  本书的组织结构与第三版基本相似。根据我们的想法，第2章到第8章成为了“核心的核心（core core）”，通过使用光线追踪和光栅化的互补方法了解图像如何进入屏幕所绝对需要的笔直而狭窄的路径。首先介绍光线追踪，因为它是生成三维场景图像的最简单方法，然后是图形管道所需的数学机制，然后是管道本身。之后，“外部的核心（outer core）”涵盖了通常包含在入门课程中的其他主题，例如采样理论、纹理映射、空间数据结构和样条曲线。从第15章开始是一些被贡献的章节，这些章节由我们选择的具有专业知识和观点表达思路清晰的贡献者撰写。<br />
+<br/>
+  在多年来我们对本书进行修订的过程中，我们努力保留了早期版本中非正式的、直观的表述风格，同时也提高了一致性、精确性和完整性。我们希望读者能够发现这本书是一个吸引人的平台，适用于各种计算机图形学课程。</p>
+<h2 id="关于封面"><a class="header" href="#关于封面">关于封面</a></h2>
+<p>  封面图片来自 J.W.Baker 《水中之虎》（画布上的拉丝和喷枪亚克力，16英寸×20英寸），www.jwbart.com。<br />
+<br/>
+  老虎的主题是指 Alain Fournier（1943-2000）1998年在康奈尔大学的一次研讨会上的精彩演讲。他的谈话是对老虎的动作进行了令人回味的口头描述。他总结了自己的观点：<br />
+<br/>
+  尽管在过去的35年里，计算机图形学的建模和渲染已经有了巨大的进展，但我们仍然无法自动模拟在河中游泳的老虎的所有精彩细节。我所说的自动是指不需要艺术家或专家进行仔细的手动调整的方式。<br />
+<br/>
+  坏消息是，我们还有很长的路没走。<br />
+<br/>
+  好消息是，我们还有很长的路要走。</p>
+<h2 id="在线资源"><a class="header" href="#在线资源">在线资源</a></h2>
+<p>  本书的网址是 http://www.cs.cornell.edu/~srm/fcg4/ 。我们将继续维护本书的勘误表和课程链接，以及与本书风格相符的教材。本书中的大多数图片都是 Adobe Illustrator 格式，我们很乐意根据需要将特定图片转换为可移植格式。请随时通过 shirley@cs.utah.edu 或 srm@cs.cornell.edu 与我们联系。</p>
+<h2 id="致谢"><a class="header" href="#致谢">致谢</a></h2>
+<p>  以下人员提供了本书各版本的有用信息、评论或者反馈：Ahmet O˘guz Aky¨uz, Josh Andersen, Zeferino Andrade, Kavita Bala, Adam Berger, Adeel Bhutta, Solomon Boulos, Stephen Chenney, Michael Coblenz, Greg Coombe, Frederic Cremer, Brian Curtin, Dave Edwards, Jonathon Evans, Karen Feinauer, Amy Gooch, Eungyoung Han, Chuck Hansen, Andy Hanson, Razen Al Harbi, Dave Hart, John Hart, John “Spike” Hughes, Helen Hu, Vicki Interrante, Wenzel Jakob, Doug James, Henrik Wann Jensen, Shi Jin, Mark Johnson, Ray Jones, Revant Kapoor, Kristin Kerr, Erum Arif Khan, Mark Kilgard, Dylan Lacewell, Mathias Lang, Philippe Laval, Marc Levoy, Howard Lo, Joann Luu, Ron Metoyer, Keith Morley, Eric Mortensen, Koji Nakamaru, Micah Neilson, Blake Nelson, Michael Nikelsky, James O’Brien, Steve Parker, Sumanta Pattanaik, Matt Pharr, Peter Poulos, Shaun Ramsey, Rich Riesenfeld, Nate Robins, Nan Schaller, Chris Schryvers, Tom Sederberg, Richard Sharp, Sarah Shirley, Peter-Pike Sloan, Hannah Story, Tony Tahbaz, Jan-Phillip Tiesel, Bruce Walter, Alex Williams, Amy Williams, Chris Wyman, and Kate Zebrose.<br />
+<br/>
+  Ching-Kuang Shene 和 David Solomon 允许我们借用他们的例子。 Henrik Wann Jensen、Eric Levin、Matt Pharr 和 Jason Waltman 慷慨地提供了图片。 Brandon Mansfield 帮助改进了关于光线追踪的分层包围体的探讨。 Philip Greenspun (philip.greenspun.com) 热心地允许我们使用他的照片。 John “Spike” Hughes 帮助改进了对抽样理论的探讨。 Wenzel Jakob 的 Mitsuba 渲染器在创建许多图形方面非常宝贵。我们非常感谢 J.W. Baker 帮助创作了 Pete 设想的封面。他除了是一位才华横溢的艺术家之外，也是一位非常愉快的工作伙伴。<br />
+<br/>
+  本书的章节注释中引用了许对编写本书有帮助的著作。然而，有几本影响了本书内容和表现形式的关键文献值得在此特别表彰。其中包括两本经典的计算机图形学教材，我们都是从这两本教材中学习的基础知识——《计算机图形学：原理与实践》（Foley、Van Dam、Feiner 和 Hughes，1990 年）和《计算机图形学》（Hearn 和 Baker，1986 年）。其他文本包括 Alan Watt 的两本有影响力的书籍 (Watt, 1993, 1991), Hill的《使用OpenGL的计算机图形》(Francis S. Hill, 2000), Angel的《交互式计算机图形学：使用 OpenGL 的自上而下方法》(Angel, 2002), Hugues Hoppe 的华盛顿大学论文 (Hoppe, 1994) 和 Rogers 的两篇优秀的图形学文章 (D. F. Rogers, 1985, 1989)。<br />
+<br/>
+  我们要特别感谢 Alice 和 Klaus Peters 鼓励 Pete 撰写本书的第一版，并感谢他们在完成本书方面的伟大能力。他们对作者的耐心以及竭尽所能奉献于使本书成为最好的书，这对本书的出版起了重要的作用。如果没有他们的非凡努力，这本书肯定不会存在。<br />
+<br/></p>
+<p align="right">盐湖城，犹他州</p>
+<p align="right">伊萨卡，纽约</p>
+<p align="right">2015年2月</p>  
+<div style="break-before: page; page-break-before: always;"></div><h1 id="chapter-1"><a class="header" href="#chapter-1">Chapter 1</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="11-图形区域"><a class="header" href="#11-图形区域">1.1 图形区域</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="12-主要应用"><a class="header" href="#12-主要应用">1.2 主要应用</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="13-图形api"><a class="header" href="#13-图形api">1.3 图形API</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="14-图形管道"><a class="header" href="#14-图形管道">1.4 图形管道</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="15-数值问题"><a class="header" href="#15-数值问题">1.5 数值问题</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="16-效率"><a class="header" href="#16-效率">1.6 效率</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="17-图形程序设计和编码"><a class="header" href="#17-图形程序设计和编码">1.7 图形程序设计和编码</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

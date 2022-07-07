@@ -1,0 +1,13 @@
+[book]
+authors = ["Steve Marschner", "Peter Shirley"]
+language = "cn"
+multilingual = false
+src = "src"
+title = "计算机图形学基础"
+description = """Drawing on an impressive roster of experts in the field, Fundamentals of Computer Graphics, Fourth Edition offers an ideal resource for computer course curricula as well as a user-friendly personal or professional reference.
+Focusing on geometric intuition, the book gives the necessary information for understanding how images get onto the screen by using the complementary approaches of ray tracing and rasterization. It covers topics common to an introductory course, such as sampling theory, texture mapping, spatial data structure, and splines. It also includes a number of contributed chapters from authors known for their expertise and clear way of explaining concepts.
+Highlights of the Fourth Edition Include:
+1.Updated coverage of existing topics
+2.Major updates and improvements to several chapters, including texture mapping, graphics hardware, signal processing, and data structures
+3.A text now printed entirely in four-color to enhance illustrative figures of concepts
+The fourth edition of Fundamentals of Computer Graphics continues to provide an outstanding and comprehensive introduction to basic computer graphic technology and theory. It retains an informal and intuitive style while improving precision, consistency, and completeness of material, allowing aspiring and experienced graphics programmers to better understand and apply foundational principles to the development of efficient code in creating film, game, or web designs."""
