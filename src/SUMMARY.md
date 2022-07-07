@@ -10,3 +10,18 @@
   - [数值问题](./chapter_1_5.md)
   - [效率](./chapter_1_6.md)
   - [图形程序设计和编码](./chapter_1_7.md)
+
+- [数学基础](./chapter_2.md)
+	- [集合和映射](./chapter_2_1.md)
+	- [二次方程求解](./chapter_2_2.md)
+	- [三角函数](./chapter_2_3.md)
+	- [向量](./chapter_2_4.md)
+	- [曲线和曲面](./chapter_2_5.md)
+	- [线性插值](./chapter_2_6.md)
+	- [三角形](./chapter_2_7.md)
+
+- [光栅图像](./chapter_3.md)
+	- [光栅设备](./chapter_3_1.md)
+	- [图像、像素和几何学](./chapter_3_2.md)
+	- [RGB颜色](./chapter_3_3.md)
+	- [阿尔法合成](./chapter_3_4.md)
