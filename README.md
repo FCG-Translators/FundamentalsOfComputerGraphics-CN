@@ -10,7 +10,7 @@
 
 ## Installation - 安装
 ###  dependence - 依赖
-  - mdbook
+  - mdbook安装
 ```bash
 # 从源码构建mdbook工具
 cargo install mdbook
@@ -21,7 +21,7 @@ brew install mdbook
 # Arch linux使用pacman包管理器安装mdbook工具
 pacman -S mdbook
 ```
-  - tex
+  - tex安装
 ```bash
 # TeX Live安装
 wget -c https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2022-20220321.iso
@@ -48,7 +48,7 @@ cd FundamentalsOfComputerGraphics-CN
 ```
 
 ## Usage - 用法
-- mdbook
+- mdbook使用
 ```bash
 # 在浏览器中打开图书
 mdbook serve --open
@@ -56,7 +56,7 @@ mdbook serve --open
 # 构建图书
 mdbook build
 ```
-- xelatex
+- xelatex使用
 ```bash
 # 进入tex目录
 cd tex
