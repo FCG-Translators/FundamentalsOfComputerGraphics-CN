@@ -74,8 +74,10 @@ xelatex FundamentalsComputerGraphics.tex
 
 ### 发现书籍谬误，如何提出？
 
-请fork本仓库，对谬误部分进行订正，然后发起PR，经审核后可合入主线。
-参见“联系”，向译者提出修改意见。
+因为译者水平有限，在翻译的过程中出现疏漏、错误、语义不明等情况在所难免，如果在阅读的过程中遇到上述情况，烦请读者悉心指出，帮助译者订正。
+
+- 请fork本仓库，对谬误部分进行订正，然后发起PR，经审核后可合入主线。
+- 参见“联系”，向译者提出修改意见。
 
 ## Support - 支持
 
@@ -84,6 +86,8 @@ xelatex FundamentalsComputerGraphics.tex
 ### Dos - 文档
 
 [mdBook Documentation](https://rust-lang.github.io/mdBook/)
+
+[计算机图形学基础-原版](./original/Shirley.FundamentalsComputerGraphics.pdf)
 
 ### Contact - 联系
 

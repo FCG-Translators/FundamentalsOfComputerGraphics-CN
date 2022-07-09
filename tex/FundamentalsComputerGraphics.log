@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.4.21)  8 JUL 2022 23:18
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.4.21)  9 JUL 2022 23:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1717,124 +1717,118 @@ LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
 ]
 [2
 
+] [3
+
 ] (./FundamentalsComputerGraphics.toc
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 7.0pt on input line 5.
- [3
+(Font)              scaled to size 7.0pt on input line 9.
+ [4
 
 ])
 \tf@toc=\write8
 \openout8 = `FundamentalsComputerGraphics.toc'.
 
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 73.
- [4]
+(Font)              scaled to size 9.0pt on input line 79.
+ [5]
 Chapter 1.
-LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 75.
+LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 85.
+LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 85.
+LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 85.
 [1
 
 
-]
+] [2]
 Chapter 2.
-LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 79.
-[2
+LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
+(Font)              scaled to size 12.0pt on input line 124.
+[3
 
-] [3]
+] [4]
 Chapter 3.
-LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 168.
-LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 168.
-[4
+[5
 
 ]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 224.
- [5]
+nput line 271.
+ [6]
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 276.
+(Font)              scaled to size 10.0pt on input line 323.
 
 Missing character: There is no 1 ("31) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
-Missing character: There is no 1 ("31) in font nullfont!
-Missing character: There is no 2 ("32) in font nullfont!
-Missing character: There is no 1 ("31) in font nullfont!
-Missing character: There is no 2 ("32) in font nullfont!
-[6]
 Missing character: There is no 1 ("31) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 1 ("31) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
 [7]
-
-LaTeX Warning: Citation 'cn1' on page 8 undefined on input line 450.
-
-
-LaTeX Warning: Citation 'en2' on page 8 undefined on input line 450.
-
-
-LaTeX Warning: Citation 'en3' on page 8 undefined on input line 450.
-
+Missing character: There is no 1 ("31) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
+Missing character: There is no 1 ("31) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
 [8]
-LaTeX Font Info:    Trying to load font information for U+ding on input line 50
-0.
+
+LaTeX Warning: Citation 'cn1' on page 9 undefined on input line 497.
+
+
+LaTeX Warning: Citation 'en2' on page 9 undefined on input line 497.
+
+
+LaTeX Warning: Citation 'en3' on page 9 undefined on input line 497.
+
+[9]
+LaTeX Font Info:    Trying to load font information for U+ding on input line 54
+7.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/bbding/Uding.fd
 File: Uding.fd 1996/02/01 v1.0 BBding font definitions
 )
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 528.
- [9] [10]
+(Font)              scaled to size 14.4pt on input line 575.
+ [10]
+[11]
 Chapter 4.
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 612.
-[11
+(Font)              scaled to size 5.0pt on input line 659.
+[12
 
 ]
 File: ./image//founder.png Graphic file (type bmp)
 <./image//founder.png>
- [12] [13]
+ [13] [14]
 Chapter 5.
-[14
+[15
 
 ]
 File: ./image//scatter.jpg Graphic file (type bmp)
 <./image//scatter.jpg>
- [15] [16]
+ [16] [17]
 Chapter 6.
-[17
+[18
 
 ]
 Chapter 7.
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 9.0pt on input line 818.
-[18
+(Font)              scaled to size 9.0pt on input line 865.
+[19
 
-] [19]
+] [20]
 
-LaTeX Warning: Empty bibliography on input line 977.
+LaTeX Warning: Empty bibliography on input line 1024.
 
-[20]
+[21]
 附录 A.
-[21
+[22
 
 ] (./FundamentalsComputerGraphics.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `FundamentalsComputerGraphics.out' has cha
-nged.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `FundamentalsComputerGraphics.out':
-(rerunfilecheck)             Before: 3290C8D9D1CF25CD1AB7766D5E6C3EDB;5935
-(rerunfilecheck)             After:  7991C53E7ACF72934AA9D470857220C1;6107.
+Package rerunfilecheck Info: File `FundamentalsComputerGraphics.out' has not ch
+anged.
+(rerunfilecheck)             Checksum: D56E68D6E8416C9A2344A0BBCFF756BB;6317.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                FundamentalsComputerGraphics
@@ -1846,12 +1840,12 @@ Package logreq Info: Writing requests to 'FundamentalsComputerGraphics.run.xml'
 
  ) 
 Here is how much of TeX's memory you used:
- 47716 strings out of 476179
- 1016731 string characters out of 5809544
- 1952875 words of memory out of 5000000
- 67626 multiletter control sequences out of 15000+600000
+ 47717 strings out of 476179
+ 1016742 string characters out of 5809544
+ 1953325 words of memory out of 5000000
+ 67627 multiletter control sequences out of 15000+600000
  482303 words of font info for 144 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,18n,107p,1404b,2182s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on FundamentalsComputerGraphics.pdf (26 pages).
+Output written on FundamentalsComputerGraphics.pdf (28 pages).

@@ -4,6 +4,8 @@
 
 [致谢](./chapter_0_1.md)
 
+[作者](./chapter_0_2.md)
+
 - [介绍](./chapter_1.md)
   - [图形学领域](./chapter_1_1.md)
   - [主要应用](./chapter_1_2.md)
