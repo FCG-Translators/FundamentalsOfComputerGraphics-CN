@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.10)  10 JUL 2022 12:52
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.10)  10 JUL 2022 18:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1722,7 +1722,7 @@ LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
 
 ] (./FundamentalsComputerGraphics.toc
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 7.0pt on input line 12.
+(Font)              scaled to size 7.0pt on input line 15.
  [4
 
 ])
@@ -1748,84 +1748,84 @@ Missing character: There is no 。 ("3002) in font cmr10!
 [3]
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
 (Font)              scaled to size 5.0pt on input line 210.
- [4]
-Chapter 2.
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 231.
-[5
+(Font)              scaled to size 12.0pt on input line 236.
+ [4] [5]
+Chapter 2.
+[6
 
-] [6]
+] [7]
 Chapter 3.
-[7
+[8
 
 ]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 378.
- [8]
+nput line 400.
+ [9]
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 430.
+(Font)              scaled to size 10.0pt on input line 452.
 
 Missing character: There is no 1 ("31) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
-Missing character: There is no 1 ("31) in font nullfont!
-Missing character: There is no 2 ("32) in font nullfont!
-Missing character: There is no 1 ("31) in font nullfont!
-Missing character: There is no 2 ("32) in font nullfont!
-[9]
 Missing character: There is no 1 ("31) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
 Missing character: There is no 1 ("31) in font nullfont!
 Missing character: There is no 2 ("32) in font nullfont!
 [10]
-
-LaTeX Warning: Citation 'cn1' on page 11 undefined on input line 604.
-
-
-LaTeX Warning: Citation 'en2' on page 11 undefined on input line 604.
-
-
-LaTeX Warning: Citation 'en3' on page 11 undefined on input line 604.
-
+Missing character: There is no 1 ("31) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
+Missing character: There is no 1 ("31) in font nullfont!
+Missing character: There is no 2 ("32) in font nullfont!
 [11]
-LaTeX Font Info:    Trying to load font information for U+ding on input line 65
-4.
+
+LaTeX Warning: Citation 'cn1' on page 12 undefined on input line 626.
+
+
+LaTeX Warning: Citation 'en2' on page 12 undefined on input line 626.
+
+
+LaTeX Warning: Citation 'en3' on page 12 undefined on input line 626.
+
+[12]
+LaTeX Font Info:    Trying to load font information for U+ding on input line 67
+6.
  (/usr/local/texlive/2022/texmf-dist/tex/latex/bbding/Uding.fd
 File: Uding.fd 1996/02/01 v1.0 BBding font definitions
 )
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 682.
- [12]
-[13]
+(Font)              scaled to size 14.4pt on input line 704.
+ [13]
+[14]
 Chapter 4.
-[14
+[15
 
 ]
 File: ./image//founder.png Graphic file (type bmp)
 <./image//founder.png>
- [15] [16]
+ [16] [17]
 Chapter 5.
-[17
+[18
 
 ]
 File: ./image//scatter.jpg Graphic file (type bmp)
 <./image//scatter.jpg>
- [18] [19]
+ [19] [20]
 Chapter 6.
-[20
+[21
 
 ]
 Chapter 7.
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 9.0pt on input line 972.
-[21
+(Font)              scaled to size 9.0pt on input line 994.
+[22
 
-] [22]
+] [23]
 
-LaTeX Warning: Empty bibliography on input line 1131.
+LaTeX Warning: Empty bibliography on input line 1153.
 
-[23]
+[24]
 附录 A.
-[24
+[25
 
 ] (./FundamentalsComputerGraphics.aux)
 
@@ -1833,7 +1833,7 @@ LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `FundamentalsComputerGraphics.out' has not ch
 anged.
-(rerunfilecheck)             Checksum: BDC16E1BD5687E4A0E9D448911DD21D3;6643.
+(rerunfilecheck)             Checksum: D77B053F01755828CEC21ACC6AD63FDE;7011.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                FundamentalsComputerGraphics
@@ -1845,12 +1845,12 @@ Package logreq Info: Writing requests to 'FundamentalsComputerGraphics.run.xml'
 
  ) 
 Here is how much of TeX's memory you used:
- 48046 strings out of 475866
- 1030247 string characters out of 5802090
- 1973374 words of memory out of 5000000
- 68270 multiletter control sequences out of 15000+600000
+ 48047 strings out of 475866
+ 1030260 string characters out of 5802090
+ 1973776 words of memory out of 5000000
+ 68271 multiletter control sequences out of 15000+600000
  482311 words of font info for 145 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,18n,107p,1404b,2182s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on FundamentalsComputerGraphics.pdf (30 pages).
+Output written on FundamentalsComputerGraphics.pdf (31 pages).
