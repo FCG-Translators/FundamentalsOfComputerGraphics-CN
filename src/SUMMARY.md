@@ -15,7 +15,7 @@
   - [效率](./chapter_1_6.md)
   - [图形程序设计和编码](./chapter_1_7.md)
 
-- [数学基础](./chapter_2.md)
+- [各种数学知识](./chapter_2.md)
 	- [集合和映射](./chapter_2_1.md)
 	- [二次方程求解](./chapter_2_2.md)
 	- [三角函数](./chapter_2_3.md)
