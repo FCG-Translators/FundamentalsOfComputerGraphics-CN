@@ -99,9 +99,9 @@ xelatex FundamentalsComputerGraphics.tex
 因本书翻译工作量巨大，希望志同道合者共同参与。
 
 尚需如下角色成员：
-- 译者：完成书籍各章节翻译工作，使用markdown和latex进行本书翻译；
-- 校对员：完成书籍各章节校对工作，从表述、排版等方面对译文进行审阅；
-- 推广员：对本书的中文版进行推广，号召更多人加入本翻译项目或了解计算机图形学相关知识。
+- 翻译：完成书籍各章节翻译工作，使用markdown和latex进行本书翻译；
+- 校对：完成书籍各章节校对工作，从表述、排版等方面对译文进行审阅；
+- 推广（待定）。
 
 若您希望贡献，请首先fork本仓库，并在Issues中提出想要翻译的章节，请认真、耐心地进行翻译，力求用词准确、通俗易懂，并且文档格式符合标准，翻译完成后请发起PR，经审核后可合入主线，您的名字也将进入本书的译者列表。
 
@@ -120,13 +120,17 @@ xelatex FundamentalsComputerGraphics.tex
 
 [mdBook Documentation](https://rust-lang.github.io/mdBook/)
 
-[计算机图形学基础-原版](./original/Shirley.FundamentalsComputerGraphics.pdf)
+[计算机图形学基础（第五版）](https://www.routledge.com/Fundamentals-of-Computer-Graphics/Marschner-Shirley/p/book/9780367505035)
 
 ### Contact - 联系
 
-🍮buding QQ：1259085392 EMAIL：1259085392z@gmail.com
+🍮buding QQ：1259085392 EMAIL：1259085392z@gmail.com  
 QQ群：584041033（进群验证：计算机图形学基础）
 
 ## Authors and acknowledgment - 贡献者和感谢
 
 感谢 [Steve Marschner](https://www.cs.cornell.edu/\~srm/)和[Peter Shirley](https://www.petershirley.com/)以及其他贡献者共同参与编写完成《计算机图形学基础》这部图形学巨著。
+
+# Declaration of responsibility - 责任声明
+
+本项目遵守美国版权法规定，作者Steve Marschner和Peter Shirley具有本书的著作权。本项目目的在于面向中文（华语）用户推广和普及计算机图形学知识，仅供计算机图形学相关专业者及爱好者学习和交流使用。本项目为公益项目，不曾也不将以任何盈利形式进行盈利。同时，因译者水平有限，译本可能存在歧义、错误乃至误导性内容，烦请读者认真思考、谨慎鉴别，并希望读者能在发现书籍谬误时及时通过“联系”方式向译者进行反馈。
