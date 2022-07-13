@@ -97,7 +97,13 @@ xelatex FundamentalsComputerGraphics.tex
 ### 如何参与本书翻译？
 
 因本书翻译工作量巨大，希望志同道合者共同参与。
-若您希望贡献，请首先fork本仓库，并在Issues中提出想要翻译的章节，翻译完成后发起PR，经审核后可合入主线。
+
+尚需如下角色成员：
+- 译者：完成书籍各章节翻译工作，使用markdown和latex进行本书翻译；
+- 校对员：完成书籍各章节校对工作，从表述、排版等方面对译文进行审阅；
+- 推广员：对本书的中文版进行推广，号召更多人加入本翻译项目或了解计算机图形学相关知识。
+
+若您希望贡献，请首先fork本仓库，并在Issues中提出想要翻译的章节，请认真、耐心地进行翻译，力求用词准确、通俗易懂，并且文档格式符合标准，翻译完成后请发起PR，经审核后可合入主线，您的名字也将进入本书的译者列表。
 
 ### 发现书籍谬误，如何提出？
 
@@ -118,9 +124,8 @@ xelatex FundamentalsComputerGraphics.tex
 
 ### Contact - 联系
 
-🍮buding
-QQ：1259085392
-EMAIL：1259085392z@gmail.com
+🍮buding QQ：1259085392 EMAIL：1259085392z@gmail.com
+QQ群：584041033（进群验证：计算机图形学基础）
 
 ## Authors and acknowledgment - 贡献者和感谢
 
