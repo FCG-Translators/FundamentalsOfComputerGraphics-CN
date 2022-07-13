@@ -2,7 +2,6 @@
 
 \title{计算机图形学基础}
 \subtitle{第五版 \  中文译本}
-
 \author{Steve Marschner \& Peter Shirley}
 \institute{Cornell University \& NVIDIA}
 \date{February 2021}
@@ -11,20 +10,20 @@
 
 \extrainfo{Stay hungry. Stay foolish. —— Steve Jobs}
 
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{1}
 
-\logo{logo.png}
+\logo{CRC.png}
 \cover{cover.png}
 
 % 本文档命令
 \usepackage{array}
-\usepackage{xcolor}
+\setCJKmainfont[Path=fonts/]{LXGWWenKai-Regular.ttf}
 \definecolor{lightgreen}{RGB}{99,140,94}
 \newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
 
 % 修改标题页的橙色带
-% \definecolor{customcolor}{RGB}{32,178,170}
-% \colorlet{coverlinecolor}{customcolor}
+\definecolor{customcolor}{RGB}{171,35,74}
+\colorlet{coverlinecolor}{customcolor}
 
 \begin{document}
 
@@ -38,7 +37,7 @@
 
 本书的组织结构与第四版基本相似。在多年来对本书进行修订的过程中，我们努力保留了早期版本中非正式的、直观的表述风格，同时也提高了本书的一致性、准确性和完整性。我们希望读者能够发现，本书是一个吸引人的平台，适合于各种计算机图形学课程。
 
-\section{关于封面}
+\section*{关于封面}
 
 封面图片来自 J.W.Baker 的《水中之虎》（画布上的拉丝和喷枪亚克力，16英寸x20英寸），www.jwbart.com。  
 
@@ -50,7 +49,7 @@
 
 好消息是，我们还有很长的路要走。
 
-\section{线上资源}
+\section*{线上资源}
 
 本书的网址是 http://www.cs.cornell.edu/\~{}srm/fcg5/ 。我们将继续维护本书的勘误表和课程链接，以及与本书风格相符的教学材料。本书中的大多数图片都是 Adobe Illustrator 格式的，我们很乐意根据需要将特定图片转换为可移植格式。请随时通过 srm@cs.cornell.edu 或 ptrshrl@gmail.com 与我们联系。  
 
@@ -153,7 +152,9 @@ Peter Shirley是英伟达公司的杰出研究科学家。他曾在印第安纳�
 尽管IEEE浮点具有很多在编码数值算法时很有价值的特性，但对于图形中遇到的大多数情况只有少数几个特性是至关重要的。首先，也是最重要的是要了解IEEE浮点运算中实数的三个"特殊 "值。
 
 1. 无穷大（$\infty$）。这是一个比其他所有有效数字都大的有效数字。
+
 2. 负无穷大（$-\infty$）。这是一个比其他所有有效数字都小的有效数字。
+
 3. 不是一个数字（$\mathrm{NaN}$）。这是一个无效的数字，是由一个具有不确定后果的操作产生的，如0除以0。
 
 IEEE浮点数的设计者做出了一些对程序员来说非常方便的决定。其中许多与上述三个处理异常的特殊值有关，比如除以零。在这些情况下，异常会被记录下来，但在很多情况下，程序员可以忽略它。具体来说，对于任何正实数a，以下涉及除以无穷数的规则都是成立的：
@@ -356,7 +357,41 @@ IEEE浮点数的设计者做出了一些对程序员来说非常方便的决定�
 
 \subsection{逆向映射}
 
-如果我们有一个函数 $f : A \mapsto B$，那么可能会存在一个反函数 $f^{-1} : B \mapsto A$，这是通过当 $b = f(a)$ 时 $f^{-1}(b) = a$ 定义的。
+如果我们有一个函数 $f : A \mapsto B$，那么可能会存在一个反函数 $f^{-1} : B \mapsto A$，这是通过当 $b = f(a)$ 时， $f^{-1}(b) = a$ 定义的。这个定义只满足在 $b \in B$是 $f$ 下一些点的映像（即，值域和目标相等)，并且只有这样一个点（即，在 $f(a) = b$ 中，只有一个 $a$）。这种映射或函数称为双射。双射将每一个 $a \in A$ 映射到唯一的 $b \in B$ ，对于每一个 $b \in B$，正好有一个 $a \in A$，使 $f(a)=b$ （图2.1）。一组骑手和马匹之间的双射关系表明，每个人都骑着一匹马，每匹马都被骑着。这两个函数是\textit{骑手(马)}和\textit{马(骑手)}。这些都是彼此的反函数。不是双射的函数没有反函数（图2.2）。
+
+\begin{figure}[htb]
+\centering
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.58\textwidth]{2.1.png}
+\caption{一个双射 $f$ 和反函数 $f^{-1}$。注意，$f^{-1}$也是一个双射。}
+\end{minipage}
+\begin{minipage}[t]{0.45\textwidth}
+\centering
+\includegraphics[width=0.58\textwidth]{2.2.png}
+\caption{函数 $g$ 不具有反函数，因为\textbf{d}中的两个元素匹配到\textbf{E}中相同的元素。函数 $h$ 没有反函数因为\textbf{F}中的元素 $T$ 在\textbf{d} 中没有匹配的元素。}
+\end{minipage}
+\end{figure}
+
+一个双射的例子是 $f : \mathbb{R} \mapsto \mathbb{R}$，其中 $f(x) = x^3$。它的反函数为 $f^{-1}(x) = \sqrt[3]{x}$ 。这个例子表明，标准的符号可能有些笨拙，因为 $x$ 在 $f$ 和 $f^{-1}$ 中都被用作虚拟变量。有时使用不同的虚拟变量会更直观，$y = f(x)$，$x=f^{-1}(y)$。这就产生了更直观的 $y = x^3$ 和 $x = \sqrt[3]{y}$。一个没有反函数的例子是 $sqr : \mathbb{R} \mapsto \mathbb{R}$，其中 $sqr(x) = x^2$。它不具有反函数的原因包括两个：首先 $x^2 = (-x)^2$，其次域中没有成员映射到目标的负数部分。请注意，如果我们把域和范围限制在 $\mathbb{R^+}$，可以定义一个反函数。那么 $\sqrt{x}$ 是一个有效的反函数。
+
+\subsection{区间}
+
+通常情况下，我们希望指定一个函数处理的是数值受限的实数。这样的一个约束就是指定一个区间。区间的一个例子是零和一之间的实数，不包括零或一。我们把它表示为 $(0,1)$。因为它不包括其端点，所以被称为开区间。相应的闭区间，包含其端点，用方括号表示： $[ 0 , 1 ]$ 。这种符号可以混合使用；即 $[0,1)$ 包括零，但不包括一。当写一个区间 $[a,b]$ 时，我们假定 $a \leq b$。表示一个区间的三种常见方法如图2.3所示。区间的笛卡尔积经常被使用。例如，为了表示点 $x$ 在三维的单位立方体中，我们说$x \in [0, 1]^3$。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.26\textwidth]{2.3.png}
+\caption{三个表示等效方式用于表示区间从 $a$ 到 $b$，包含 $b$ 但不包含 $a$}
+\end{figure}
+
+区间在与集合运算的结合中特别有用：交集、并集和差集。例如，两个区间的交集是它们共同点的集合。符号 $\cap$ 用来表示交集。例如，$[3,5) \cap [4,6] = [4,5)$。而并集，使用符号 $\cup$ 用来表示任何一个区间内的点。例如，$[3,5) \cup [4,6] = [3,6]$。与前两个运算符不同，差集运算符根据参数顺序产生不同结果。减号用于差集运算，它返回左侧区间中不在右侧区间的点。例如，$[3,5) - [4,6] = [3,4]$，以及 $[4,6] - [3,5] = [5,6]$。这些操作用区间图特别容易直观地表现出来（图2.4）。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.26\textwidth]{2.4.png}
+\caption{在 $[3,5)$ 和 $[4,6]$ 上的区间操作}
+\end{figure}
 
 
 \section{求解二次方程}
@@ -406,9 +441,15 @@ IEEE浮点数的设计者做出了一些对程序员来说非常方便的决定�
 
 \section{历史笔记}
 
+\chapter{表面着色}
+
+\section{点状光源}
 
 
+\section{基本反射模型}
 
+
+\section{环境照明}
 
 
 
