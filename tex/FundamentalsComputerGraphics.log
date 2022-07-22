@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.18)  21 JUL 2022 16:49
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.18)  22 JUL 2022 17:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1775,17 +1775,20 @@ File: ./image//2.3.png Graphic file (type bmp)
  [9]
 File: ./image//2.4.png Graphic file (type bmp)
 <./image//2.4.png>
- [10] [11]
+ [10]
+File: ./image//2.5.png Graphic file (type bmp)
+<./image//2.5.png>
+ [11] [12]
 Chapter 3.
-[12
-
-]
-Chapter 4.
 [13
 
 ]
-Chapter 5.
+Chapter 4.
 [14
+
+]
+Chapter 5.
+[15
 
 ] (./FundamentalsComputerGraphics.aux)
 
@@ -1800,12 +1803,12 @@ Package logreq Info: Writing requests to 'FundamentalsComputerGraphics.run.xml'
 
  ) 
 Here is how much of TeX's memory you used:
- 45580 strings out of 475865
- 990060 string characters out of 5802056
+ 45590 strings out of 475865
+ 990240 string characters out of 5802056
  1898749 words of memory out of 5000000
- 65853 multiletter control sequences out of 15000+600000
+ 65862 multiletter control sequences out of 15000+600000
  474705 words of font info for 92 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,12n,107p,1413b,801s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on FundamentalsComputerGraphics.pdf (20 pages).
+Output written on FundamentalsComputerGraphics.pdf (21 pages).
