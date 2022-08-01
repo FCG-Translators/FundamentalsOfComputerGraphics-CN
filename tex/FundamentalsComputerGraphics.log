@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.30)  31 JUL 2022 23:13
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.30)  2 AUG 2022 00:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1554,27 +1554,27 @@ Package csquotes Info: ... none found.
 (./FundamentalsComputerGraphics.aux)
 \openout1 = `FundamentalsComputerGraphics.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-Package hyperref Info: Link coloring ON on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+Package hyperref Info: Link coloring ON on input line 29.
  (./FundamentalsComputerGraphics.out)
 (./FundamentalsComputerGraphics.out)
 \@outlinefile=\write7
@@ -1648,10 +1648,10 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'FundamentalsComputerGraphics.bbl' not found.
 
 No file FundamentalsComputerGraphics.bbl.
-Package biblatex Info: Reference section=0 on input line 28.
-Package biblatex Info: Reference segment=0 on input line 28.
+Package biblatex Info: Reference section=0 on input line 29.
+Package biblatex Info: Reference segment=0 on input line 29.
 \c@lstlisting=\count556
-Package hyperref Info: Option `pageanchor' set `false' on input line 30.
+Package hyperref Info: Option `pageanchor' set `false' on input line 31.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: xetex
 * paper: a4paper
@@ -1687,31 +1687,31 @@ Package hyperref Info: Option `pageanchor' set `false' on input line 30.
 File: ./figure//cover.png Graphic file (type bmp)
 <./figure//cover.png>
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 24.88pt on input line 30.
+(Font)              scaled to size 24.88pt on input line 31.
 
 LaTeX Font Warning: Font shape `TU/LXGWWenKai-Regular.ttf(0)/b/n' undefined
 (Font)              using `TU/LXGWWenKai-Regular.ttf(0)/m/n' instead on input l
-ine 30.
+ine 31.
 
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 30
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 31
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 30.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 31.
 
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 30.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 31.
 
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 30.
+(Font)              scaled to size 14.4pt on input line 31.
 File: ./figure//CRC.png Graphic file (type bmp)
 <./figure//CRC.png>
  [1
@@ -1720,7 +1720,7 @@ File: ./figure//CRC.png Graphic file (type bmp)
 
 ]
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 17.28pt on input line 34.
+(Font)              scaled to size 17.28pt on input line 35.
  [1
 
 
@@ -1737,7 +1737,7 @@ LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
 \openout8 = `FundamentalsComputerGraphics.toc'.
 
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 9.0pt on input line 80.
+(Font)              scaled to size 9.0pt on input line 81.
  [5]
 Chapter 1.
 [1
@@ -1748,20 +1748,20 @@ Missing character: There is no ， ("FF0C) in font cmr10!
 Missing character: There is no 。 ("3002) in font cmr10!
 [3]
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 220.
+(Font)              scaled to size 7.0pt on input line 221.
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 220.
+(Font)              scaled to size 5.0pt on input line 221.
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 246.
+(Font)              scaled to size 12.0pt on input line 247.
  [4] [5] [6] [7]
 Chapter 2.
 Missing character: There is no 。 ("3002) in font cmr10!
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 359.
+(Font)              scaled to size 10.0pt on input line 360.
 
 LaTeX Font Warning: Font shape `TU/LXGWWenKai-Regular.ttf(0)/m/it' undefined
 (Font)              using `TU/LXGWWenKai-Regular.ttf(0)/m/n' instead on input l
-ine 359.
+ine 360.
 
 [8
 
@@ -1778,6 +1778,10 @@ File: ./image//2.4.png Graphic file (type bmp)
  [10]
 File: ./image//2.5.png Graphic file (type bmp)
 <./image//2.5.png>
+LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 460.
+LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 460.
  [11] [12]
 Chapter 3.
 [13
@@ -1803,11 +1807,11 @@ Package logreq Info: Writing requests to 'FundamentalsComputerGraphics.run.xml'
 
  ) 
 Here is how much of TeX's memory you used:
- 45590 strings out of 475865
- 990240 string characters out of 5802056
- 1898749 words of memory out of 5000000
- 65862 multiletter control sequences out of 15000+600000
- 474705 words of font info for 92 fonts, out of 8000000 for 9000
+ 45685 strings out of 475865
+ 995829 string characters out of 5802056
+ 1898747 words of memory out of 5000000
+ 65947 multiletter control sequences out of 15000+600000
+ 478158 words of font info for 109 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,12n,107p,1413b,801s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
