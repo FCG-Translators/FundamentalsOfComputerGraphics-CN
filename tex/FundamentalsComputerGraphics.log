@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.30)  2 AUG 2022 00:27
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.30)  2 AUG 2022 22:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1782,17 +1782,20 @@ LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
 (Font)              scaled to size 8.0pt on input line 460.
 LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
 (Font)              scaled to size 6.0pt on input line 460.
- [11] [12]
+ [11]
+File: ./image//2.6.png Graphic file (type bmp)
+<./image//2.6.png>
+ [12] [13]
 Chapter 3.
-[13
-
-]
-Chapter 4.
 [14
 
 ]
-Chapter 5.
+Chapter 4.
 [15
+
+]
+Chapter 5.
+[16
 
 ] (./FundamentalsComputerGraphics.aux)
 
@@ -1800,19 +1803,19 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `FundamentalsComputerGraphics.out' has not ch
 anged.
-(rerunfilecheck)             Checksum: CAC4AE6500483270E7008D2166E380D0;4243.
+(rerunfilecheck)             Checksum: 24D727AE293F3BB1B5C142901404EFE1;4251.
 Package logreq Info: Writing requests to 'FundamentalsComputerGraphics.run.xml'
 .
 \openout1 = `FundamentalsComputerGraphics.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45685 strings out of 475865
- 995829 string characters out of 5802056
- 1898747 words of memory out of 5000000
- 65947 multiletter control sequences out of 15000+600000
+ 45695 strings out of 475865
+ 996009 string characters out of 5802056
+ 1898757 words of memory out of 5000000
+ 65956 multiletter control sequences out of 15000+600000
  478158 words of font info for 109 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,12n,107p,1413b,801s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on FundamentalsComputerGraphics.pdf (21 pages).
+Output written on FundamentalsComputerGraphics.pdf (22 pages).
