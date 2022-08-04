@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.30)  4 AUG 2022 01:01
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2022.7.30)  5 AUG 2022 01:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1551,7 +1551,7 @@ Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
 
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
-(./FundamentalsComputerGraphics.aux)
+No file FundamentalsComputerGraphics.aux.
 \openout1 = `FundamentalsComputerGraphics.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
@@ -1575,11 +1575,13 @@ LaTeX Font Info:    ... okay on input line 29.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 29.
 LaTeX Font Info:    ... okay on input line 29.
 Package hyperref Info: Link coloring ON on input line 29.
- (./FundamentalsComputerGraphics.out)
-(./FundamentalsComputerGraphics.out)
+(./FundamentalsComputerGraphics.out) (./FundamentalsComputerGraphics.out)
 \@outlinefile=\write7
 \openout7 = `FundamentalsComputerGraphics.out'.
 
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1785,7 +1787,10 @@ LaTeX Font Info:    Font shape `TU/texgyretermes(0)/m/n' will be
  [11]
 File: ./image//2.6.png Graphic file (type bmp)
 <./image//2.6.png>
- [12] [13]
+ [12]
+File: ./image//2.7.png Graphic file (type bmp)
+<./image//2.7.png>
+ [13]
 Chapter 3.
 [14
 
@@ -1801,19 +1806,30 @@ Chapter 5.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `FundamentalsComputerGraphics.out' has not ch
 anged.
 (rerunfilecheck)             Checksum: 24D727AE293F3BB1B5C142901404EFE1;4251.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                FundamentalsComputerGraphics
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'FundamentalsComputerGraphics.run.xml'
 .
 \openout1 = `FundamentalsComputerGraphics.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45695 strings out of 475865
- 996009 string characters out of 5802056
- 1898756 words of memory out of 5000000
- 65956 multiletter control sequences out of 15000+600000
+ 45703 strings out of 475865
+ 996123 string characters out of 5802056
+ 1898527 words of memory out of 5000000
+ 65965 multiletter control sequences out of 15000+600000
  478158 words of font info for 109 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  103i,12n,107p,1413b,801s stack positions out of 10000i,1000n,20000p,200000b,200000s

@@ -24,6 +24,7 @@
 \contentsline {section}{\numberline {2.2}求解二次方程}{11}{section.2.2}%
 \contentsline {section}{\numberline {2.3}三角函数}{12}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}角度}{12}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}三角函数}{13}{subsection.2.3.2}%
 \contentsline {section}{\numberline {2.4}矢量图}{13}{section.2.4}%
 \contentsline {section}{\numberline {2.5}积分}{13}{section.2.5}%
 \contentsline {section}{\numberline {2.6}密度函数}{13}{section.2.6}%
