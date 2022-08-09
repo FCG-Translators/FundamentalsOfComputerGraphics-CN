@@ -503,10 +503,51 @@ $$
 
 你可以从图2.7中看到这一点，大正方形的面积为 $(a+o)^2$，四个三角形的面积合计为 $2a0$，中心正方形的面积为 $h^2$。
 
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.26\textwidth]{2.7.png}
-\caption{勾股定理的几何证明}
+\caption{勾股定理的几何证明。}
+\end{figure}
+
+由于三角形和内部方块均匀地细分了较大的正方形，所以我们可以很容易地取得如下形式 $2ao+h^2=(a+o)^2$。我们定义了 $\phi$，以及其他基于比值的三角表达式：
+
+$$
+\begin{aligned}
+\sin \phi & \equiv o / h \\
+\csc \phi & \equiv h / o \\
+\cos \phi & \equiv a / h \\
+\sec \phi & \equiv h / a \\
+\tan \phi & \equiv o / a \\
+\cot \phi & \equiv a / o
+\end{aligned}
+$$
+
+这些定义允许我们建立极坐标，其中一个点被编码为与原点的距离与 $x$ 正半轴带符号的角度（图2.8）。请注意，角度的范围是 $\phi\in(-\pi,\pi]$，正数角是从 $x$ 轴正半轴逆时针方向旋转取得的。逆时针方向映射到正数的这个约定是任意的，但它被应用于图形学很多场景中，因此值得将其记忆。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.26\textwidth]{2.8.png}
+\caption{点 $(x_a,y_a)$ 的极坐标为 $(r_a,\phi_a)=(2,\frac{\pi}{3})$。}
+\end{figure}
+
+三角函数是周期性的，可以接受任何角度作为参数。例如，$\sin(A) = \sin(A + 2\pi)$。这意味着当与 $\mathbb{R}$ 域考虑时，这些函数是不可逆的。这个问题可以通过限制标准反函数的范围来避免。这在几乎所有现代数学库中都是以标准方式进行的（例如，Plauger（1991））。域和范围是
+
+\begin{equation}
+\begin{aligned}
+&\operatorname{asin}:[-1,1] \mapsto[-\pi / 2, \pi / 2] \\
+&\operatorname{acos}:[-1,1] \mapsto[0, \pi] \\
+&\operatorname{atan}: \mathbb{R} \mapsto[-\pi / 2, \pi / 2] \\
+&\operatorname{atan} 2: \mathbb{R}^{2} \mapsto[-\pi, \pi]
+\end{aligned}
+\end{equation}
+
+最后一个函数 $\operatorname{atan} 2(s,c)$ 通常非常有用。它采用与 $\sin A$ 成比例的 $s$ 值以及与 $\cos A$ 成比例的 $c$ 值，两者具有相同的因子，最后返回 $A$。假定因子为正数。一种看法是它返回了二维笛卡尔点 $(c,s)$ 在极坐标中的角度（图2.9）。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.26\textwidth]{2.9.png}
+\caption{函数 $\operatorname{atan} 2(s,c)$ 返回 $A$ 的角度，这通常在图形学中非常有用。}
 \end{figure}
 
 
