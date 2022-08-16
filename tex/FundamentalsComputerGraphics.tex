@@ -550,6 +550,94 @@ $$
 \caption{函数 $\operatorname{atan} 2(s,c)$ 返回 $A$ 的角度，这通常在图形学中非常有用。}
 \end{figure}
 
+\subsection{有用的恒等式}
+
+本节未经推导列出了各种有用的三角恒等式。
+
+转换恒等式：
+
+$$
+\begin{aligned}
+\sin (-A) &=-\sin A \\
+\cos (-A) &=\cos A \\
+\tan (-A) &=-\tan A \\
+\sin (\pi / 2-A) &=\cos A \\
+\cos (\pi / 2-A) &=\sin A \\
+\tan (\pi / 2-A) &=\cot A
+\end{aligned}
+$$
+
+毕达哥拉斯恒等式：
+
+$$
+\begin{array}{r}
+\sin ^{2} A+\cos ^{2} A=1 \\
+\sec ^{2} A-\tan ^{2} A=1 \\
+\csc ^{2} A-\cot ^{2} A=1
+\end{array}
+$$
+
+加减法恒等式：
+
+$$
+\begin{aligned}
+\sin (A+B) &=\sin A \cos B+\sin B \cos A \\
+\sin (A-B) &=\sin A \cos B-\sin B \cos A \\
+\sin (2 A) &=2 \sin A \cos A \\
+\cos (A+B) &=\cos A \cos B-\sin A \sin B \\
+\cos (A-B) &=\cos A \cos B+\sin A \sin B \\
+\cos (2 A) &=\cos ^{2} A-\sin ^{2} A
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\tan (A+B) &=\frac{\tan A+\tan _{B}}{1-\tan A \tan B} \\
+\tan (A-B) &=\frac{\tan A-\tan B}{1+\tan A \tan B} \\
+\tan (2 A) &=\frac{2 \tan A}{1-\tan A}
+\end{aligned}
+$$
+
+半角恒等式：
+
+$$
+\begin{aligned}
+&\sin ^{2}(A / 2)=(1-\cos A) / 2 \\
+&\cos ^{2}(A / 2)=(1+\cos A) / 2
+\end{aligned}
+$$
+
+乘法恒等式：
+
+$$
+\begin{aligned}
+&\sin A \sin B=-(\cos (A+B)-\cos (A-B)) / 2 \\
+&\sin A \cos B=(\sin (A+B)+\sin (A-B)) / 2 \\
+&\cos A \cos B=(\cos (A+B)+\cos (A-B)) / 2
+\end{aligned}
+$$
+
+以下恒等式适用于边长为 $a$、$b$ 和 $c$ 的任意三角形，每边相对的角度分别为 A、B、C（图 2.10），
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.26\textwidth]{2.10.png}
+\caption{几何的三角定律。}
+\end{figure}
+
+$$
+\begin{aligned}
+\frac{\sin A}{a}=\frac{\sin B}{b}=\frac{\sin C}{c}\quad &\mbox{（正弦定理）}\\
+c^{2}=a^{2}+b^{2}-2 a b \cos C\quad &\mbox{（余弦定律）}\\
+\frac{a+b}{a-b}=\frac{\tan \left(\frac{A+B}{2}\right)}{\tan \left(\frac{A-B}{2}\right)}\quad &\mbox{（切线定律）}
+\end{aligned}
+$$
+
+三角形的面积也可以根据这些边长计算：
+
+$$
+\text { Triangle area }=\frac{1}{4} \sqrt{(a+b+c)(-a+b+c)(a-b+c)(a+b-c)} .
+$$
 
 \section{矢量图}
 
