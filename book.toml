@@ -1,3 +1,5 @@
+[output.html]
+mathjax-support = true
 [book]
 authors = ["Steve Marschner", "Peter Shirley"]
 language = "cn"

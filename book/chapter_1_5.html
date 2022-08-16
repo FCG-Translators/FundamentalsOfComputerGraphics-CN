@@ -6,13 +6,7 @@
         <title>数值问题 - 计算机图形学基础</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Drawing on an impressive roster of experts in the field, Fundamentals of Computer Graphics, Fourth Edition offers an ideal resource for computer course curricula as well as a user-friendly personal or professional reference.
-Focusing on geometric intuition, the book gives the necessary information for understanding how images get onto the screen by using the complementary approaches of ray tracing and rasterization. It covers topics common to an introductory course, such as sampling theory, texture mapping, spatial data structure, and splines. It also includes a number of contributed chapters from authors known for their expertise and clear way of explaining concepts.
-Highlights of the Fourth Edition Include:
-1.Updated coverage of existing topics
-2.Major updates and improvements to several chapters, including texture mapping, graphics hardware, signal processing, and data structures
-3.A text now printed entirely in four-color to enhance illustrative figures of concepts
-The fourth edition of Fundamentals of Computer Graphics continues to provide an outstanding and comprehensive introduction to basic computer graphic technology and theory. It retains an informal and intuitive style while improving precision, consistency, and completeness of material, allowing aspiring and experienced graphics programmers to better understand and apply foundational principles to the development of efficient code in creating film, game, or web designs.">
+        <meta name="description" content="Drawing on an impressive roster of experts in the field, Fundamentals of Computer Graphics, Fifth Edition offers an ideal resource for computer course curricula as well as a user-friendly personal or professional reference">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -31,6 +25,8 @@ The fourth edition of Fundamentals of Computer Graphics continues to provide an 
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -144,42 +140,70 @@ The fourth edition of Fundamentals of Computer Graphics continues to provide an 
 <p>  许多图形程序实际上只是三维数字代码。数字问题在这类程序中往往是至关重要的。在 &quot;过去&quot;，要以稳健和可移植的方式处理这些问题是非常困难的，因为机器对数字有不同的内部表示，更糟糕的是，处理异常的方式也不尽相同，互不兼容。幸运的是，几乎所有的现代计算机都符合IEEE浮点数标准（IEEE标准协会，1985）。这允许程序员对处理某些数字条件做出许多方便的假设。</p>
 <p>  尽管IEEE浮点数具有很多在编码数值算法时很有价值的特性，但对于图形中遇到的大多数情况只有少数几个特性是至关重要的。首先，也是最重要的是要了解IEEE浮点数运算中实数的三个&quot;特殊 &quot;值。</p>
 <ol>
-<li>正无穷（∞）。这是一个比其他所有有效数字都大的有效数字。</li>
-<li>负无穷（-∞）。这是一个比其他所有有效数字都小的有效数字。</li>
-<li>非数字（NaN）。这是一个无效的数字，是由一个具有不确定后果的操作产生的，如0除以0。</li>
+<li>正无穷（$\infty$）。这是一个比其他所有有效数字都大的有效数字。</li>
+<li>负无穷（$-\infty$）。这是一个比其他所有有效数字都小的有效数字。</li>
+<li>非数字（$\mathrm{NaN}$）。这是一个无效的数字，是由一个具有不确定后果的操作产生的，如0除以0。</li>
 </ol>
 <p>  IEEE浮点数的设计者做出了一些对程序员来说非常方便的决定。其中许多与上述三个处理异常的特殊值有关，比如除以零。在这些情况下，异常会被记录下来，但在很多情况下，程序员可以忽略它。具体来说，对于任何正实数a，以下涉及除以无穷数的规则都是成立的：</p>
-<p>+a/(+∞) = +0,<br />
-−a/(+∞) = −0,<br />
-+a/(−∞) = −0,<br />
-−a/(−∞) = +0.</p>
+<p>$$
+[
+\begin{aligned}
+&amp;+a /(+\infty)=+0 \
+&amp;-a /(+\infty)=-0 \
+&amp;+a /(-\infty)=-0 \
+&amp;-a /(-\infty)=+0
+\end{aligned}
+]
+$$</p>
 <p>  其他涉及无穷数的运算的行为与人们所期望的一样。同样对于正a，其行为如下：</p>
-<p>∞ + ∞ = +∞,<br />
-∞ − ∞ = NaN,<br />
-∞ × ∞ = ∞,<br />
-∞/∞ = NaN,<br />
-∞/a = ∞,<br />
-∞/0 = ∞,<br />
-0/0 = NaN.</p>
-<p>  布尔表达式中涉及无穷数的规则与预期一致：</p>
+<p>$$
+[
+\begin{aligned}
+\infty+\infty &amp;=+\infty \
+\infty-\infty &amp;=\mathrm{NaN} \
+\infty \times \infty &amp;=\infty \
+\infty / \infty &amp;=\mathrm{NaN} \
+\infty / a &amp;=\infty \
+\infty / 0 &amp;=\infty \
+0 / 0 &amp;=\mathrm{NaN}
+\end{aligned}
+]
+$$
+  布尔表达式中涉及无穷数的规则与预期一致：</p>
 <ol>
-<li>所有有限的有效数字都小于+∞。</li>
-<li>所有有限的有效数字都大于-∞。</li>
-<li>-∞小于+∞。</li>
+<li>所有有限的有效数字都小于$+\infty$。</li>
+<li>所有有限的有效数字都大于$-\infty$。</li>
+<li>$-\infty$小于$+\infty$。</li>
 </ol>
 <p>  涉及NaN值的表达式规则比较简单：</p>
 <ol>
-<li>任何包括NaN的算术表达式的结果都是NaN。</li>
-<li>任何涉及NaN的布尔表达式都是假的。</li>
+<li>任何包括$\mathrm{NaN}$的算术表达式的结果都是$\mathrm{NaN}$。</li>
+<li>任何涉及$\mathrm{NaN}$的布尔表达式都是假的。</li>
 </ol>
-<p>  也许IEEE浮点数最有用的地方在于如何处理除以零的问题；对于任何正实数a，以下涉及除以零值的规则都成立：</p>
-<p>+a/ +0 = +∞,</p>
-<p>−a/ +0 = −∞.</p>
+<p>  也许IEEE浮点数最有用的地方在于如何处理除以零的问题；对于任何正实数$a$，以下涉及除以零值的规则都成立：</p>
+<p>$$
+[
+\begin{aligned}
++a /+0=+\infty， \
+-a /+0=-\infty。 
+\end{aligned}
+]
+$$</p>
 <p>  如果程序员使用IEEE规则，那么许多数字计算会变得更加简单。例如，考虑表达式：</p>
-<p><img src="./img/1.1.png" alt="" /></p>
-<p>  这种表达方式出现在电阻和透镜上。如果除以0会导致程序崩溃（在IEEE浮点数之前的许多系统中都是如此），那么就需要两个if语句来检查b或c的小值或零值。相反，在IEEE浮点数中，如果b或c为零，我们会如愿获得a的零值。另一种避免特殊检查的常用技术是利用NaN的布尔特性。请看下面的代码段：</p>
-<p><img src="./img/1.2.png" alt="" /></p>
-<p>在这里，函数f可能会返回 &quot;丑陋 &quot;的值，如∞或NaN，但if条件仍然是明确的：当a=NaN或a=-∞时为假，a=+∞为真。在决定返回哪些值时要小心，通常if可以做出正确的选择，而不需要特别的检查。这使得程序更小、更健壮、更高效。</p>
+<p>$$
+[a=\frac{1}{\frac{1}{b}+\frac{1}{c}}]
+$$</p>
+<p>  这种表达方式出现在电阻和透镜上。如果除以0会导致程序崩溃（在IEEE浮点数之前的许多系统中都是如此），那么就需要两个$\text{if}$语句来检查$b$或$c$的小值或零值。相反，在IEEE浮点数中，如果$b$或$c$为零，我们会如愿获得$a$的零值。另一种避免特殊检查的常用技术是利用$\mathrm{NaN}$的布尔特性。请看下面的代码段：</p>
+<p>$$
+[
+\begin{aligned}
+&amp;a=f(x) \
+&amp;\textbf{if}(a&gt;0) \  \textbf{then} \ 
+&amp;\quad do \  something
+\end{aligned}
+]
+$$</p>
+<p>在这里，函数f可能会返回 &quot;丑陋 &quot;的值，如∞或NaN，但if条件仍然是明确的：当$a=\mathrm{NaN}$或$a=-\infty$时为假，$a=+\infty$为真。在决定返回哪些值时要小心，通常if可以做出正确的选择，而不需要特别的检查。这使得程序更小、更健壮、更高效。</p>
 
                     </main>
 
@@ -207,22 +231,6 @@ The fourth edition of Fundamentals of Computer Graphics continues to provide an 
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
-            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
-            const socket = new WebSocket(wsAddress);
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
