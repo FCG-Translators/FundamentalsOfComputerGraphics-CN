@@ -12,6 +12,7 @@
 
 &emsp;&emsp;这些角度中的每一个都是被两个方向“切割”的单位圆的弧长。因为单位圆的边缘是 \\(2\pi\\)，所以两个可能的角度总和为 \\(2\pi\\)。这些弧长的单位是弧度。另一个常见的单位是度数，圆的周长是 \\(360^\circ\\)。因此，一个弧度为 \\(\pi\\) 的角的度度是 \\(180^\circ\\)，通常表示为 \\(180^\circ\\)。度数和弧度之间的转换是
 
+\\[
 Degrees =\frac{180}{\pi} radians;\\\\
 Radians =\frac{\pi}{180} degrees.
 \\]
@@ -106,34 +107,34 @@ a^2+o^2=h^2
 \cos (A-B) &=\cos A \cos B+\sin A \sin B \\\\
 \cos (2 A) &=\cos ^{2} A-\sin ^{2} A
 \end{aligned}
-\\(\\)
-
 \\]
+
+\\[
 \begin{aligned}
 \tan (A+B) &=\frac{\tan A+\tan _{B}}{1-\tan A \tan B} \\\\
 \tan (A-B) &=\frac{\tan A-\tan B}{1+\tan A \tan B} \\\\
 \tan (2 A) &=\frac{2 \tan A}{1-\tan A}
 \end{aligned}
-\\[
+\\]
 
 &emsp;&emsp;半角恒等式：
 
-\\]
+\\[
 \begin{aligned}
 &\sin ^{2}(A / 2)=(1-\cos A) / 2 \\\\
 &\cos ^{2}(A / 2)=(1+\cos A) / 2
 \end{aligned}
-\\[
+\\]
 
 &emsp;&emsp;乘法恒等式：
 
-\\]
+\\[
 \begin{aligned}
 &\sin A \sin B=-(\cos (A+B)-\cos (A-B)) / 2 \\\\
 &\sin A \cos B=(\sin (A+B)+\sin (A-B)) / 2 \\\\
 &\cos A \cos B=(\cos (A+B)+\cos (A-B)) / 2
 \end{aligned}
-\\(\\)
+\\]
 
 &emsp;&emsp;以下恒等式适用于边长为 \\(a\\)、\\(b\\) 和 \\(c\\) 的任意三角形，每边相对的角度分别为 A、B、C（图 2.10），
 
