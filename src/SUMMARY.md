@@ -29,3 +29,5 @@
 	- [图像、像素和几何学](./chapter_3_2.md)
 	- [RGB颜色](./chapter_3_3.md)
 	- [阿尔法合成](./chapter_3_4.md)
+	- [FAQ](./chapter_3_5.md)
+	- [练习](./chapter_3_6.md)

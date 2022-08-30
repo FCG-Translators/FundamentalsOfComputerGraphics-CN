@@ -8,3 +8,4 @@ tex/FundamentalsComputerGraphics.run.xml
 tex/FundamentalsComputerGraphics.synctex.gz
 tex/FundamentalsComputerGraphics.synctex(busy)
 tex/FundamentalsComputerGraphics.toc
+tex/*.log
