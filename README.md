@@ -52,9 +52,11 @@ cd FundamentalsOfComputerGraphics-CN
 ```bash
 # 在浏览器中打开图书
 mdbook serve --open
+# 或者运行根目录下的tex-run.bat文件（Windows）
 
 # 构建图书
 mdbook build
+# 或者运行根目录下的tex-build.bat文件（Windows）
 ```
 - xelatex使用
 ```bash
@@ -72,7 +74,7 @@ xelatex FundamentalsComputerGraphics.tex
 |   第三章   | 2022.8.17 |    2022.8.30     | 已完成 |  北溟42  |        |
 |   第四章   |     2022.8.31     |     -     | 进行中 |   北溟42    |        |
 |   第五章   |     -     |     -     | 未开始 |   -    |        |
-|   第六章   |     2023.1.9     |     -     | 进行中 | Ninohana |        |
+|   第六章   |     2023.1.9     |     -     | 进行中 | 二之花 |        |
 |   第七章   |     -     |     -     | 未开始 |   -    |        |
 |   第八章   |     -     |     -     | 未开始 |   -    |        |
 |   第九章   |     -     |     -     | 未开始 |   -    |        |
