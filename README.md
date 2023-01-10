@@ -42,7 +42,7 @@ wget -c https://mirror.ctan.org/systems/mac/mactex/MacTeX.pkg
 ### repository - 存储库
 ```bash
 # 克隆存储库
-git@github.com:zouyonghe/FundamentalsOfComputerGraphics-CN.git
+git clone git@github.com:zouyonghe/FundamentalsOfComputerGraphics-CN.git
 # 进入目录
 cd FundamentalsOfComputerGraphics-CN
 ```
@@ -72,7 +72,7 @@ xelatex FundamentalsComputerGraphics.tex
 |   第三章   | 2022.8.17 |    2022.8.30     | 已完成 |  北溟42  |        |
 |   第四章   |     2022.8.31     |     -     | 进行中 |   北溟42    |        |
 |   第五章   |     -     |     -     | 未开始 |   -    |        |
-|   第六章   |     -     |     -     | 未开始 |   -    |        |
+|   第六章   |     2023.1.9     |     -     | 进行中 | Ninohana |        |
 |   第七章   |     -     |     -     | 未开始 |   -    |        |
 |   第八章   |     -     |     -     | 未开始 |   -    |        |
 |   第九章   |     -     |     -     | 未开始 |   -    |        |
