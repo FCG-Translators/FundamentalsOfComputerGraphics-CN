@@ -1085,5 +1085,80 @@ $$
 
 \section{环境照明}
 
+\chapter{线性代数}
+
+图形程序中最通用的工具恐怕就是改变或转换点和向量的矩阵了。在接下来的章节中，我们将学习如何将一个向量表示为一个只有一列的矩阵，并且通过矩阵乘法用不同的方式表示该向量。我们还将描述如何使用这种乘法来完成对向量的改变，比如缩放、旋转和平移。在这一章中，我们从几何学的角度来回顾线性代数基础，专注于直感和在二维、三维上行之有效的算法。
+
+对自己线性代数知识掌握有信心的读者可跳过这个章节，尽管如此，这里还是有些小道消息可能会对你有所启发，例如行列式的发展以及对奇异值和特征值分解的讨论等。
+
+\section{行列式}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.2\textwidth]{6.1.png}
+\caption{这个平行四边形的带符号面积是 $|ab|$ ，并且在这种情况下面积为正。}
+\end{figure}
+
+我们通常认为行列式是在线性方程的解中出现的。然而，在此处，我们有意将行列式视为另一种向量相乘的方式。对于二维向量$a$和$b$，行列式$|ab|$是$a$和$b$形成的平行四边形的面积（图6.1）。这是一个带符号的面积，并且当$a$和$b$右旋时符号为正，左旋则为负，也就是$|ab| = -|ba|$。在二维中，我们可以把“右旋”理解为逆时针旋转第一个向量至与第二个向量形成最小的角度。三维中的行列式则必须同时计算三个向量。对于三个三维向量$a$、$b$和$c$，行列式$|abc|$是这三个向量形成的平行六面体（三维平行四边形；一个修剪的三维盒子）的带符号体积(图6.2)。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.2\textwidth]{6.2.png}
+\caption{所示平行六面体的带符号体积由行列式$|abc|$表示，在这种情况下，体积为正，因为这个向量以右旋作为基准。}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.2\textwidth]{6.3.png}
+\caption{沿一个方向缩放平行四边形会以相同比例改变面积。}
+\end{figure}
+
+要计算一个二维行列式，首先需要确定它的一些性质。我们注意到对平行四边形的其中一条边进行缩放，与它面积缩放的比例是相同的（图6.3）：$$|(ka)b| =  |a(kb)| = k|ab|$$此外，“修剪”一个平行四边形不会改变它的面积（图6.4）：$$|(a+kb)b| =  |a(b+ka)| = |ab|$$最终我们发现，行列式拥有如下特性：
+\begin{align}
+|a(b+c)| =  |ab| + |ac|
+\end{align}
+如图6.5所示，我们可以滑动两个平行四边形中间的边来形成一个平行四边形而不改变原来两个平行四边形的面积。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.2\textwidth]{6.4.png}
+\caption{剪切平行四边形不会改变其面积。这四个平行四边形底相同，因此面积也相同。}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.2\textwidth]{6.5.png}
+\caption{方程式6.1后面的几何结构。左边两个平行四边形可以被剪切成右边的平行四边形。}
+\end{figure}
+
+现在让我们假设a和b的笛卡尔表示法：
+\begin{align}
+|ab| &= |(x_aX + y_aY)(x_bX + y_bY)| \nonumber\\
+&=x_ax_b|XX|+x_ay_b|XY|+y_ax_b|YX|+y_ay_b|YY| \nonumber\\
+&=x_ax_b(0)+x_ay_b(+1)+y_ax_b(-1)+y_ay_b(0) \nonumber\\
+& = x_a y_b - y_a x_b \nonumber
+\end{align}
+简而言之，对于任何向量v，都有|vv|=0，即平行四边形四边共线，因此没有面积。
+
+在三维空间中，三个三维向量$a$、$b$和$c$的行列式记作$|abc|$。这些向量的笛卡尔表示对于平行六面体和平行四边形具有相似的规则，并且我们可以像对二维那样进行类似的拓展：
+\begin{align}
+|abc| &= |(x_aX+y_aY+z_aZ)(x_bX+y_by+z_bZ)(x_cX+y_cY+z_cZ)| \nonumber\\
+&=x_ay_bz_c-x_az_by_c-y_ax_bz_c+y_az_bx_c+z_ax_by_c-z_ay_bx_c \nonumber
+\end{align}
+可以看到，这种方式下行列式的计算随着维度的升高变得越来越糟糕。我们将在章节6.3.2讨论易错更少的计算方法。
+
+\remark{例二}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{6.6.png}
+\caption{左侧的向量c可以用两个基向量表示成$a_ca+b_cb$。我们看到右侧，由$a$和$c$形成的平行四边形是由$b_b$和$a$形成的平行四边形的剪切版本。}
+\end{figure}
+
+行列式自然产生于计算一个向量的表达式作为其他两个的线性组合——举个例子，如果我们希望用向量$c$表示一个向量组合$a$和$b$：$$c = a_a + b_cb$$参照图6.6得到：$$|(b_cb)a| = |ca|$$因为这些平行四边形只是彼此的剪切版本。解出$b_c$为$$b_c = |ca|/|ba|$$类比得出$$a_c = |bc|/|ba|$$这是克莱姆法则的二维版本，我们将在章节6.3.2中再次探讨。
+
+\section{矩阵}
+\section{计算矩阵和行列式}
+\section{特征式和矩阵对角式}
 
 \end{document}
