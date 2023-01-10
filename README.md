@@ -126,7 +126,12 @@ xelatex FundamentalsComputerGraphics.tex
 
 ### Contact - 联系
 
-🍮buding QQ：1259085392 EMAIL：1259085392z@gmail.com  
+🍮buding 
+
+QQ：1259085392 
+
+EMAIL：1259085392z@gmail.com 
+
 QQ群：584041033（进群验证：计算机图形学基础）
 
 ## Authors and acknowledgment - 贡献者和感谢
