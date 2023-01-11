@@ -1390,6 +1390,105 @@ z_{b}
 \end{array}\right]=\left[x_{a} x_{b}+y_{a} y_{b}+z_{a} z_{b}\right]
 $$
 
+一组相关的向量乘积是两个向量的\text{外积}，可以表示成左侧是列向量，右侧是行向量的矩阵乘法：$\mathbf{ab}^T$。结果是一个由$a$和$b$中所有条目对应的乘积构成的矩阵。对于三维向量，我们有：
+$$
+\left[\begin{array}{c}
+x_{a} \\
+y_{a} \\
+z_{a}
+\end{array}\right]\left[\begin{array}{lll}
+x_{b} & y_{b} & z_{b}
+\end{array}\right]=\left[\begin{array}{lll}
+x_{a} x_{b} & x_{a} y_{b} & x_{a} z_{b} \\
+y_{a} x_{b} & y_{a} y_{b} & y_{a} z_{b} \\
+z_{a} x_{b} & z_{a} y_{b} & z_{a} z_{b}
+\end{array}\right]
+$$
+
+用向量运算的角度考虑矩阵乘法通常是有用的。为了说明，我们使用三维中的例子，想象一个3×3的矩阵，它是三个三维向量在两种方式下的集合：要么是三个列向量并排，要么是三个行向量堆叠形成。比如，一个矩阵向量乘法$\mathbf{y} = \mathbf{Ax}$的结果可以解释为一个向量，它的项是$\mathbf{x}$和$\mathbf{A}$行的点积。把它的行向量记作$\mathbf{r}_i$，得到：
+$$
+\begin{array}{c}
+{\left[\begin{array}{c}
+\mid \\
+\mathbf{y} \\
+\mid
+\end{array}\right]=\left[\begin{array}{l}
+-\mathbf{r}_{1}- \\
+-\mathbf{r}_{2}- \\
+-\mathbf{r}_{3}-
+\end{array}\right]\left[\begin{array}{c}
+\mid \\
+\mathbf{x} \\
+\mid
+\end{array}\right]} \\
+y_{i}=\mathbf{r}_{i} \cdot \mathbf{x}
+\end{array}
+$$
+或者我们也可以想象成$\mathbf{A}$的三列$\mathbf{c}_i$乘积的和，用$\mathbf{x}$的项加权：
+$$
+\begin{array}{c}
+{\left[\begin{array}{c}
+\mid \\
+\mathbf{y} \\
+\mid
+\end{array}\right]=\left[\begin{array}{ccc}
+\mid & \mid & \mid \\
+\mathbf{c}_{1} & \mathbf{c}_{2} & \mathbf{c}_{3} \\
+\mid & \mid & \mid
+\end{array}\right]\left[\begin{array}{l}
+x_{1} \\
+x_{2} \\
+x_{3}
+\end{array}\right]} \\
+\mathbf{y}=x_{1} \mathbf{c}_{1}+x_{2} \mathbf{c}_{2}+x_{3} \mathbf{c}_{3}
+\end{array}
+$$
+
+带着同样的想法，可以将矩阵与矩阵的乘积$\mathbf{AB}$理解为一个数组，其中包含$\mathbf{A}$的所有行和$\mathbf{B}$的所有列的对应点积（参看6.2）；看作一个矩阵$\mathbf{A}$和$\mathbf{B}$所有列向量的乘积的集合，从左到右排列；看作一个$\mathbf{A}$的所有行向量与矩阵$\mathbf{B}$的乘积，从上到下堆叠；或看作$\mathbf{A}$的所有列和$\mathbf{B}$的所有行对应外积的和（练习8）。
+
+\subsection{特殊类型的矩阵}
+
+单位矩阵是\textit{对角矩阵}的一种，其中所有非零元素都沿着对角线出现。对角线由那些从左上角开始列索引与行索引计数相同的元素组成。
+
+单位矩阵也具有与它的转置相同的性质，这种矩阵被称为\textit{对称矩阵}。
+
+单位矩阵也是一个正交矩阵，因为它的每一个列都被认为是一个向量，长度为1，并且这些列彼此正交。各行也是如此（练习2）。任何正交矩阵的行列式都是+1或−1。
+
+\remark{正交矩阵的概念对应于标准正交基的概念，而不仅仅是一组正交向量——这是术语中的一个不幸的小差错。}
+
+正交矩阵有一个非常有用的性质：它们几乎是它们自己的逆。用一个正交矩阵乘以它的转置，可以得到恒等式：$$\mathbf{R}^T \mathbf{R}=I=\mathbf{R} \mathbf{R}^T \quad \text { 正交 } \mathbf{R}$$这很显然，因为$\mathbf{R}^T \mathbf{R}$的项就是$\mathbf{R}$的列之间的点积。非对角线上的项是正交向量之间的点积，对角线上的项是（单位长度）列与它们自身的点积。
+
+例3
+
+矩阵
+$$
+\left[\begin{array}{lll}
+8 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 9
+\end{array}\right]
+$$
+是对角矩阵，因此是对称矩阵，但不是正交矩阵（列是正交的但不是单位长度）。
+
+矩阵
+$$
+\left[\begin{array}{lll}
+1 & 1 & 2 \\
+1 & 9 & 7 \\
+2 & 7 & 1
+\end{array}\right]
+$$是对称矩阵，但不是对角矩阵或正交矩阵。
+
+矩阵
+$$
+\left[\begin{array}{lll}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+1 & 0 & 0
+\end{array}\right]
+$$
+是正交矩阵，但不是对角矩阵或对称矩阵。
+
 \section{计算矩阵和行列式}
 \section{特征式和矩阵对角式}
 
