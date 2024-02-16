@@ -8,7 +8,7 @@
 %%%%%%%%%%%%%%%%%%%%%
 % % !Mode:: "TeX:UTF-8"
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{elegantbook}[2022/04/09 v4.3 ElegantBook document class]
+\ProvidesClass{elegantbook}[2022/12/31 v4.5 ElegantBook document class]
 
 
 %%%
@@ -16,7 +16,6 @@
 \RequirePackage{etoolbox}
 \SetupKeyvalOptions{family=ELEGANT, prefix=ELEGANT@, setkeys=\kvsetkeys}
 \newcommand{\ekv}[1]{\kvsetkeys{ELEGANT}{#1}}
-
 % ----- Colors -----
 \DeclareStringOption[blue]{color}
 \DeclareStringOption[en]{lang}
@@ -56,6 +55,7 @@
 
 \DeclareVoidOption{fancy}{\ekv{mode=fancy}}
 \DeclareVoidOption{simple}{\ekv{mode=simple}}
+\DeclareBoolOption[false]{usesamecnt}
 
 \DeclareVoidOption{answer}{\ekv{result=answer}}
 \DeclareVoidOption{noanswer}{\ekv{result=noanswer}}
@@ -123,6 +123,10 @@
   pdfborder={0 0 0},
   linktocpage
 }
+\newif\ifELEGANT@Hy@later
+  \@ifpackagelater{hyperref}{2022/05/16}
+    {\ELEGANT@Hy@latertrue}
+    {\ELEGANT@Hy@laterfalse}
 
 %% device settings
 \RequirePackage{geometry}
@@ -165,13 +169,16 @@
 \PassOptionsToPackage{quiet}{fontspec}
 \RequirePackage{iftex}
 
-\ifXeTeX
+\ifpdftex
+  \RequirePackage{newtxtext}
+  \RequirePackage[scaled=.90]{helvet}
+\else
   \RequirePackage[no-math]{fontspec}
-  \setmainfont{texgyretermes}[
-    UprightFont = *-regular ,
-    BoldFont = *-bold ,
-    ItalicFont = *-italic ,
-    BoldItalicFont = *-bolditalic ,
+  \setmainfont{TeXGyreTermesX}[
+    UprightFont = *-Regular ,
+    BoldFont = *-Bold ,
+    ItalicFont = *-Italic ,
+    BoldItalicFont = *-BoldItalic ,
     Extension = .otf ,
     Scale = 1.0]
     
@@ -182,14 +189,11 @@
     BoldItalicFont = *-bolditalic ,
     Extension = .otf ,
     Scale = 0.9]
-\else
-  \RequirePackage{newtxtext}
-  \RequirePackage[scaled=.90]{helvet}
 \fi
 
 \ifdefstring{\ELEGANT@lang}{cn}{
   \ifdefstring{\ELEGANT@chinesefont}{founder}{
-    \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
+    \RequirePackage[UTF8, scheme=plain, fontset=none]{ctex}
     \setCJKmainfont[BoldFont={FZHei-B01},ItalicFont={FZKai-Z03}]{FZShuSong-Z01}
     \setCJKsansfont[BoldFont={FZHei-B01}]{FZKai-Z03}
     \setCJKmonofont[BoldFont={FZHei-B01}]{FZFangSong-Z02}
@@ -203,10 +207,14 @@
     \newcommand*{\fangsong}{\CJKfamily{zhfs}}}{\relax}
   
   \ifdefstring{\ELEGANT@chinesefont}{nofont}{
-    \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}}{\relax}
+    \RequirePackage[UTF8,scheme=plain,fontset=none]{ctex}
+    \xeCJKsetup{AutoFakeBold=true}
+    }{\relax}
 
   \ifdefstring{\ELEGANT@chinesefont}{ctexfont}{
-    \RequirePackage[UTF8,scheme=plain]{ctex}}{\relax}
+    \RequirePackage[UTF8,scheme=plain]{ctex}
+    \xeCJKsetup{AutoFakeBold=true}
+    }{\relax}
   
   \AfterEndPreamble{
     \setlength\parindent{2\ccwd}}
@@ -238,7 +246,19 @@
 
 \RequirePackage{anyfontsize}
 \ifdefstring{\ELEGANT@math}{newtx}{
+  \let\oldencodingdefault\encodingdefault
+  \let\oldrmdefault\rmdefault
+  \let\oldsfdefault\sfdefault
+  \let\oldttdefault\ttdefault
+  \def\encodingdefault{T1}
+  \renewcommand{\rmdefault}{ntxtlf}
+  \renewcommand{\sfdefault}{qhv}
+  \renewcommand{\ttdefault}{ntxtt}
   \RequirePackage{newtxmath}
+  \let\encodingdefault\oldencodingdefault
+  \let\rmdefault\oldrmdefault
+  \let\sfdefault\oldsfdefault
+  \let\ttdefault\oldttdefault
   \let\Bbbk\relax
   \RequirePackage{esint}
   %%% use yhmath pkg, uncomment following code
@@ -387,7 +407,6 @@
   backend=\ELEGANT@bibend,
   citestyle=\ELEGANT@citestyle,
   bibstyle=\ELEGANT@bibstyle]{biblatex}
-\defbibheading{elegantbook}[\ebibname]{#1}
 
 \ifdefstring{\ELEGANT@lang}{cn}{
   \renewcommand{\baselinestretch}{1.3}
@@ -833,8 +852,22 @@
 \ifdefstring{\ELEGANT@lang}{cn}{
   \ifdefstring{\ELEGANT@scheme}{chinese}{
     \newcommand{\xchaptertitle}{第\zhnumber{\arabic{chapter}}章} }{
-    \newcommand{\xchaptertitle}{第 \thechapter{} 章}} }{
-  \newcommand{\xchaptertitle}{\chaptername~\thechapter~}}
+    \newcommand{\xchaptertitle}{第 \thechapter{} 章}}
+% Hyperref 2022/05/16's changelog.txt said
+% * nameref is loaded always and earlier (issue#235) 
+    \AtBeginDocument{
+      \ifELEGANT@Hy@later
+        \patchcmd{\NR@chapter}%
+          {\numberline{\thechapter}}{\numberline{\xchaptertitle}}%
+          {}{\fail}
+      \else    
+        \patchcmd{\Hy@org@chapter}%
+          {\numberline{\thechapter}}{\numberline{\xchaptertitle}}%
+          {}{\fail}
+      \fi
+    }
+  }
+  {\newcommand{\xchaptertitle}{\chaptername~\thechapter~}}
 
 \setcounter{secnumdepth}{5}
 \titleformat{\chapter}[\style]{\bfseries}{
@@ -855,11 +888,26 @@
 
 
 
-%%define the note and proof environment
+%%define the 
+%%definition theorem postulate axiom corollary lemma proposition 
+%%and proof environment
 \RequirePackage{pifont,manfnt,bbding}
 \RequirePackage[many]{tcolorbox}
 % \newlength{\normalparindent}
 % \setlength{\normalparindent}{\parindent}
+\newcommand{\ELEGANT@tmp@tl}{}
+\ifELEGANT@usesamecnt
+  \newcounter{ELEGANT@samecnt}
+  \counterwithin{ELEGANT@samecnt}{\ELEGANT@thmcnt}
+  \tcbset{
+    new/usesamecnt/.style = {use counter = ELEGANT@samecnt}
+  }
+\else
+  \tcbset{
+    new/usesamecnt/.style = {}
+  }
+\fi
+
 \ifdefstring{\ELEGANT@mode}{fancy}{
   \tcbset{
     common/.style={
@@ -899,49 +947,94 @@
       overlay unbroken and last={
         \node[anchor=south east, outer sep=0pt] at (\linewidth-width,0) {
           \textcolor{second}{$\heartsuit$}};}},
-    propstyle/.style={
+    prostyle/.style={
       common,
       colframe=third,  
       colback=third!5,
       colbacktitle=third, 
       overlay unbroken and last={
         \node[anchor=south east, outer sep=0pt] at (\linewidth-width,0) {
-          \textcolor{third}{$\spadesuit$}};}},}
-  % \newtcbtheorem[auto counter,number within=chapter]{definition}{\definitionname}{defstyle}{def}
-  \DeclareTColorBox[auto counter,number within=\ELEGANT@thmcnt]{definition}{ o t\label g }{
-    common,defstyle,
-    IfValueTF={#1}{title={\definitionname~\thetcbcounter\ (#1)}}{title=\definitionname~\thetcbcounter},
-    IfBooleanTF={#2}{label=#3}{}}
-  % \newtcbtheorem[auto counter,number within=chapter]{theorem}{\theoremname}{thmstyle}{thm}
-  \DeclareTColorBox[auto counter,number within=\ELEGANT@thmcnt]{theorem}{ o t\label g }{
-    common,thmstyle,
-    IfValueTF={#1}{title={\theoremname~\thetcbcounter\ (#1)}}{title=\theoremname~\thetcbcounter},
-    IfBooleanTF={#2}{label=#3}{}}
-  % \newtcbtheorem[auto counter,number within=chapter]{postulate}{\postulatename}{thmstyle}{pos}
-  \DeclareTColorBox[auto counter,number within=\ELEGANT@thmcnt]{postulate}{ o t\label g }{
-    common,thmstyle,
-    IfValueTF={#1}{title={\postulatename~\thetcbcounter\ (#1)}}{title=\postulatename~\thetcbcounter},
-    IfBooleanTF={#2}{label=#3}{}}
-  % \newtcbtheorem[auto counter,number within=chapter]{axiom}{\axiomname}{thmstyle}{axi}
-  \DeclareTColorBox[auto counter,number within=\ELEGANT@thmcnt]{axiom}{ o t\label g }{
-    common,thmstyle,
-    IfValueTF={#1}{title={\axiomname~\thetcbcounter\ (#1)}}{title=\axiomname~\thetcbcounter},
-    IfBooleanTF={#2}{label=#3}{}}
-  % \newtcbtheorem[auto counter,number within=chapter]{corollary}{\corollaryname}{thmstyle}{cor}
-  \DeclareTColorBox[auto counter,number within=\ELEGANT@thmcnt]{corollary}{ o t\label g }{
-    common,thmstyle,
-    IfValueTF={#1}{title={\corollaryname~\thetcbcounter\ (#1)}}{title=\corollaryname~\thetcbcounter},
-    IfBooleanTF={#2}{label=#3}{}}
-  % \newtcbtheorem[auto counter,number within=chapter]{lemma}{\lemmaname}{thmstyle}{lem}
-  \DeclareTColorBox[auto counter,number within=\ELEGANT@thmcnt]{lemma}{ o t\label g }{
-    common,thmstyle,
-    IfValueTF={#1}{title={\lemmaname~\thetcbcounter\ (#1)}}{title=\lemmaname~\thetcbcounter},
-    IfBooleanTF={#2}{label=#3}{}}
-  % \newtcbtheorem[auto counter,number within=chapter]{proposition}{\propositionname}{propstyle}{pro}
-  \DeclareTColorBox[auto counter,number within=\ELEGANT@thmcnt]{proposition}{ o t\label g }{
-    common,propstyle,
-    IfValueTF={#1}{title={\propositionname~\thetcbcounter\ (#1)}}{title=\propositionname~\thetcbcounter},
-    IfBooleanTF={#2}{label=#3}{}}}{\relax}
+          \textcolor{third}{$\spadesuit$}};}},
+    ELEGANT@title/.code n args={2}
+      {
+
+        \tcbset
+          {
+            title=
+              {
+                \csname #1name\endcsname~%
+                \ifdef{\thetcbcounter}{\thetcbcounter}{}%
+                \ifblank{#2}{}{\ (#2)}
+              }
+          }
+      },
+    ELEGANT@label/.code n args={2}
+      {
+        \ifblank{#2}
+          {}{\tcbset{label={#1:#2}}}
+      }
+    }
+  
+  % define an internal control sequence \ELEGANT@newtheorem for fancy mode's newtheorem
+  % #1 is the environment name, #2 is the prefix of label, #3 is the style
+  % style: thmstyle, defstyle, prostyle
+  % e.g. \ELEGANT@newtheorem{theorem}{thm}{thmstyle}
+  % will define two environments: numbered ``theorem'' and no-numbered ``theorem*''
+  % WARNING FOR MULTILINGUAL: this cs will automatically find \theoremname's definition,
+  % WARNING FOR MULTILINGUAL: it should be defined in language settings.
+  \NewDocumentCommand \ELEGANT@newtheorem { m m m O{} }{
+    \ifcsundef{#1name}{%
+      \ClassError{elegantbook}{%
+        \ #1name undefined, \MessageBreak
+        Please check in language setting
+      }{}
+    }{\relax}
+    \expandafter\ifblank\expandafter{#4}{
+      \tcbset{
+        new/usecnt/.style={}
+      }
+    }{
+      \tcbset{
+        new/usecnt/.style= {use counter from = #4}
+      }
+    }
+    \DeclareTColorBox[auto counter,number within=\ELEGANT@thmcnt,usesamecnt,usecnt]{#1}{ g o t\label g }{
+        common,#3,
+        IfValueTF={##1}
+          {ELEGANT@title={#1}{##1}}
+          {
+            IfValueTF={##2}
+            {ELEGANT@title={#1}{##2}}
+            {ELEGANT@title={#1}{}}
+          },
+        IfValueT={##4}
+          {
+            IfBooleanTF={##3}
+              {label={##4}}
+              {ELEGANT@label={#2}{##4}}
+          }
+      }
+    \DeclareTColorBox{#1*}{ g o }{
+        common,#3,
+        IfValueTF={##1}
+          {ELEGANT@title={#1}{##1}}
+          {
+            IfValueTF={##2}
+            {ELEGANT@title={#1}{##2}}
+            {ELEGANT@title={#1}{}}
+          },
+      }
+  }
+  % define several environment 
+  % we define headers like \definitionname before
+  \ELEGANT@newtheorem{theorem}{thm}{thmstyle}
+  \ELEGANT@newtheorem{definition}{def}{defstyle}
+  \ELEGANT@newtheorem{postulate}{pos}{thmstyle}
+  \ELEGANT@newtheorem{axiom}{axi}{thmstyle}
+  \ELEGANT@newtheorem{corollary}{cor}{thmstyle}
+  \ELEGANT@newtheorem{lemma}{lem}{thmstyle}
+  \ELEGANT@newtheorem{proposition}{pro}{prostyle}
+}{\relax}
 
 
 \ifdefstring{\ELEGANT@mode}{simple}{
@@ -951,7 +1044,7 @@
   % \let\proofname\relax
   \let\endproof\relax
 
-  % declare a new theorem style
+  % declare new theorem styles: defstyle, thmstyle, prostyle
   \newtheoremstyle{defstyle}{3pt}{3pt}{\citshape}{-3pt}{
     \bfseries\color{main}}{}{0.5em}{\thmname{#1} \thmnumber{#2} \thmnote{(#3)}}
   \newtheoremstyle{thmstyle}{3pt}{3pt}{\citshape}{-3pt}{
@@ -959,20 +1052,104 @@
   \newtheoremstyle{prostyle}{3pt}{3pt}{\citshape}{-3pt}{
     \bfseries\color{third}}{}{0.5em}{\thmname{#1} \thmnumber{#2} \thmnote{(#3)}}
 
+  % define an internal control sequence \ELEGANT@newtheorem for simple mode's newtheorem
+  % #1 is the environment name, #2 is the style
+  % style: thmstyle, defstyle, prostyle
+  % e.g. \ELEGANT@newtheorem{theorem}{thmstyle}
+  % will define two environments: numbered ``theorem'' and no-numbered ``theorem*''
+  % WARNING FOR MULTILINGUAL: this cs will automatically find \theoremname's definition,
+  % WARNING FOR MULTILINGUAL: it should be defined in language settings.
+  \NewDocumentCommand \ELEGANT@newtheorem { m m O{} } {
+    \theoremstyle{#2}
+    \ifELEGANT@usesamecnt
+      \newtheorem{#1}[ELEGANT@samecnt]{\csname #1name\endcsname}
+    \else 
+      \ifblank{#3}{
+        \newtheorem{#1}{\csname #1name\endcsname}[\ELEGANT@thmcnt]
+      }{
+        \newtheorem{#1}[#3]{\csname #1name\endcsname}
+      }
+    \fi
+    \newtheorem*{#1*}{\csname #1name\endcsname}
+  }
 
-  \theoremstyle{defstyle} % definition style
-  \newtheorem{definition}{\definitionname}[\ELEGANT@thmcnt]
-
-  \theoremstyle{thmstyle} %theorem style
-  \newtheorem{theorem}{\theoremname}[\ELEGANT@thmcnt]
-  \newtheorem{lemma}{\lemmaname}[\ELEGANT@thmcnt]
-  \newtheorem{corollary}{\corollaryname}[\ELEGANT@thmcnt]
-  \newtheorem{postulate}{\postulatename}[\ELEGANT@thmcnt]
-  \newtheorem{axiom}{\axiomname}[\ELEGANT@thmcnt]
-
-  \theoremstyle{prostyle} % proposition style
-  \newtheorem{proposition}{\propositionname}[\ELEGANT@thmcnt]
+  % define several environment 
+  % we define headers like \definitionname before
+  \ELEGANT@newtheorem{theorem}{thmstyle}
+  \ELEGANT@newtheorem{definition}{defstyle}
+  \ELEGANT@newtheorem{postulate}{thmstyle}
+  \ELEGANT@newtheorem{axiom}{thmstyle}
+  \ELEGANT@newtheorem{corollary}{thmstyle}
+  \ELEGANT@newtheorem{lemma}{thmstyle}
+  \ELEGANT@newtheorem{proposition}{prostyle}
 }{\relax}
+
+% define an user control sequence \elegantnewtheorem
+% #1 is the evironment, #2 is the theorem header
+% #3 is the style       #4 is the prefix for fancy mode
+% style: thmstyle, defstyle, prostyle
+% if #4 is given in simple mode, an error will be raised
+% if #4 isn't given in fancy mode, the prefix will be set equal to #1,
+%   and a warning will be raised
+\newcommand{\ELEGANT@newtheorem@warning}{}
+\newcommand{\ELEGANT@newtheorem@error}{}
+\newcommand{\ELEGANT@usesamecnt@warning}{}
+\NewDocumentCommand\elegantnewtheorem{ m m m g O{} }
+  {
+    \renewcommand{\ELEGANT@usesamecnt@warning}{
+      \ClassWarning{elegantbook}{%
+        [#5] won't make sence with option \MessageBreak
+        `usesamecnt'.
+      }
+    }
+    \renewcommand{\ELEGANT@newtheorem@warning}{
+      \ClassWarning{elegantbook}{%
+        Because you didn't provide a prefix, \MessageBreak
+        we use #1 as the default prefix. \MessageBreak
+        You have to use \MessageBreak
+        \ref{#1:label} to refer a \MessageBreak
+        \begin{#1}{name}{label} environment. \MessageBreak
+      }
+    }
+    \renewcommand{\ELEGANT@newtheorem@error}{
+      \ClassError{elegantbook}{%
+        You can't set a prefix in mode ``simple''.\MessageBreak
+        Just use \MessageBreak
+        \elegantnewtheorem{#1}{#2}{#3}
+      }{%
+        We are using ``amsthm'' package to \MessageBreak
+        generate theorem-like theorem. \MessageBreak
+        The 4th parameter ``prefix'' isn't allowed.
+      }
+    }
+    \ifELEGANT@usesamecnt
+      \ifblank{#5}{}{\ELEGANT@usesamecnt@warning}
+    \else
+      \renewcommand{\ELEGANT@tmp@tl}{#5}
+    \fi
+    \expandafter\def\csname #1name\endcsname{#2}
+    \ifdefstring{\ELEGANT@mode}{simple}{%
+        \IfValueTF{#4}
+          {\ELEGANT@newtheorem@error}
+          {\ELEGANT@newtheorem{#1}{#3}[\ELEGANT@tmp@tl]}
+      }{\relax}
+    \ifdefstring{\ELEGANT@mode}{fancy}{%
+        \IfValueTF{#4}
+          {
+            \def\ELEGANT@temp@prefix{#4}
+            \ifdefempty{\ELEGANT@temp@prefix}
+              {
+                \ELEGANT@newtheorem{#1}{#1}{#3}[\ELEGANT@tmp@tl]
+                \ELEGANT@newtheorem@warning
+              }
+              {\ELEGANT@newtheorem{#1}{#4}{#3}[\ELEGANT@tmp@tl]}
+          }
+          {
+            \ELEGANT@newtheorem{#1}{#1}{#3}[\ELEGANT@tmp@tl]
+            \ELEGANT@newtheorem@warning
+          }
+      }{\relax}
+  }
 
 % main（green-def): example exercise problem solution
 % second（orange-thm）: proof note remark  
@@ -1044,6 +1221,7 @@
     sharp corners
   },
 }
+
 
 \newenvironment{introduction}[1][\introductionname]{
   \begin{tcolorbox}[introductionsty,title={#1}]
@@ -1192,9 +1370,9 @@
   breaklines=true,
   keywordstyle=\color{winered},
   commentstyle=\color{gray},
-  emph={elegantpaper,fontenc,fontspec,xeCJK,citestyle,FiraMono,xunicode,figure,fig,image,img,table,itemize,enumerate,ctex,microtype,description,times,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX,device,color,mode,lang,amsthm,tcolorbox,titlestyle,cite,ctex,listings,base,math,scheme,toc,esint,chinesefont,amsmath,bibstyle,natbib,pgfornament},
+  emph={elegantpaper,fontenc,fontspec,xeCJK,citestyle,FiraMono,xunicode,figure,fig,image,img,table,itemize,enumerate,ctex,microtype,description,times,booktabs,tabular,PDFLaTeX,XeLaTeX,type1cm,BibTeX,device,color,mode,lang,amsthm,tcolorbox,titlestyle,cite,ctex,listings,base,math,scheme,toc,esint,chinesefont,amsmath,bibstyle,natbib,pgfornament,addbibresource,printbibliography},
   emphstyle={\color{frenchplum}},
-  morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords,definecolor,extrainfo,logo,cover,subtitle,appendix,chapter,hypersetup,mainmatter,frontmatter,tableofcontents,elegantpar,heiti,kaishu,lstset,pagecolor,zhnumber,marginpar,part,equote,marginnote,bioinfo,datechange,listofchange,lvert,lastpage,songti,heiti,fangsong,setCJKfamilyfont,textbf},
+  morekeywords={DeclareSymbolFont,SetSymbolFont,toprule,midrule,bottomrule,institute,version,includegraphics,setmainfont,setsansfont,setmonofont ,setCJKmainfont,setCJKsansfont,setCJKmonofont,RequirePackage,figref,tabref,email,maketitle,keywords,definecolor,extrainfo,logo,cover,subtitle,appendix,chapter,section,hypersetup,mainmatter,frontmatter,tableofcontents,elegantpar,heiti,kaishu,lstset,pagecolor,zhnumber,marginpar,part,equote,marginnote,bioinfo,datechange,listofchange,lvert,lastpage,songti,heiti,fangsong,setCJKfamilyfont,textbf,elegantnewtheorem,thmcnt,colorlet,usesamecnt},
   frame=single,
   tabsize=2,
   rulecolor=\color{structurecolor},
@@ -1233,7 +1411,7 @@
   \begin{enumerate}[label=\small\protect\circled{\arabic*}]}{
   \end{enumerate}}
 
-\addbibresource[location=local]{reference.bib}
+
 
 \renewcommand\tableofcontents{%
   \hypersetup{linktoc=all, linkcolor=black}
@@ -1251,7 +1429,8 @@
         \@starttoc{toc}
       \end{multicols}}{
       \@starttoc{toc}}
-    \if@restonecol\twocolumn\fi}
+    \if@restonecol\twocolumn\fi
+    \hypersetup{linkcolor=winered}}
 
 
 \renewcommand*{\cleardoublepage}{\clearpage\if@twoside \ifodd\c@page\else
@@ -1262,13 +1441,26 @@
 
 
 % https://tex.stackexchange.com/questions/56839/chaptername-is-used-even-for-appendix-chapters-in-toc
-\usepackage{calc}
-\usepackage[titles]{tocloft}
+\RequirePackage{calc}
+\RequirePackage[titles]{tocloft}
 \ifdefstring{\ELEGANT@lang}{cn}{
-  \renewcommand{\cftchappresnum}{\beforechap\space}
-  \renewcommand{\cftchapaftersnum}{\space\afterchap}
-  \setlength{\cftchapnumwidth}{\widthof{\textbf{附录~999}}}
+  % \renewcommand{\cftchappresnum}{\beforechap\space}
+  % \renewcommand{\cftchapaftersnum}{\space\afterchap}
+  % \setlength{\cftchapnumwidth}{\widthof{\textbf{附录~十一}}}
+  \renewcommand{\numberline}[1]{%
+  \@cftbsnum #1\@cftasnum~\@cftasnumb ~%
+  }
   \g@addto@macro\appendix{%
+    % recover \thechapter in the \NR@chapter's \numberline
+    \ifELEGANT@Hy@later
+      \patchcmd{\NR@chapter}%
+        {\numberline{\xchaptertitle}}{\numberline{\thechapter}}%
+        {}{\fail}      
+    \else
+      \patchcmd{\Hy@org@chapter}%
+        {\numberline{\xchaptertitle}}{\numberline{\thechapter}}%
+        {}{\fail}  
+    \fi
     \addtocontents{toc}{%
       \protect\renewcommand{\protect\cftchappresnum}{\appendixname\space}%
       \protect\renewcommand{\protect\cftchapaftersnum}{}%
