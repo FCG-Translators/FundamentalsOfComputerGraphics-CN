@@ -9,3 +9,6 @@ tex/FundamentalsComputerGraphics.synctex.gz
 tex/FundamentalsComputerGraphics.synctex(busy)
 tex/FundamentalsComputerGraphics.toc
 tex/*.log
+*.fls
+*.bbl
+*.fdb_latexmk
