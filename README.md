@@ -78,6 +78,7 @@ cd FundamentalsOfComputerGraphics-CN
 
 ## Translation Specification - 翻译规范
 
+* 中文写作规范请参考 [中文技术文档写作风格指南](https://zh-style-guide.readthedocs.io/zh-cn/latest/)
 * 术语的翻译请统一遵循以下格式
   ```LaTeX
   % 没有耳熟能详的缩写
@@ -94,16 +95,22 @@ cd FundamentalsOfComputerGraphics-CN
   \begin{note}
   % 具体内容
   \end{note}
+  % 需要补充“译注”的地方也请使用此环境
   ```
-* 原书中 `such as...` 引导的成分以及其他举例子、解释说明成分请放到 `（）` 中
+* 原书中 "such as..." 引导的成分以及其他举例子、解释说明成分请放到（）中
   ```LaTeX
-  原文：A key part of any graphics program is to have good classes or routines for geometric entities such as vectors and matrices, as well as graphics entities such as RGB colors and images.
-  译文：所有图形程序的一个关键部分是为几何实体（如向量和矩阵）以及图形实体（如RGB颜色和图像）提供良好的类或例程。
+  原文：A key part of any graphics program is to have good classes 
+  or routines for geometric entities such as vectors and matrices, 
+  as well as graphics entities such as RGB colors and images.
+  译文：所有图形程序的一个关键部分是为几何实体（如向量和矩阵）以及图形实体
+  （如RGB颜色和图像）提供良好的类或例程。
   % 放在括号中的内容往往是可以翻译成“例如……”、“比如……”、“也就是说……”等形式的内容
   ```
 * 根据句意对原文标点进行适当修改，比如把句号替换成逗号来避免独立句子过多、把句号替换成分号来连接两个关系紧密的句子等等。
 
 ## Changelog - 更新日志
+
+<div align=center>
 
 |    章节    | 开始时间  | 结束时间  |  状态  |  译者  | 校对者 |
 | :--------: | :-------: | :-------: | :----: | :----: | :----: |
@@ -131,6 +138,7 @@ cd FundamentalsOfComputerGraphics-CN
 | 第二十二章 |     -     |     -     | 未开始 |   -    |        |
 | 第二十三章 |     -     |     -     | 未开始 |   -    |        |
 
+</div>
 
 ## FAQ - 常见问题
 
