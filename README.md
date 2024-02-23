@@ -78,6 +78,7 @@ cd FundamentalsOfComputerGraphics-CN
 
 ## Translation Specification - 翻译规范
 
+* 善用、多用 Google、Wikipedia、剑桥在线词典和牛津在线词典来确定中英文单词、术语的翻译
 * 中文写作规范请参考 [中文技术文档写作风格指南](https://zh-style-guide.readthedocs.io/zh-cn/latest/)
 * 术语的翻译请统一遵循以下格式
   ```LaTeX
@@ -95,8 +96,8 @@ cd FundamentalsOfComputerGraphics-CN
   \begin{note}
   % 具体内容
   \end{note}
-  % 需要补充“译注”的地方也请使用此环境
   ```
+* 需要补充“译注”的地方请使用 `\footnote[]{}`
 * 原书中 "such as..." 引导的成分以及其他举例子、解释说明成分请放到（）中
   ```LaTeX
   原文：A key part of any graphics program is to have good classes 
