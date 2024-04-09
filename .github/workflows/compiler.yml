@@ -18,7 +18,7 @@ jobs:
     - name: Github Action for LaTeX
       uses: xu-cheng/latex-action@3.2.0
       with:
-        root_file: tex/FundamentalsComputerGraphics.tex
+        root_file: FundamentalsComputerGraphics.tex
         latexmk_use_xelatex: true
         working_directory: tex
 
