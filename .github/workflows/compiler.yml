@@ -1,0 +1,30 @@
+name: LaTeX Build
+
+on:
+  push:
+    branches:
+      - main  # 触发分支
+    tags:
+      - "v*.*.*"
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Github Action for LaTeX
+      uses: xu-cheng/latex-action@3.2.0
+      with:
+        root_file: FundamentalsComputerGraphics.tex
+        latexmk_use_xelatex: true
+        working_directory: tex
+
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: FundamentalsComputerGraphics.pdf
+            
