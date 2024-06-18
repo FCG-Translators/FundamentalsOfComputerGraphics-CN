@@ -104,7 +104,7 @@ cd FundamentalsOfComputerGraphics-CN
   or routines for geometric entities such as vectors and matrices, 
   as well as graphics entities such as RGB colors and images.
   译文：所有图形程序的一个关键部分是为几何实体（如向量和矩阵）以及图形实体
-  （如RGB颜色和图像）提供良好的类或例程。
+  （如 RGB 颜色和图像）提供良好的类或例程。
   % 放在括号中的内容往往是可以翻译成“例如……”、“比如……”、“也就是说……”等形式的内容
   ```
 * 根据句意对原文标点进行适当修改，比如把句号替换成逗号来避免独立句子过多、把句号替换成分号来连接两个关系紧密的句子等等。
