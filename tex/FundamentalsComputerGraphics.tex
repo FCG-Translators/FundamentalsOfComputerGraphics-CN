@@ -22,6 +22,7 @@
 \usepackage{hyperref}
 \setCJKmainfont[Path=fonts/]{LXGWWenKai-Regular.ttf}
 \definecolor{lightgreen}{RGB}{99,140,94}
+\lstset{language=C}
 \newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
 
 % 修改标题页的橙色带
@@ -368,7 +369,7 @@ $$f : \mathbb{R} \mapsto \mathbb{Z}, $$
 
 你可以把它理解为“有一个叫做 $f$ 的函数，它将一个实数作为输入，并将其映射成一个整数”。这里，箭头前面的集合被称为函数的定义域（\textit{domain}），右边的集合被称为目标（\textit{target}）\footnote[1]{译注：此处的目标（\textit{target}）指的是陪域（\textit{codomain}）。关于这点的详细讨论请参考 \url{https://math.stackexchange.com/questions/440235/range-of-function-vs-target-of-function} 中的回答。}。计算机程序员可能更愿意使用下面的等价表达：“有一个叫 $f$ 的函数，它有一个实数参数并返回一个整数”。换句话说，上面的集合映射符号等同于常见的编程符号：
 
-$$\text{integer} \ f(\text{real}) \leftarrow \text{等价} \rightarrow f : \mathbb{R} \mapsto \mathbb{Z}。$$
+$$\text{integer} \ f(\text{real}) \leftarrow \text{等价} \rightarrow f : \mathbb{R} \mapsto \mathbb{Z}.$$
 
 因此，“冒号-箭头”符号可以被认为是一种编程语法，就这么简单。
 
@@ -443,8 +444,8 @@ $$\ln x \equiv \log_ex.$$
 
 $$
   \begin{aligned}
-    \frac{d}{d x} \log _{a} x & =\frac{1}{x \ln a} \\
-    \frac{d}{d x} a^{x}       & =a^{x} \ln a
+    \frac{d}{d x} \log _{a} x & =\frac{1}{x \ln a}; \\
+    \frac{d}{d x} a^{x}       & =a^{x} \ln a.
   \end{aligned}
 $$
 
@@ -466,27 +467,34 @@ $$ Ax^2+Bx+C=0, $$
 
 为了求解二次方程，我们先将方程除以A：
 
-$$x^2+\frac{B}{A} x+\frac{C}{A}=0$$
+$$
+  x^2+\frac{B}{A} x+\frac{C}{A}=0.
+$$
 
 然后，我们通过“构造平方项”的方式来合并项：
 
-$$\left(x+\frac{B}{2 A}\right)^{2}-\frac{B^{2}}{4 A^{2}}+\frac{C}{A}=0$$
+$$
+  \left(x+\frac{B}{2 A}\right)^{2}-\frac{B^{2}}{4 A^{2}}+\frac{C}{A}=0.
+$$
 
 将常数部分移到等号右边，然后取平方根，得到：
 
 $$
-  x+\frac{B}{2 A}=\pm \sqrt{\frac{B^{2}}{4 A^{2}}-\frac{C}{A}} .
+  x+\frac{B}{2 A}=\pm \sqrt{\frac{B^{2}}{4 A^{2}}-\frac{C}{A}}.
 $$
 
-从两边减去 $\frac{B}{2 A}$，然后用分母 $2A$ 合并分式，就得到了我们熟悉的形式:\footnote[1]{一个稳健的实现会使用等价的表达式 $\frac{2C}{\left(-B \mp \sqrt{B^{2}-4 A C}\right)}$ 来根据B的符号计算其中一个根（练习7）。}
+从两边减去 $\frac{B}{2 A}$，然后用分母 $2A$ 合并分式，就得到了我们熟悉的形式:\footnote[1]{一个比较稳健的实现会使用等价的表达式 $\frac{2C}{\left(-B \mp \sqrt{B^{2}-4 A C}\right)}$ 来根据B的符号计算其中一个根（练习7）。}
 
 
-\begin{equation} x=\frac{-B \pm \sqrt{B^{2}-4 A C}}{2 A} . \end{equation}
+\begin{equation}
+  x=\frac{-B \pm \sqrt{B^{2}-4AC}}{2A}.
+\end{equation}
+
 
 此处的“$\pm$”符号意味着有两个解，一个是正号，一个是负号。因此，$3\pm1$ 等于2或4。请注意，决定实数解数量的项是：
 
 $$
-  D \equiv B^{2}-4 A C
+  D \equiv B^{2}-4AC,
 $$
 
 这被称为二次方程的判别式（\textit{discriminant}）。如果 $D>0$，有两个实数解（也叫根（\textit{root}））；如果 $D=0$，有一个实数解（一个双根（\textit{a "double" root}））；如果 $D<0$则没有实数解。
@@ -507,12 +515,12 @@ $$
   \caption{两条射线将单位圆切割成两条弧线。任意一条弧线的长度都是这两条射线“之间”的有效角。我们可以使用“较小弧线长度是角”的约定，或者这种约定：“将两条射线按一定顺序指定、确定角 $\phi$ 的弧是从第一条射线到第二条射线逆时针扫过的弧。}
 \end{figure}
 
-这两个角中的任何一个都可以通过两条射线“切割”的单位圆的弧长来度量。因为单位圆的周长是 $2\pi$，所以两个可能的角总和为 $2\pi$，这种弧长的单位是弧度（\textit{radians}）。另一个常见的单位是角度（\textit{degrees}），圆的周角是 $360^\circ$。因此，一个弧度为 $\pi$ 的角的角度是 $180^\circ$，通常表示为 $180^\circ$。角度和弧度之间的转换是
+这两个角中的任何一个都可以通过两条射线“切割”的单位圆的弧长来度量。因为单位圆的周长是 $2\pi$，所以两个可能的角总和为 $2\pi$，这种弧长的单位是弧度（\textit{radians}）。另一个常见的单位是角度（\textit{degrees}），圆的周角是 $360^\circ$。因此，一个弧度为 $\pi$ 的角的角度是 $180^\circ$，通常表示为 $180^\circ$。角度和弧度之间的转换是：
 
 $$
   \begin{aligned}
-    角度 & =\frac{180}{\pi} 弧度； \\
-    弧度 & =\frac{\pi}{180} 角度。
+    \text{角度} & =\frac{180}{\pi} \text{弧度}; \\
+    \text{弧度} & =\frac{\pi}{180} \text{角度}.
   \end{aligned}
 $$
 
@@ -521,7 +529,7 @@ $$
 给出一个边长为 $a$、$o$、$h$ 的直角三角形，其中 $h$ 是最长边的长度（总是与直角相对），或者叫斜边（\textit{hypotenuse}），勾股定理（\textit{Pythagorean theorem}）描述了一种重要的关系：
 
 $$
-  a^2+o^2=h^2
+  a^2+o^2=h^2.
 $$
 
 你可以从图2.7中看到这一点，大正方形的面积为 $(a+o)^2$，四个三角形的面积合计为 $2a0$，中心正方形的面积为 $h^2$。
@@ -537,12 +545,12 @@ $$
 
 $$
   \begin{aligned}
-    \sin \phi & \equiv o / h \\
-    \csc \phi & \equiv h / o \\
-    \cos \phi & \equiv a / h \\
-    \sec \phi & \equiv h / a \\
-    \tan \phi & \equiv o / a \\
-    \cot \phi & \equiv a / o
+    \sin \phi & \equiv \frac{o}{h}; \\
+    \csc \phi & \equiv \frac{h}{o}; \\
+    \cos \phi & \equiv \frac{a}{h}; \\
+    \sec \phi & \equiv \frac{h}{a}; \\
+    \tan \phi & \equiv \frac{o}{a}; \\
+    \cot \phi & \equiv \frac{a}{o}.
   \end{aligned}
 $$
 
@@ -558,10 +566,10 @@ $$
 
 \begin{equation}
   \begin{aligned}
-     & \operatorname{asin}:[-1,1] \mapsto[-\pi / 2, \pi / 2]      \\
-     & \operatorname{acos}:[-1,1] \mapsto[0, \pi]                 \\
-     & \operatorname{atan}: \mathbb{R} \mapsto[-\pi / 2, \pi / 2] \\
-     & \operatorname{atan} 2: \mathbb{R}^{2} \mapsto[-\pi, \pi]
+     & \operatorname{asin}:[-1,1] \mapsto[-\frac{\pi}{2}, \frac{\pi}{2}];      \\
+     & \operatorname{acos}:[-1,1] \mapsto[0, \pi];                             \\
+     & \operatorname{atan}: \mathbb{R} \mapsto[-\frac{\pi}{2}, \frac{\pi}{2}]; \\
+     & \operatorname{atan} 2: \mathbb{R}^{2} \mapsto[-\pi, \pi].
   \end{aligned}
 \end{equation}
 
@@ -581,12 +589,12 @@ $$
 
 $$
   \begin{aligned}
-    \sin (-A)        & =-\sin A \\
-    \cos (-A)        & =\cos A  \\
-    \tan (-A)        & =-\tan A \\
-    \sin (\pi / 2-A) & =\cos A  \\
-    \cos (\pi / 2-A) & =\sin A  \\
-    \tan (\pi / 2-A) & =\cot A
+    \sin (-A)              & =-\sin A            \\
+    \cos (-A)              & =\phantom{-} \cos A \\
+    \tan (-A)              & =-\tan A            \\
+    \sin (\frac{\pi}{2}-A) & =\phantom{-}\cos A  \\
+    \cos (\frac{\pi}{2}-A) & =\phantom{-}\sin A  \\
+    \tan (\frac{\pi}{2}-A) & =\phantom{-}\cot A
   \end{aligned}
 $$
 
@@ -620,8 +628,8 @@ $$
 
 $$
   \begin{aligned}
-     & \sin ^{2}(A / 2)=(1-\cos A) / 2 \\
-     & \cos ^{2}(A / 2)=(1+\cos A) / 2
+     & \sin ^{2}(\frac{A}{2})=\frac{1-\cos A}{2} \\
+     & \cos ^{2}(\frac{A}{2})=\frac{1+\cos A}{2}
   \end{aligned}
 $$
 
@@ -629,9 +637,9 @@ $$
 
 $$
   \begin{aligned}
-     & \sin A \sin B=-(\cos (A+B)-\cos (A-B)) / 2 \\
-     & \sin A \cos B=(\sin (A+B)+\sin (A-B)) / 2  \\
-     & \cos A \cos B=(\cos (A+B)+\cos (A-B)) / 2
+     & \sin A \sin B=-\frac{\cos (A+B)-\cos (A-B)}{2}           \\
+     & \sin A \cos B=\phantom{-}\frac{\sin (A+B)+\sin (A-B)}{2} \\
+     & \cos A \cos B=\phantom{-}\frac{\cos (A+B)+\cos (A-B)}{2}
   \end{aligned}
 $$
 
@@ -664,7 +672,7 @@ $$
 对计算机图形学而言，立体角（\textit{solid angles}）的概念更加重要。角可以让我们量化一些东西，比如“在我的视野中这两根柱子的距离是多少”，而立体角则能让我们量化“那架飞机在我的视野中覆盖了多少面积”这样的问题。对于传统的角，我们把线段投射到单位圆上，并在单位圆上测量投射的两点之间的弧长。我们经常使用这个弧长作为角，以至于许多人都会忘记这个定义，因为在当下它对我们来说是如此直观。立体角也同样简单，但它们可能看起来更令人困惑，因为我们大多数人都是在成年后才了解它们的。对于立体角，我们把“看到”飞机的可见方向投射到单位球体上，并测量其面积。这个面积就是立体角，与“弧长就是角”的方式相同。角以弧度测量，总和为 $2\pi$（单位圆的总长度），而立体角则以立体弧度（\textit{steradians}）测量，总和为 $4\pi$（单位球的总表面积）。
 
 \section{向量}
-向量描述了长度和方向，它总是用箭头表示。如果两个向量具有相同的长度和方向，则它们是相等的，即使我们认为它们处于不同的位置（图 2.11）。您应该尽可能地将向量视为箭头，而不是坐标或者数字。在某些时候，我们将不得不在我们的程序中降向量表示为数字，但即使在代码中，他们也应该被操作为对象，并且只有低级向量操作应该知道他们的数字表示（DeRose，1989）。向量将表示为粗体字符，例如\textbf{a}。向量的长度表示为$\|\mathbf{a}\|$。单位向量是长度为一的任何向量。零向量是零长度的向量，零向量的方向未定义。
+向量（\textit{vector}）同时描述了长度和方向，它总是用箭头表示。如果两个向量具有相同的长度和方向，则它们是相等的，即使在我们看来它们处于不同的位置（图 2.11）。您应该尽可能地将向量视为箭头，而不是坐标或者数字。尽管有时在程序中我们不得不将向量表示为数字，但即使在代码中，他们也应该以对象的形式来操作，并且只有低级向量操作才能知道他们的数字表示（DeRose，1989）。向量用粗体字符表示，例如\textbf{a}。向量的长度表示为$\|\mathbf{a}\|$。单位向量（\textit{unit vector}）是长度为一的向量。零向量（\textit{zero vector}）是零长度的向量，零向量的方向未定义。
 
 \begin{figure}[htbp]
   \centering
@@ -672,38 +680,38 @@ $$
   \caption{这两个向量是相同的，因为它们拥有相同的长度和方向。}
 \end{figure}
 
-向量可以用来表示许多不同的东西。例如，它们可用于存储偏移量，也称为位移。如果我们知道“宝藏埋在秘密会议地点以东两步，以北三步”，那么我们就可以知道偏移量，但我们还不知道从哪里开始。向量也可以用来存储一个位置，换句话说表达位置或点。位置可以表示为来自另一个位置的位移。通常，有一些已知的原点位置，所有其他位置都存储为相对于它的偏移量。请注意，位置不是向量。正如我们将讨论的那样，您可以将两个向量相加。然而，在计算一个位置的加权平均值时，将两个位置相加通常没有意义，除非它是计算位置加权平均值时的中间操作（Goldman，1985年）。添加两个偏移量确实有意义，所以这就是偏移量是向量的原因之一。但这强调，一个位置不是偏移量；它是来自特定原点的偏移量。偏移量本身不是位置。
+向量可以用来表示许多不同的东西。例如，它们可用来存储偏移量（\textit{offset}），或者叫位移（\textit{displacement}）。如果我们知道“宝藏埋在秘密会议地点以东两步，以北三步”，那么我们就可以知道偏移量，但我们不知道起点在哪。向量也可以用来存储一个位置（\textit{location}），或者说用来表达位置（\textit{position}）或点（\textit{point}）。一个位置可以表示为另一个位置的位移。通常我们有一个已知的原点位置，所有其他位置都存储为相对于它的偏移量。请注意，位置不是向量。正如我们将讨论的那样，您可以将两个向量相加。但将两个位置相加通常没有意义，除非它是计算某个位置加权平均值的中间操作（Goldman，1985年）。将两个偏移量相加则确实有意义，所以这就是偏移量是向量的原因之一。这再次强调了位置本身不是偏移量，它是来自特定原点的偏移量，偏移量本身也不是位置。
 
 \subsection{向量运算}
 
-向量具有我们应用于实数的大多数通常算术运算。两个向量相等当且仅当它们具有相同的长度和方向。根据平行四边形规则将两个向量相加。这条规则表明，两个向量的和是通过将任一向量的尾部放在另一个向量的头部来求得的（图 2.12）。和向量是与两个向量共同“构成三角形”的向量。平行四边形是通过按任一顺序求和而形成的。这强调向量加法是可交换的：
+实数的算术运算向量基本也有。两个向量相等当且仅当它们具有相同的长度和方向。根据平行四边形法则（\textit{parallelogram rule}）将两个向量相加。这条规则表明，两个向量的和是通过将任一向量的尾部放在另一个向量的头部来求得的（图 2.12）。和向量是与两个向量共同“构成三角形”的向量。平行四边形是通过两个向量的任意求和顺序构成的。这表明向量加法具有可交换性：
 
 $$
-  \mathbf{a}+\mathbf{b}=\mathbf{b}+\mathbf{a}
+  \mathbf{a}+\mathbf{b}=\mathbf{b}+\mathbf{a}.
 $$
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.26\textwidth]{2.12.png}
-  \caption{两个向量通过从头到位排列来实现相加。这一过程可以按任意顺序实现。}
+  \caption{两个向量通过头尾相连来实现相加，相加的顺序是任意的。}
 \end{figure}
 
-请注意，平行四边形法则只是形式化了我们对位移的直觉。想象沿着一个向量从头走到尾，然后沿着另一个向量走。净位移只是平行四边形的对角线。您还可以为向量添加一元负号： - a（图 2.13）是一个与 a 长度相同但方向相反的向量。这使我们也可以定义减法：
+请注意，平行四边形法则只是形式化了我们对位移的直观感受。想象沿着一个向量从头走到尾，然后沿着另一个向量走。净位移只是平行四边形的对角线。您还可以为向量添加一元负号（\textit{unary minus}）： $-\mathbf{a}$（图 2.13）是一个与 $\mathbf{a}$ 长度相同但方向相反的向量。这样我们就能定义向量的减法：
 
 $$
-  \mathbf{b}-\mathbf{a}=-\mathbf{a}+\mathbf{b}
+  \mathbf{b}-\mathbf{a} \equiv -\mathbf{a}+\mathbf{b}.
 $$
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.26\textwidth]{2.13.png}
-  \caption{向量-a拥有与向量a相同的长度但是方向相反。}
+  \caption{向量 $-\mathbf{a}$ 拥有与向量 $\mathbf{a}$ 相同的长度但是方向相反。}
 \end{figure}
 
-您可以使用平行四边形法则可视化向量减法（图 2.14）。我们可以写成
+您可以使用平行四边形法则可视化向量减法（图 2.14）。我们也可以将向量减法写成这种形式：
 
 $$
-  \mathbf{a}+(\mathbf{b}-\mathbf{a})=\mathbf{b}
+  \mathbf{a}+(\mathbf{b}-\mathbf{a})=\mathbf{b}.
 $$
 
 \begin{figure}[htbp]
@@ -712,7 +720,843 @@ $$
   \caption{向量减法只是第二个参数反转的矢量加法。}
 \end{figure}
 
-向量也可以相乘。事实上，有几种乘法涉及向量。首先，我们可以通过乘以实数k来缩放向量。这只是乘以向量的长度而不改变其方向。例如，3.5a是与a方向相同的向量，但它的长度是a的3.5倍。我们在本节后面讨论涉及两个向量的两种乘积，点乘和叉乘，以及第6章中涉及三个向量（行列式）的乘积。
+向量也可以相乘，事实上向量乘法不止一种。首先我们可以通过对向量乘以实数 $k$ 来缩放（\textit{scale}）向量，这种乘法只改变向量的长度而不改变其方向。例如，$3.5a$ 是与 $a$ 方向相同的向量，但它的长度是 $a$ 的3.5倍。我们会在本节后面讨论涉及到两个向量的两种乘积，点乘（\textit{dot product}）和叉乘（\textit{cross product}），以及第6章中涉及到三个向量的乘积（行列式，\textit{determinant}）。
+
+\subsection{向量的笛卡尔坐标系}
+
+一个二维向量可以由任意两个不平行的非零向量构造而来，这两个向量的性质叫做线性独立（\textit{linear independence}）。两个线性独立的向量构成了一个二维基（或称“基底”，\textit{basis}），相关向量也因此被称作基向量（\textit{basis vectors}）。比如一个向量 $\mathbf{c}$ 可以表示成两个基向量 $\mathbf{a}$ 和 $\mathbf{b}$ 的组合形式（图 2.15）：
+
+\begin{equation}
+  \mathbf{c} = a_c\mathbf{a} + b_c\mathbf{b}.
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.26\textwidth]{2.15.png}
+  \caption{任意二维向量 $\mathbf{c}$ 都是任意两个不平行二维向量 $\mathbf{a}$ 和 $\mathbf{b}$ 的加权和。}
+\end{figure}
+
+注意权重 $a_c$ 和 $b_c$ 是独一无二的。在这两个向量是正交（\textit{orthogonal}）的情况下基特别有用（也就是说这两个向量构成了一个直角）；如果它们还是单位向量的话就更有用了，这时它们是标准正交的（\textit{orthonormal}）。如果我们假设这样两个特殊的向量 $\mathbf{x}$ 和 $\mathbf{y}$ 是已知的，那我们就能用它们表示笛卡尔坐标系（\textit{Cartesian coordinate system}）中的所有其他向量了，每个向量都可以用两个实数来表示。比如一个向量 $\mathbf{a}$ 可以表示成：
+
+$$
+  \mathbf{a} = x_a\mathbf{x} + y_a\mathbf{y},
+$$
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.26\textwidth]{2.16.png}
+  \caption{向量的二维笛卡尔基。}
+\end{figure}
+
+其中 $x_a$ 和 $y_a$ 是二维向量 $\mathbf{a}$ 的实数笛卡尔坐标（图 2.16）。注意这和公式 2.3 并没有什么本质区别，尽管公式 2.3 中的基向量不是标准正交的。而使用笛卡尔坐标系会有一些好处，例如，根据勾股定理，$\mathbf{a}$ 的长度是：
+
+$$
+  \| \mathbf{a} \| = \sqrt{x_a^2 + y_a^2},
+$$
+
+在笛卡尔坐标系中计算点乘、叉乘、向量坐标也很简单，这点我们在接下来的章节里就会看到。
+
+按照惯例，我们在写向量 $\mathbf{a}$ 的坐标时可以写成有序数对 $(x_a,\ y_a)$ 的形式，也可以写成列矩阵（\textit{column matrix}）的形式：
+
+$$
+  \mathbf{a} = \begin{bmatrix}
+    x_a \\
+    y_a
+  \end{bmatrix}.
+$$
+
+矩阵的形式取决于排版惯例，我们偶尔也会将其写成行矩阵（\textit{row matrix}）的形式，这时我们会用 $\mathbf{a}^T$ 的形式：
+
+$$
+  \mathbf{a}^T = \begin{bmatrix}
+    x_a & y_a
+  \end{bmatrix}.
+$$
+
+我们也可以用这种方法描述笛卡尔坐标系中三维或更高维的向量。对于三维向量，我们会额外使用一个同时与向量 $\mathbf{x}$、向量$\mathbf{y}$ 正交的基向量 $\mathbf{z}$。
+
+\subsection{点乘}
+
+点乘（\textit{dot product}）是将两个向量相乘的最简单途径。向量 $\mathbf{a}$ 和向量 $\mathbf{b}$ 的点乘记为  $\mathbf{a} \cdot \mathbf{b}$，由于其返回的结果是个标量，它也因此被称为标量乘法（\textit{scalar product}）。点乘返回的结果取决于两个向量的长度和它们之间的夹角 $\phi$（图 2.17）：
+
+\begin{equation}
+  \mathbf{a} \cdot \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\| \cos\phi,
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.26\textwidth]{2.17.png}
+  \caption{点乘与长度和角相关，它是图形学中最重要的公式之一。}
+\end{figure}
+
+在图形学程序中，点乘最常见的用途便是计算两向量间夹角的余弦值了。除此以外点乘还可以计算一个向量在另一个向量上的投影值。向量 $\mathbf{a}$ 在向量 $\mathbf{b}$ 上的投影 $\mathbf{a} \to \mathbf{b}$ 是以直角投射上去的（图 2.18）：
+
+\begin{equation}
+  \mathbf{a} \to \mathbf{b} = \|\mathbf{a}\| \cos\phi = \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{b}\|},
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.26\textwidth]{2.18.png}
+  \caption{向量 $\mathbf{a}$ 在向量 $\mathbf{b}$ 上的投影是根据公式 2.5 推导出来的。}
+\end{figure}
+
+点乘也遵循实数计算中常见的结合律和交换律：
+
+\begin{equation}
+  \begin{aligned}
+    \mathbf{a} \cdot \mathbf{b}                & = \mathbf{b} \cdot \mathbf{a},                                   \\
+    \mathbf{a} \cdot (\mathbf{b} + \mathbf{c}) & = \mathbf{a} \cdot \mathbf{b} + \mathbf{a} \cdot \mathbf{c},     \\
+    (k\mathbf{a}) \cdot \mathbf{b}             & = \mathbf{a} \cdot (k\mathbf{b}) = k\mathbf{a} \cdot \mathbf{b}.
+  \end{aligned}
+\end{equation}
+
+如果二维向量 $\mathbf{a}$ 和 $\mathbf{b}$ 以笛卡尔坐标的形式表示，我们可以利用 $\mathbf{x} \cdot \mathbf{x} = \mathbf{y} \cdot \mathbf{y} = 1$ 和 $\mathbf{x} \cdot \mathbf{y} = 0$ 这两个公式来推导出如下点乘公式：
+
+$$
+  \begin{aligned}
+    \mathbf{a} \cdot \mathbf{b} & = (x_a\mathbf{x}+y_a\mathbf{y}) \cdot (x_b\mathbf{x}+y_b\mathbf{y})\\
+    & =x_ax_b(\mathbf{x}\cdot\mathbf{x}) + x_ay_b(\mathbf{x}\cdot\mathbf{y}) + x_by_a(\mathbf{y}\cdot\mathbf{x}) + y_ay_b(\mathbf{y}\cdot\mathbf{y}) \\
+    & = x_ax_b + y_ay_b.
+  \end{aligned}
+$$
+
+同理对于三维向量可得：
+
+$$
+  \mathbf{a} \cdot \mathbf{b} = x_ax_b + y_ay_b + z_az_b.
+$$
+
+\subsection{叉乘}
+
+$$
+  \|\mathbf{a}\times\mathbf{b}\|=\|\mathbf{a}\|\,\|\mathbf{b}\|\sin\phi.
+$$
+
+$$
+  \begin{array}{r c l}{\mathbf{x}}&{=}&{(1,0,0),}\\ {\mathbf{y}}&{=}&{(0,1,0),}\\ {\mathbf{z}}&{=}&{(0,0,1),}\end{array}
+$$
+
+$$
+  \mathbf{z}=\mathbf{x}\times\mathbf{y}.
+$$
+
+$$
+  \begin{array}{r c l}{{\mathbf{x}\times\mathbf{y}}}&{{=}}&{{+\mathbf{z},}}\\ {{\mathbf{y}\times\mathbf{x}}}&{{=}}&{{-\mathbf{z},}}\\ {{\mathbf{y}\times\mathbf{z}}}&{{=}}&{{+\mathbf{x},}}\\ {{\mathbf{z}\times\mathbf{y}}}&{{=}}&{{-\mathbf{x},}}\\ {{\mathbf{z}\times\mathbf{x}}}&{{=}}&{{+\mathbf{y},}}\\ {{\mathbf{x}\times\mathbf{z}}}&{{=}}&{{-\mathbf{y}.}}\end{array}
+$$
+
+$$
+  \mathbf{a}\times(\mathbf{b}+\mathbf{c})=\mathbf{a}\times\mathbf{b}+\mathbf{a}\times\mathbf{c},
+$$
+
+$$
+  \mathbf{a}\times(k\mathbf{b})=k(\mathbf{a}\times\mathbf{b}).
+$$
+
+$$
+  \mathbf{a}\times\mathbf{b}=-(\mathbf{b}\times\mathbf{a}).
+$$
+
+\begin{equation}
+  \begin{aligned}
+    \mathbf{a}\times\mathbf{b}
+     & =(x_{a}\mathbf{x}+y_{a}\mathbf{y}+z_{a}\mathbf{z})\times(x_{b}\mathbf{x}+y_{b}\mathbf{y}+z_{b}\mathbf{z})             \\
+     & =x_{a}x_{b}\mathbf{x}\times\mathbf{x}+x_{a}y_{b}\mathbf{x}\times\mathbf{y}+x_{a}z_{b}\mathbf{x}\times\mathbf{z}       \\
+     & \quad +y_{a}x_{b}\mathbf{y}\times\mathbf{x}+y_{a}y_{b}\mathbf{y}\times\mathbf{y}+y_{a}z_{b}\mathbf{y}\times\mathbf{z} \\
+     & \quad +z_{a}x_{b}\mathbf{z}\times\mathbf{x}+z_{a}y_{b}\mathbf{z}\times\mathbf{y}+z_{a}z_{b}\mathbf{z}\times\mathbf{z} \\
+     & =(y_{a}z_{b}-z_{a}y_{b})\mathbf{x}+(z_{a}x_{b}-x_{a}z_{b})\mathbf{y}+(x_{a}y_{b}-y_{a}x_{b})\mathbf{z}.
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  \mathbf{a}\times\mathbf{b}=(y_{a}z_{b}-z_{a}y_{b},z_{a}x_{b}-x_{a}z_{b},x_{a}y_{b}-y_{a}x_{b}).
+\end{equation}
+
+$$
+  \|\mathbf{u}\|=\|\mathbf{v}\|=1,
+$$
+
+$$
+  \mathbf{u}\cdot\mathbf{v}=0,
+$$
+
+$$
+  \|\mathbf{u}\|=\|\mathbf{v}\|=\|\mathbf{w}\|=1,
+$$
+
+$$
+  \mathbf{u}\cdot\mathbf{v}=\mathbf{v}\cdot\mathbf{w}=\mathbf{w}\cdot\mathbf{u}=0.
+$$
+
+$$
+  \mathbf{w}=\mathbf{u}\times\mathbf{v},
+$$
+
+$$
+  \mathbf{u}=x_{u}\mathbf{x}+y_{u}\mathbf{y}+z_{u}\mathbf{z}.
+$$
+
+$$
+  {\bf p}\,=\,{\bf o}\,+\,x_{p}{\bf x}\,+\,y_{p}{\bf y}\,+\,z_{p}{\bf z},
+$$
+
+$$
+  \mathbf{a}=u_{a}\mathbf{u}+v_{a}\mathbf{v}+w_{a}\mathbf{w}.
+$$
+
+$$
+  u_{b}={\bf u}\cdot{\bf b};\quad v_{b}={\bf v}\cdot{\bf b};\quad w_{b}={\bf w}\cdot{\bf b}.
+$$
+
+$$
+  u_{b}\mathbf{u}+v_{b}\mathbf{v}+w_{b}\mathbf{w}=\mathbf{b},
+$$
+
+$$
+  \begin{aligned}
+    \mathbf{u \cdot b} & =u_{b}(\mathbf{u \cdot u})+v_{b}(\mathbf{u \cdot v})+w_{b}(\mathbf{u \cdot w}) \\
+                       & =u_{b}.
+  \end{aligned}
+$$
+
+$$
+  \mathbf{w}={\frac{\mathbf{a}}{\|\mathbf{a}\|}}.
+$$
+
+$$
+  \mathbf{u}={\frac{\mathbf{t}\times\mathbf{w}}{\left||\mathbf{t}\times\mathbf{w}|\right|}}.
+$$
+
+$$
+  \mathbf{v}=\mathbf{w}\times\mathbf{u}.
+$$
+
+$$
+  \begin{aligned}
+    \mathbf{w} & ={\frac{\mathbf{a}}{\|\mathbf{a}\|}},                                 \\
+    \mathbf{u} & ={\frac{\mathbf{b}\times\mathbf{w}}{\|\mathbf{b}\times\mathbf{w}\|}}, \\
+    \mathbf{v} & =\mathbf{w}\times\mathbf{u}.
+  \end{aligned}
+$$
+
+$$
+  \int_{\pi}^{2\pi}\mathrm{sin}(x) dx
+$$
+
+$$
+  \int_{\pi}^{2\pi} dx
+$$
+
+\begin{lstlisting}
+  float area = integrate(sin(), [pi,2pi]).
+\end{lstlisting}
+
+\begin{lstlisting}
+  float area = integrate(cos(), unit-sphere)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float volume = integrate(elevation(), country)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float averageElevation = integrate(elevation(),
+        country) / integrate(1, country)
+\end{lstlisting}
+
+\begin{lstlisting}
+  Float averageElevation = average(elevation, country)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float weightedAverageElevation =
+        integrate(temperature()*elevation(),
+        country) / integrate(temperature(), country)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float shade = integrate(cos()*f*(),
+        unit-hemisphere)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float shade = integrate((1/pi)*cos()*f*(),
+        unit-hemisphere)
+\end{lstlisting}
+
+$$
+  S\,=\,\int_{v\in H}\frac{1}{\pi}(v\cdot n)f(v)(v\cdot n)d\sigma(v)
+$$
+
+$$
+  S=\int_{\phi=0}^{2\pi}\int_{\theta=0}^{\pi}\frac{1}{\pi}(v\cdot n)f(\theta,\phi)\mathrm{cos}\theta\mathrm{sin}\theta d\theta d\phi
+$$
+
+$$
+  E=\int_{2p m}^{4p m}P(t) dt
+$$
+
+$$
+  f(x,y)=0.
+$$
+
+\begin{equation}
+  f(x,y)=(x-x_{c})^{2}+(y-y_{c})^{2}-r^{2},
+\end{equation}
+
+$$
+  (\mathbf{p}-\mathbf{c})\cdot(\mathbf{p}-\mathbf{c})-r^{2}=0.
+$$
+
+$$
+  \|\mathbf{p}-\mathbf{c}\|^{2}-r^{2}=0,
+$$
+
+$$
+  \|\mathbf{p}-\mathbf{c}\|-r=0.
+$$
+
+$$
+  \nabla f(x,y)=\left({\frac{\partial f}{\partial x}},{\frac{\partial f}{\partial y}}\right).
+$$
+
+\begin{equation}
+  {\frac{d y}{d x}}\equiv\operatorname*{lim}_{\Delta x\to0}{\frac{\Delta y}{\Delta x}}=\operatorname*{lim}_{\Delta x\to0}{\frac{g(x+\Delta x)-g(x)}{\Delta x}}.
+\end{equation}
+
+$$
+  {\frac{\partial f}{\partial x}}\equiv\operatorname*{lim}_{\Delta x\to0}{\frac{f(x+\Delta x,y)-f(x,y)}{\Delta x}}.
+$$
+
+\begin{equation}
+  (\nabla f)\cdot{\bf a}\equiv(x_{\nabla},y_{\nabla})\cdot(x_{a},y_{a})=x_{\nabla}\Delta x+y_{\nabla}\Delta y=0.
+\end{equation}
+
+$$
+  \Delta f={\frac{\partial f}{\partial x}}\Delta x+{\frac{\partial f}{\partial y}}\Delta y\equiv{\frac{\partial f}{\partial x}}x_{a}+{\frac{\partial f}{\partial y}}y_{a}=0.
+$$
+
+\begin{equation}
+  (x_{a},y_{a})=k\left({\frac{\partial f}{\partial y}},-{\frac{\partial f}{\partial x}}\right).
+\end{equation}
+
+$$
+  (x_{\nabla},y_{\nabla})=k^{\prime}\left({\frac{\partial f}{\partial x}},{\frac{\partial f}{\partial y}}\right),
+$$
+
+\begin{equation}
+  y=mx+b.
+\end{equation}
+
+\begin{equation}
+  y-mx-b=0
+\end{equation}
+
+$$
+  2y-2mx-2b=0
+$$
+
+\begin{equation}
+  Ax+By+C=0,
+\end{equation}
+
+$$
+  \begin{array}{c}{{A x_{0}+B y_{0}+C=0,}}\\ {{A x_{1}+B y_{1}+C=0.}}\end{array}
+$$
+
+$$
+  Ax+By+1=0,
+$$
+
+\begin{equation}
+  (y_{0}-y_{1})x+(x_{1}-x_{0})y+C=0.
+\end{equation}
+
+\begin{equation}
+  (y_{0}-y_{1})x+(x_{1}-x_{0})y+x_{0}y_{1}-x_{1}y_{0}=0.
+\end{equation}
+
+$$
+  y={\frac{y_{1}-y_{0}}{x_{1}-x_{0}}}x+{\frac{x_{1}y_{0}-x_{0}y_{1}}{x_{1}-x_{0}}}.
+$$
+
+\begin{equation}
+  \mathrm{distance}=k\sqrt{A^{2}+B^{2}}.
+\end{equation}
+
+\begin{equation}
+  \begin{aligned}
+    f(x+k A,y+k B) & =A x+k A^{2}+B y+k B^{2}+C \\
+                   & =k(A^{2}+B^{2}).
+  \end{aligned}
+\end{equation}
+
+$$
+  \mathrm{Distance}={\frac{f(a,b)}{\sqrt{A^{2}+B^{2}}}}.
+$$
+
+\begin{equation}
+  \begin{aligned}
+    f(x,y) & ={\frac{y_{0}-y_{1}}{\sqrt{(x_{1}-x_{0})^{2}+(y_{0}-y_{1})^{2}}}}x               \\
+           & \quad+{\frac{x_{1}-x_{0}}{\sqrt{(x_{1}-x_{0})^{2}+(y_{0}-y_{1})^{2}}}}y          \\
+           & \quad+{\frac{x_{0}y_{1}-x_{1}y_{0}}{\sqrt{(x_{1}-x_{0})^{2}+(y_{0}-y_{1})^{2}}}} \\
+           & =0.
+  \end{aligned}
+\end{equation}
+
+$$
+  A x^{2}+B x y+C y^{2}+D x+E y+F=0,
+$$
+
+$$
+  (x-x_{c})^{2}+(y-y_{c})^{2}-r^{2}=0,
+$$
+
+$$
+  {\frac{(x-x_{c})^{2}}{a^{2}}}+{\frac{(y-y_{c})^{2}}{b^{2}}}-1=0,
+$$
+
+$$
+  f(x,y,z)=0.
+$$
+
+$$
+  f({\bf p})=0.
+$$
+
+$$
+  \mathbf{n}=\nabla f(\mathbf{p})=\left({\frac{\partial f(\mathbf{p})}{\partial x}},{\frac{\partial f(\mathbf{p})}{\partial y}},{\frac{\partial f(\mathbf{p})}{\partial z}}\right).
+$$
+
+\begin{equation}
+  (\mathbf{p}-\mathbf{a})\cdot\mathbf{n}=0.
+\end{equation}
+
+$$
+  \mathbf{n}=(\mathbf{b}-\mathbf{a})\times(\mathbf{c}-\mathbf{a}).
+$$
+
+\begin{equation}
+  (\mathbf{p}-\mathbf{a})\cdot((\mathbf{b}-\mathbf{a})\times(\mathbf{c}-\mathbf{a}))=0.
+\end{equation}
+
+\begin{equation}
+  \begin{vmatrix}
+    x-x_a   & y-y_a   & z-z_a   \\
+    x_b-x_a & y_b-y_a & z_b-z_a \\
+    x_c-x_a & y_c-y_a & z_c-z_a
+  \end{vmatrix}=0
+\end{equation}
+
+$$
+  f({\bf p})=\,({\bf p}-{\bf c})^{2}-r^{2}=0,
+$$
+
+$$
+  f({\bf p})=\frac{(x-x_{c})^{2}}{a^{2}}+\frac{(y-y_{c})^{2}}{b^{2}}+\frac{(z-z_{c})^{2}}{c^{2}}-1=0.
+$$
+
+$$
+  \begin{array}{c l c r}{{f({\bf p})=0,}}\\ {{g({\bf p})=0.}}\end{array}
+$$
+
+$$
+  \begin{bmatrix}
+    x \\
+    y
+  \end{bmatrix}=
+  \begin{bmatrix}
+    g(t) \\
+    h(t)
+  \end{bmatrix}.
+$$
+
+$$
+  \mathbf{p}=f(t),
+$$
+
+$$
+  \begin{bmatrix}
+    x \\
+    y
+  \end{bmatrix}=
+  \begin{bmatrix}
+    x_0+t(x_1-x_0) \\
+    y_0+t(y_1-y_0)
+  \end{bmatrix}.
+$$
+
+$$
+  \mathbf{p}(t)=\mathbf{p}_{0}+t(\mathbf{p}_{1}-\mathbf{p}_{0}).
+$$
+
+$$
+  \mathbf{p}(t)=\mathbf{o}+t(\mathbf{d}).
+$$
+
+$$
+  \begin{bmatrix}
+    x \\
+    y
+  \end{bmatrix}=
+  \begin{bmatrix}
+    x_c+r\cos\phi \\
+    y_c+r\sin\phi
+  \end{bmatrix}.
+$$
+
+$$
+  \begin{bmatrix}
+    x \\
+    y
+  \end{bmatrix}=
+  \begin{bmatrix}
+    x_c+a\cos\phi \\
+    y_c+b\sin\phi
+  \end{bmatrix}.
+$$
+
+$$
+  \begin{aligned}
+    x & =f(t), \\
+    y & =g(t), \\
+    z & =h(t).
+  \end{aligned}
+$$
+
+$$
+  \begin{aligned}
+    x & =\cos t, \\
+    y & =\sin t, \\
+    z & =t.
+  \end{aligned}
+$$
+
+$$
+  \begin{bmatrix}
+    x \\
+    y \\
+    z
+  \end{bmatrix}={\bf p}(t).
+$$
+
+$$
+  \begin{aligned}
+    x & =2+7t, \\
+    y & =1+2t, \\
+    z & =3-5t.
+  \end{aligned}
+$$
+
+$$
+  \mathbf{p}=\mathbf{o}+t\mathbf{d},
+$$
+
+$$
+  \begin{aligned}
+    \mathbf{o} & =(2,1,\phantom{-}3), \\
+    \mathbf{d} & =(7,2,-5).
+  \end{aligned}
+$$
+
+$$
+  \begin{aligned}
+    x & =f(u,v), \\
+    y & =g(u,v), \\
+    z & =h(u,v).
+  \end{aligned}
+$$
+
+$$
+  \begin{bmatrix}
+    x \\
+    y \\
+    z
+  \end{bmatrix}={\bf p}(u,v).
+$$
+
+\begin{equation}
+  \begin{aligned}
+    x & =r\cos\phi\sin\theta, \\
+    y & =r\sin\phi\sin\theta, \\
+    z & =r\cos\theta.
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  \begin{aligned}
+    \theta & =\operatorname{acos}(\frac{z}{\sqrt{x^{2}+y^{2}+z^{2}}}), \\
+    \phi   & =\operatorname{atan2}(y,x).
+  \end{aligned}
+\end{equation}
+
+$$
+  \mathbf{n}=\mathbf{p}_{u}\times\mathbf{p}_{v}
+$$
+
+$$
+  S\,=\,\{{\bf p}\,|f({\bf p})=0\,\}.
+$$
+
+$$
+  S=\{{\bf p}(t)\,|t\in D\}.
+$$
+
+$$
+  S\,=\,\{{\bf p}(u,v)\,|(u,v)\in D\}.
+$$
+
+\begin{equation}
+  f(x)=y_{i}+{\frac{x-x_{i}}{x_{i+1}-x_{i}}}(y_{i+1}-y_{i}).
+\end{equation}
+
+$$
+  t={\frac{x-x_{i}}{x_{i+1}-x_{i}}}.
+$$
+
+\begin{equation}
+  \begin{aligned}
+    \mathrm{Area} & = \frac{1}{2}
+    \begin{vmatrix}
+      x_b-x_a & x_c-x_a \\
+      y_b-y_a & y_c-y_a
+    \end{vmatrix}                                                                                   \\
+                  & = \frac{1}{2}(x_{a}y_{b}+x_{b}y_{c}+x_{c}y_{a}-x_{a}y_{c}-x_{b}y_{a}-x_{c}y_{b})\,.
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  \mathbf{p}=\mathbf{a}+\beta(\mathbf{b}-\mathbf{a})+\gamma(\mathbf{c}-\mathbf{a}).
+\end{equation}
+
+$$
+  \mathbf{p}=(1-{\boldsymbol{\beta}}-\gamma)\mathbf{a}+{\boldsymbol{\beta}}\mathbf{b}+{\boldsymbol{\gamma}}\mathbf{c}.
+$$
+
+$$
+  \alpha\equiv1-\beta-\gamma,
+$$
+
+\begin{equation}
+  {\bf p}(\alpha,\beta,\gamma)=\alpha{\bf a}+\beta{\bf b}+\gamma{\bf c},
+\end{equation}
+
+\begin{equation}
+  \alpha+\beta+\gamma=1.
+\end{equation}
+
+$$
+  \begin{array}{c}{{0<\alpha<1,}}\\ {{0<\beta<1,}}\\ {{0<\gamma<1.}}\end{array}
+$$
+
+\begin{equation}
+  \begin{bmatrix}
+    x_b-x_a & x_c-x_a \\
+    y_b-y_a & y_c-y_a
+  \end{bmatrix}
+  \begin{bmatrix}
+    \beta \\
+    \gamma
+  \end{bmatrix}=
+  \begin{bmatrix}
+    x_p-x_a \\
+    y_p-y_a
+  \end{bmatrix}.
+\end{equation}
+
+\begin{equation}
+  \beta=\frac{f_{a c}(x,y)}{f_{a c}(x_{b},y_{b})},
+\end{equation}
+
+$$
+  f_{a b}(x,y)\equiv(y_{a}-y_{b})x+(x_{b}-x_{a})y+x_{a}y_{b}-x_{b}y_{a}=0.
+$$
+
+$$
+  \gamma=\frac{(y_{a}-y_{b})x+(x_{b}-x_{a})y+x_{a}y_{b}-x_{b}y_{a}}{(y_{a}-y_{b})x_{c}+(x_{b}-x_{a})y_{c}+x_{a}y_{b}-x_{b}y_{a}}.
+$$
+
+$$
+  \begin{aligned}
+    \beta  & =\frac{(y_{a}-y_{c})x+(x_{c}-x_{a})y+x_{a}y_{c}-x_{c}y_{a}}{(y_{a}-y_{c})x_{b}+(x_{c}-x_{a})y_{b}+x_{a}y_{c}-x_{c}y_{a}}, \\
+    \alpha & =1-B-\gamma.
+  \end{aligned}
+$$
+
+\begin{equation}
+  \begin{aligned}
+    \alpha & =A_{a}/A, \\
+    \beta  & =A_{b}/A, \\
+    \gamma & =A_{c}/A,
+  \end{aligned}
+\end{equation}
+
+$$
+  \mathbf{p}=(1-\beta-\gamma)\mathbf{a}+\beta\mathbf{b}+\gamma\mathbf{c}.
+$$
+
+\begin{equation}
+  \mathbf{n}=(\mathbf{b}-\mathbf{a})\times(\mathbf{c}-\mathbf{a}).
+\end{equation}
+
+\begin{equation}
+  \mathrm{area}={\frac{1}{2}}\|(\mathbf{b}-\mathbf{a})\times(\mathbf{c}-\mathbf{a})\|.
+\end{equation}
+
+$$
+  \mathbf{a \cdot b}=\|\mathbf{a}\|\|\mathbf{b}\|\mathbf{cos}\phi,
+$$
+
+$$
+  \begin{aligned}
+    \alpha & ={\frac{\mathbf{n}\cdot\mathbf{n}_a}{\|\mathbf{n}\|^{2}}}, \\
+    \beta  & ={\frac{\mathbf{n}\cdot\mathbf{n}_b}{\|\mathbf{n}\|^{2}}}, \\
+    \gamma & ={\frac{\mathbf{n}\cdot\mathbf{n}_c}{\|\mathbf{n}\|^{2}}},
+  \end{aligned}
+$$
+
+\begin{equation}
+  \begin{aligned}
+    {\bf n}_{a} & =({\bf c}-{\bf b})\times({\bf p}-{\bf b}), \\
+    {\bf n}_{b} & =({\bf a}-{\bf c})\times({\bf p}-{\bf c}), \\
+    {\bf n}_{c} & =({\bf b}-{\bf a})\times({\bf p}-{\bf a}).
+  \end{aligned}
+\end{equation}
+
+\begin{lstlisting}
+  int X = rand_from(1,6)
+\end{lstlisting}
+
+$$
+  E X=\frac{1}{6}(1)+\frac{1}{6}(2)+\frac{1}{6}(3)+\frac{1}{6}(4)+\frac{1}{6}(5)+\frac{1}{6}(6)=3.5
+$$
+
+$$
+  V(X)={\mathrm{average}}((X-EX)^{2})
+$$
+
+$$
+  V(X)=E((X-E(X))^{2})
+$$
+
+$$
+  V(X)=E(X^{2})-E(X)^{2}
+$$
+
+$$
+  E(Z)\,=\,E(X\,+\,Y)\,=\,E(X\,)\,+\,E(Y)
+$$
+
+$$
+  V(Z)=V(X+Y)=V(X)+V(Y)
+$$
+
+$$
+  \sigma(X)=\sqrt{V(X)}
+$$
+
+\begin{lstlisting}
+  X = continuous_random_from(-2.3, 10.9).
+\end{lstlisting}
+
+\verb"X = continuous_random_from(-2.3, 10.9)."
+
+\begin{lstlisting}
+  float shade = average(f(), hemisphere)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float sum = 0.0
+  N = 10000; // 或者其他一些由用户设置的大数字
+  For (int i = 1 to N)
+    vec3 v = random_point_on_hemisphere()
+    sum = sum + f(v)
+  Average = sum / N
+\end{lstlisting}
+
+\begin{lstlisting}
+  do
+    X = random_from(-1,1)
+    Y = random_from(-1,1)
+    Z = random_from(-1,1)
+  while (xˆ2 + yˆ2 + zˆ2 > 1)
+\end{lstlisting}
+
+\begin{lstlisting}
+  If (Z < 0) Z = -Z
+\end{lstlisting}
+
+\begin{lstlisting}
+  v = unit_vector(X, Y, Z).
+\end{lstlisting}
+
+\begin{lstlisting}
+  average(f(), domain) = integrate(f(), domain) /
+                          integrate(1, domain)
+\end{lstlisting}
+
+\begin{lstlisting}
+  integrate(f(), domain) = average(f(), domain) *
+                            integrate(1, domain)
+\end{lstlisting}
+
+\begin{lstlisting}
+  integrate = average_of_nonuniform_samples(f()/p(),
+              domain).
+\end{lstlisting}
+
+\verb"p() = 1/ integrate(1, domain)"
+
+\begin{lstlisting}
+  
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{积分}
 

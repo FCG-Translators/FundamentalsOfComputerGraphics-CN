@@ -78,27 +78,28 @@ cd FundamentalsOfComputerGraphics-CN
 
 ## Translation Specification - 翻译规范
 
-* 善用、多用 Google、Wikipedia、剑桥在线词典和牛津在线词典来确定中英文单词、术语的翻译
-* 中文写作规范请参考 [中文技术文档写作风格指南](https://zh-style-guide.readthedocs.io/zh-cn/latest/)
-* 术语的翻译请统一遵循以下格式
+* 善用、多用 Google、Wikipedia、剑桥在线词典和牛津在线词典来确定中英文单词、术语的翻译。
+* 中文写作规范请参考 [中文技术文档写作风格指南](https://zh-style-guide.readthedocs.io/zh-cn/latest/)。
+* 识别公式并转换为 LaTeX 格式可以使用 [LaTeX-OCR](https://github.com/lukas-blecher/LaTeX-OCR)。
+* 术语的翻译请统一遵循以下格式：
   ```LaTeX
   % 没有耳熟能详的缩写
   齐次坐标（\textit{homogeneous coordinate}）
   % 有广为人知的缩写
   应用程序接口（\textit{API, application program interface}）
   ```
-* 首字母缩写的翻译请统一遵循以下格式
+* 首字母缩写的翻译请统一遵循以下格式：
   ```LaTeX
   KISS（“保持简单、愚蠢”，\textit{"keep it simple, stupid"}）
   ```
-* 原书中所有的边栏备注请使用 `note` 环境
+* 原书中所有的边栏备注请使用 `note` 环境：
   ```LaTeX
   \begin{note}
   % 具体内容
   \end{note}
   ```
-* 需要补充“译注”的地方请使用 `\footnote[]{}`
-* 原书中 "such as..." 引导的成分以及其他举例子、解释说明成分请放到（）中
+* 需要补充“译注”的地方请使用 `\footnote[]{}`。
+* 原书中 "such as..." 引导的成分以及其他举例子、解释说明成分请放到（）中：
   ```LaTeX
   原文：A key part of any graphics program is to have good classes 
   or routines for geometric entities such as vectors and matrices, 
