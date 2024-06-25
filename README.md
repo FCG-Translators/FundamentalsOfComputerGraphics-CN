@@ -24,14 +24,14 @@
   cargo install --git https://github.com/rust-lang/mdBook.git mdbook
   # Mac 系统使用 homebrew 安装 mdBook 工具
   brew install mdbook
-  # Arch linux使用 pacman 包管理器安装 mdBook 工具
+  # Arch linux使用 Pacman 包管理器安装 mdBook 工具
   pacman -S mdbook
   ```
 
 * 安装 TeX
   ```bash
   # TeX Live 安装
-  wget -c https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive2023-20230313.iso
+  wget -c https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive.iso
   # Windows
   # 1）解压 iso 文件
   # 2）进入解压目录
@@ -51,7 +51,7 @@
 
 ```bash
 # 克隆存储库
-git clone git@github.com:zouyonghe/FundamentalsOfComputerGraphics-CN.git
+git clone git@github.com:FCG-Translators/FundamentalsOfComputerGraphics-CN.git
 # 进入目录
 cd FundamentalsOfComputerGraphics-CN
 ```
@@ -78,39 +78,62 @@ cd FundamentalsOfComputerGraphics-CN
 
 ## Translation Specification - 翻译规范
 
-* 术语的翻译请统一遵循以下格式
-  ```LaTeX
-  % 没有耳熟能详的缩写
-  齐次坐标（\textit{homogeneous coordinate}）
-  % 有广为人知的缩写
-  应用程序接口（\textit{API, application program interface}）
-  ```
-* 首字母缩写的翻译请统一遵循以下格式
-  ```LaTeX
-  KISS（“保持简单、愚蠢”，\textit{"keep it simple, stupid"}）
-  ```
-* 原书中所有的边栏备注请使用 `note` 环境
-  ```LaTeX
-  \begin{note}
-  % 具体内容
-  \end{note}
-  ```
-* 原书中 `such as...` 引导的成分以及其他举例子、解释说明成分请放到 `（）` 中
-  ```LaTeX
-  原文：A key part of any graphics program is to have good classes or routines for geometric entities such as vectors and matrices, as well as graphics entities such as RGB colors and images.
-  译文：所有图形程序的一个关键部分是为几何实体（如向量和矩阵）以及图形实体（如RGB颜色和图像）提供良好的类或例程。
-  % 放在括号中的内容往往是可以翻译成“例如……”、“比如……”、“也就是说……”等形式的内容
-  ```
+* 善用、多用 Google、Wikipedia、剑桥在线词典和牛津在线词典来确定中英文单词、术语的翻译。
+* 中文写作规范请参考 [中文技术文档写作风格指南](https://zh-style-guide.readthedocs.io/zh-cn/latest/)。
+* 识别公式并转换为 LaTeX 格式可以使用 [LaTeX-OCR](https://github.com/lukas-blecher/LaTeX-OCR)。
+* 术语的翻译请统一遵循以下格式：
+```LaTeX
+% 没有耳熟能详的缩写
+齐次坐标（\textit{homogeneous coordinate}）
+% 有广为人知的缩写
+应用程序接口（\textit{API, application program interface}）
+```
+* 首字母缩写的翻译请统一遵循以下格式：
+```LaTeX
+KISS（“保持简单、愚蠢”，\textit{"keep it simple, stupid"}）
+```
+* 原书中所有的边栏备注请使用如下设置：
+```LaTeX
+\marginpar{
+  \begin{center}
+    \begin{note}\\
+      %文字或公式
+    \end{note}
+  \end{center}
+}
+```
+* 原书中所有的边栏图片请使用如下设置：
+```LaTeX
+\marginpar{
+\begin{center}
+  \includegraphics[width=0.25\textwidth]{xxx.png}
+  \captionof{figure}{图片说明}
+\end{center}
+}
+```
+* 边栏（`\marginpar{}`）的排版与正文独立且不会自动排版，如果发现某个边栏图片或边栏备注被页脚空白遮挡，请手动调整其位置。
+* 需要补充“译注”的地方请使用 `\footnote[]{}`。
+* 原书中 "such as..." 引导的成分以及其他举例子、解释说明成分请放到（）中：
+```LaTeX
+原文：A key part of any graphics program is to have goodclasses 
+or routines for geometric entities such as vectors andmatrices, 
+as well as graphics entities such as RGB colors andimages.
+译文：所有图形程序的一个关键部分是为几何实体（如向量和矩阵）以及图实体
+（如 RGB 颜色和图像）提供良好的类或例程。
+% 放在括号中的内容往往是可以翻译成“例如……”、“比如……”、“也就是……”等形式的内容
+```
 * 根据句意对原文标点进行适当修改，比如把句号替换成逗号来避免独立句子过多、把句号替换成分号来连接两个关系紧密的句子等等。
 
 ## Changelog - 更新日志
 
+<div align=center>
+
 |    章节    | 开始时间  | 结束时间  |  状态  |  译者  | 校对者 |
 | :--------: | :-------: | :-------: | :----: | :----: | :----: |
-|   第一章   | 2022.7.5  | 2022.7.10 | 已完成 | buding |Hugo HU|
-|   第二章   | 2022.7.11 |     -     | 进行中 | buding, Hugo HU |Hugo HU|
-|   第三章   | 2022.8.17 |   2022.8.30  | 已完成 |Hugo HU|Hugo HU|
-|   第四章   | 2022.8.31 |     -     | 进行中 | Hugo HU|        |
+|   第一章   | 2022.7.5  | 2022.7.10 | 已完成 | buding |Hugo|
+|   第二章   | 2022.7.11 |     -     | 进行中 | buding, Hugo |Hugo|
+|   第三章   | 2022.8.17 |   2022.8.30  | 已完成 |Hugo|Hugo|
+|   第四章   | 2022.8.31 |     -     | 进行中 | Hugo|        |
 |   第五章   |     -     |     -     | 未开始 |   -    |        |
 |   第六章   |  2023.1.9 |     -     | 进行中 | 二之花 |        |
 |   第七章   |     -     |     -     | 未开始 |   -    |        |
@@ -131,6 +154,7 @@ cd FundamentalsOfComputerGraphics-CN
 | 第二十二章 |     -     |     -     | 未开始 |   -    |        |
 | 第二十三章 |     -     |     -     | 未开始 |   -    |        |
 
+</div>
 
 ## FAQ - 常见问题
 
@@ -143,13 +167,14 @@ cd FundamentalsOfComputerGraphics-CN
 - 校对：完成书籍各章节校对工作，从表述、排版等方面对译文进行审阅；
 - 推广（待定）。
 
-若您希望贡献，请首先fork本仓库，并在Issues中提出想要翻译的章节，请认真、耐心地进行翻译，力求用词准确、通俗易懂，并且文档格式符合标准，翻译完成后请发起PR，经审核后可合入主线，您的名字也将进入本书的译者列表。
+若您希望贡献，请首先 fork 本仓库，并在 Issues 中提出想要翻译的章节，请认真、耐心地进行翻译，力求用词准确、通俗易懂，并且文档格式符合标准，翻译完成后请发起 PR，经审核后可合入主线，您的名字也将进入本书的译者列表。
 
 ### 发现书籍谬误，如何提出？
 
 因为译者水平有限，在翻译的过程中出现疏漏、错误、语义不明等情况在所难免，如果在阅读的过程中遇到上述情况，烦请读者悉心指出，帮助译者订正。
 
-- 请fork本仓库，对谬误部分进行订正，然后发起PR，经审核后可合入主线。
+- 在 Issues 中提出见解
+- 请 fork 本仓库，对谬误部分进行订正，然后发起 PR，经审核后可合入主线。
 - 参见“联系”，向译者提出修改意见。
 
 ## Support - 支持
