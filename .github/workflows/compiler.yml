@@ -26,10 +26,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: FundamentalsComputerGraphics
-        path: FundamentalsComputerGraphics.pdf
+        path: tex/FundamentalsComputerGraphics.pdf
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
-        files: FundamentalsComputerGraphics.pdf
+        files: tex/FundamentalsComputerGraphics.pdf
   
             
