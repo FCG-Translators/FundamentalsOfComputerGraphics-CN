@@ -1,14 +1,16 @@
 <!DOCTYPE HTML>
-<html lang="cn" class="sidebar-visible no-js light">
+<html lang="cn" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>图像、像素和几何学 - 计算机图形学基础</title>
+
+
         <!-- Custom HTML head -->
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        
         <meta name="description" content="Drawing on an impressive roster of experts in the field, Fundamentals of Computer Graphics, Fifth Edition offers an ideal resource for computer course curricula as well as a user-friendly personal or professional reference">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -16,27 +18,31 @@
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
         <link rel="stylesheet" href="css/print.css" media="print">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         <link rel="stylesheet" href="fonts/fonts.css">
+
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+
         <!-- MathJax -->
-        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -52,50 +58,81 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
 
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
                 <ol class="chapter"><li class="chapter-item expanded affix "><a href="chapter_0.html">前言</a></li><li class="chapter-item expanded affix "><a href="chapter_0_1.html">致谢</a></li><li class="chapter-item expanded affix "><a href="chapter_0_2.html">作者</a></li><li class="chapter-item expanded "><a href="chapter_1.html"><strong aria-hidden="true">1.</strong> 介绍</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_1_1.html"><strong aria-hidden="true">1.1.</strong> 图形学领域</a></li><li class="chapter-item expanded "><a href="chapter_1_2.html"><strong aria-hidden="true">1.2.</strong> 主要应用</a></li><li class="chapter-item expanded "><a href="chapter_1_3.html"><strong aria-hidden="true">1.3.</strong> 图形API</a></li><li class="chapter-item expanded "><a href="chapter_1_4.html"><strong aria-hidden="true">1.4.</strong> 图形管道</a></li><li class="chapter-item expanded "><a href="chapter_1_5.html"><strong aria-hidden="true">1.5.</strong> 数值问题</a></li><li class="chapter-item expanded "><a href="chapter_1_6.html"><strong aria-hidden="true">1.6.</strong> 效率</a></li><li class="chapter-item expanded "><a href="chapter_1_7.html"><strong aria-hidden="true">1.7.</strong> 图形程序设计和编码</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_2.html"><strong aria-hidden="true">2.</strong> 各种数学知识</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_2_1.html"><strong aria-hidden="true">2.1.</strong> 集合和映射</a></li><li class="chapter-item expanded "><a href="chapter_2_2.html"><strong aria-hidden="true">2.2.</strong> 二次方程求解</a></li><li class="chapter-item expanded "><a href="chapter_2_3.html"><strong aria-hidden="true">2.3.</strong> 三角函数</a></li><li class="chapter-item expanded "><a href="chapter_2_4.html"><strong aria-hidden="true">2.4.</strong> 向量</a></li><li class="chapter-item expanded "><a href="chapter_2_5.html"><strong aria-hidden="true">2.5.</strong> 曲线和曲面</a></li><li class="chapter-item expanded "><a href="chapter_2_6.html"><strong aria-hidden="true">2.6.</strong> 线性插值</a></li><li class="chapter-item expanded "><a href="chapter_2_7.html"><strong aria-hidden="true">2.7.</strong> 三角形</a></li></ol></li><li class="chapter-item expanded "><a href="chapter_3.html"><strong aria-hidden="true">3.</strong> 光栅图像</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chapter_3_1.html"><strong aria-hidden="true">3.1.</strong> 光栅设备</a></li><li class="chapter-item expanded "><a href="chapter_3_2.html" class="active"><strong aria-hidden="true">3.2.</strong> 图像、像素和几何学</a></li><li class="chapter-item expanded "><a href="chapter_3_3.html"><strong aria-hidden="true">3.3.</strong> RGB颜色</a></li><li class="chapter-item expanded "><a href="chapter_3_4.html"><strong aria-hidden="true">3.4.</strong> 阿尔法合成</a></li><li class="chapter-item expanded "><a href="chapter_3_5.html"><strong aria-hidden="true">3.5.</strong> FAQ</a></li><li class="chapter-item expanded "><a href="chapter_3_6.html"><strong aria-hidden="true">3.6.</strong> 练习</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -112,6 +149,7 @@
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
@@ -125,8 +163,9 @@
                         </ul>
                     </div>
                 </div>
+
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -190,8 +229,8 @@ R=[-0.5,n_x-0.5]\times [-0.5,n_y-0.5].
 </ul>
 <p>  减少用于存储每个像素的位数会导致图像中出现两种不同的伪影（artifact）类型（或人为引入的缺陷）。一、用固定范围的值对图像进行编码会产生裁剪（clipping），当其他比最大值更亮的像素被设置或裁剪为最大可表示的值。例如，一张阳光明媚的景物照片可能包括比白色表面亮得多的再反射；当图像被转换为固定范围显示时，这些反射会被剪掉（即使它们是由相机测量的）。第二，以有限的精度对图像进行编码会导致量化的伪影（quantization artifact），或带状现象（banding），当需要将像素值四舍五入到最接近的可表示值时，就会在强度或颜色上出现明显的跳跃。带状现象在动画和视频中特别隐蔽，在静止的图像中带状现象可能并不令人讨厌，但当它们来回移动时就变得非常明显。</p>
 <h2 id="显示器强度与伽马gamma"><a class="header" href="#显示器强度与伽马gamma">显示器强度与伽马（Gamma）</a></h2>
-<p>  所有的现代显示器都是使用数字输入作为一个像素的“值”，并将其转换为一个强度等级。真正的显示器在关闭时有一些非零强度，因为屏幕会反射一些光线。为了我们的目的，我们可以认为这是 &quot;黑色&quot;，而显示器完全打开则是 &quot;白色&quot;。我们假设对像素颜色的数字描述从0到1不等。黑色是0，白色是1，介于黑色和白色之间的灰色是0.5。请注意，这里的 &quot;一半 &quot;指的是来自像素的物理光量，而不是外观。人类对强度的感知是非线性的，这不会成为本讨论的一部分；更多内容详见第19章。</p>
-<p>  要在显示器上产生正确的图像，有两个关键问题必须了解。第一个问题是，显示器对于输入是非线性的。例如，如果你给显示器的三个像素输入0、0.5和1.0，显示的强度可能是0、0.25和1.0（关闭、四分之一全开和全开）。作为这种非线性的近似描述，显示器通常以\(\gamma \)（&quot;gamma&quot;）值为特征。这个值是下面公式中的自由度：</p>
+<p>  所有的现代显示器都是使用数字输入作为一个像素的“值”，并将其转换为一个强度等级。真正的显示器在关闭时有一些非零强度，因为屏幕会反射一些光线。为了我们的目的，我们可以认为这是 "黑色"，而显示器完全打开则是 "白色"。我们假设对像素颜色的数字描述从0到1不等。黑色是0，白色是1，介于黑色和白色之间的灰色是0.5。请注意，这里的 "一半 "指的是来自像素的物理光量，而不是外观。人类对强度的感知是非线性的，这不会成为本讨论的一部分；更多内容详见第19章。</p>
+<p>  要在显示器上产生正确的图像，有两个关键问题必须了解。第一个问题是，显示器对于输入是非线性的。例如，如果你给显示器的三个像素输入0、0.5和1.0，显示的强度可能是0、0.25和1.0（关闭、四分之一全开和全开）。作为这种非线性的近似描述，显示器通常以\(\gamma \)（"gamma"）值为特征。这个值是下面公式中的自由度：</p>
 <p>\[
 \begin{align}
 \mbox{显示强度}=\mbox{（最大强度）}a^\gamma
@@ -200,7 +239,7 @@ R=[-0.5,n_x-0.5]\times [-0.5,n_y-0.5].
 <p>  其中\(a\)是介于0和1之间的输入像素值。比如，如果一台显示器有2.0的伽马值，并且我们输入\(a=0.5\)，则显示强度是四分之一最大可能强度（因为\(0.5^2=0.25\)）。注意\(a=0\)映射到0强度、\(a=1\)映射到与\(\gamma\)值无关的最大强度。使用\(\gamma\)描述显示器的非线性度只是一个近似值；我们不需要很高的精度来估计设备的\(\gamma\)精度。衡量非线性度的一个很好的视觉方法是找到能产生介于黑白之间的中间强度的\(a\)值。这个\(a\)会如下所示：</p>
 <p>\[
 \begin{aligned}
-0.5 = a^\gamma 
+0.5 = a^\gamma
 \end{aligned}
 \]</p>
 <p>  如果我们能找到这样一个\(a\)，就能通过在两边取对数来推断出\(\gamma\)：</p>
@@ -248,9 +287,11 @@ a^{'} = a^{\frac{1}{\gamma } }
                             <a rel="prev" href="chapter_3_1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="chapter_3_3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+
+                            <a rel="next prefetch" href="chapter_3_3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
+
                         <div style="clear: both"></div>
                     </nav>
                 </div>
@@ -260,23 +301,49 @@ a^{'} = a^{\frac{1}{\gamma } }
                     <a rel="prev" href="chapter_3_1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="chapter_3_3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+
+                    <a rel="next prefetch" href="chapter_3_3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
 
         </div>
 
-        <script type="text/javascript">
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
             window.playground_copyable = true;
         </script>
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
+
+
+    </div>
     </body>
 </html>
