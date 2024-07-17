@@ -3,9 +3,8 @@ name: LaTeX Build
 on:
   push:
     tags:
-      - v*
-  workflow_dispatch:
-      
+      - v*.*.*
+
 jobs:
   build:
     runs-on: ubuntu-latest
