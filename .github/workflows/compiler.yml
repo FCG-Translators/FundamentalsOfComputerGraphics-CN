@@ -3,7 +3,7 @@ name: LaTeX Build
 on:
   push:
     tags:
-      - '*'
+      - 'v*.*.*'
     branches:
       - main
   workflow_dispatch:
@@ -29,6 +29,8 @@ jobs:
         path: tex/FundamentalsComputerGraphics.pdf
     - name: Release
       uses: softprops/action-gh-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: tex/FundamentalsComputerGraphics.pdf
