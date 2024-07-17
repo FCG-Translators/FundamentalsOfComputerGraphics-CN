@@ -2,10 +2,11 @@ name: LaTeX Build
 
 on:
   push:
-    branches:
-      - main  # 触发分支
     tags:
-      - "v*.*.*"
+      - '*'
+    branches:
+      - main
+  workflow_dispatch:
       
 jobs:
   build:
@@ -16,15 +17,17 @@ jobs:
       uses: actions/checkout@v4
       
     - name: Github Action for LaTeX
-      uses: xu-cheng/latex-action@3.2.0
+      uses: xu-cheng/latex-action@v3
       with:
         root_file: FundamentalsComputerGraphics.tex
         latexmk_use_xelatex: true
         working_directory: tex
+    - name: Archive output
+      run: mv FundamentalsComputerGraphics.pdf $GITHUB_WORKSPACE/FundamentalsComputerGraphics.pdf
 
     - name: Release
       uses: softprops/action-gh-release@v2
-      if: startsWith(github.ref, 'refs/tags/')
       with:
         files: FundamentalsComputerGraphics.pdf
+  
             
