@@ -1,0 +1,1170 @@
+\chapter{基础数学知识}
+
+图形学的大部分内容只是将数学公式直译成代码。数学公式越干净，写出的代码就越干净，所以本书的大部分内容都聚焦于“如何使用正确的数学公式完成工作”这个话题。本章回顾了高中和大学数学中的各种工具，旨在作为参考，而不是作为一个教程。本章可能看起来像是一个各种主题组成的大杂烩，事实上它也确实如此：每个主题之所以被选择是因为它在“标准”数学课程中的略微不寻常、因为它在图形学中具有核心地位、或者因为我们一般不从几何角处理它。除了对本书所使用的符号进行回顾外，本章还强调了标准本科课程中有时会跳过的几个要点，比如三角形的重心坐标。本章不会严肃探究这些知识，相反，我们会着重于直觉和几何解释。而对线性代数的讨论则被推迟到了第六章中我们学习矩阵变换之前。我们鼓励读者浏览本章以熟悉所涉及的主题，并在需要时参考本章。本章末尾的练习也许能帮助你确定哪些主题需要复习。
+
+\section{集合和映射}
+
+映射（\textit{mapping}），也叫函数（\textit{function}），是数学和编程的基础。像程序中的函数一样，数学中的映射接受某个类型（\textit{type}）的参数，并将其映射到（返回）一个特定类型的对象。在程序中，我们说的是“类型”；在数学中，我们说的是“集合”。当一个对象是一个集合的成员时，我们使用 $\in$ 符号。比如说，
+\[
+  a \in \textbf{S},
+\]
+可以读作“a是集合S的成员”。给定任何两个集合$\textbf{A}$和$\textbf{B}$，我们可以通过取两个集合的笛卡尔积（\textit{cartesian product}）来创建第三个集合，表示为 $\textbf{A} \times \textbf{B}$。这个集合 $\textbf{A} \times \textbf{B}$ 由所有可能的有序对$(a,b)$组成，其中 $a \in \textbf{A}$ 且 $b \in \textbf{B}$。作为缩写，我们用符号 $\textbf{A}^2$ 表示 $\textbf{A} \times \textbf{A}$。我们可以扩展笛卡尔积，从三个集合中创建一个新集合，该集合包含所有可能的有序三元组，以此类推，从任意多的集合中创建任意长的有序元组。
+
+常见的集合包括：
+\begin{itemize}
+  \item \textcolor{lightgreen}{$\mathbb{R}$}——实数；
+  \item \textcolor{lightgreen}{$\mathbb{R^+}$}——非负实数（包括0）；
+  \item \textcolor{lightgreen}{$\mathbb{R}^2$}——真实二维平面中的有序对；
+  \item \textcolor{lightgreen}{$\mathbb{R}^n$}——n维迪卡尔空间中的点；
+  \item \textcolor{lightgreen}{$\mathbb{Z}$}——整数；
+  \item \textcolor{lightgreen}{$S^2$}——单位球面上的三维点（$R^3$中的点）的集合。
+\end{itemize}
+请注意，虽然 $S^2$ 是由三维空间中的点组成的，但它也在一个可以用两个变量进行参数化的表面上，所以它可以被认为是一个二维集合。映射的记号使用箭头和冒号，例如：
+\[
+  f : \mathbb{R} \mapsto \mathbb{Z},
+\]
+你可以把它理解为“有一个叫做 $f$ 的函数，它将一个实数作为输入，并将其映射成一个整数”。这里，箭头前面的集合被称为函数的定义域（\textit{domain}），右边的集合被称为目标（\textit{target}）\footnote[1]{译注：此处的目标（\textit{target}）指的是陪域（\textit{codomain}）。关于这点的详细讨论请参考 \url{https://math.stackexchange.com/questions/440235/range-of-function-vs-target-of-function} 中的回答。}。计算机程序员可能更愿意使用下面的等价表达：“有一个叫 $f$ 的函数，它有一个实数参数并返回一个整数”。换句话说，上面的集合映射符号等同于常见的编程符号：
+\[
+  \text{integer} \ f(\text{real}) \leftarrow \text{等价} \rightarrow f : \mathbb{R} \mapsto \mathbb{Z}.
+\]
+因此，“冒号-箭头”符号可以被认为是一种编程语法，就这么简单。
+
+点 $f(a)$ 被称为$a$的像（\textit{image}），一个集合$A$（定义域的子集）的像是目标的子集，目标包含A中所有点的像。整个定义域的像被称为函数的值域（\textit{range}）。
+
+\subsection{逆映射}
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.1.png}
+    \captionof{figure}{一个双射 $f$ 及其反函数 $f^{-1}$。注意，$f^{-1}$也是一个双射。}
+  \end{center}
+}
+
+如果我们有一个函数 $f : \textbf{A} \mapsto \textbf{B}$，那么可能存在一个反函数（\textit{inverse function}） $f^{-1} : \textbf{B} \mapsto \textbf{A}$，这是通过 $ f^{-1}(b) = a,\ b = f(a)$ 定义的。该定义只在所有 $b \in \textbf{B}$是函数 $f$ 下一些点的像（也就是说，值域和目标相等）且只有一个这样的点（也就是说，在 $f(a) = b$ 中，只有一个 让等式成立的$a$）的情况下有效。这种映射或函数称为双射（\textit{bijection}）。双射将每一个 $a \in \textbf{A}$ 映射到唯一的 $b \in \textbf{B}$ ，对于每一个 $b \in \textbf{B}$，正好有一个 $a \in \textbf{A}$，使 $f(a)=b$ （图2.1）。例如，一组骑手和一组马匹之间的双射关系表明，每个人都骑着一匹马，每匹马都被骑着。这两个函数是骑手（马）和马（骑手），它们都是彼此的反函数。不是双射的函数没有反函数（图2.2）。
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.2.png}
+    \captionof{figure}{函数 $g$ 不具有反函数，因为集合\textbf{d}中的两个元素映射到了集合\textbf{E}中的同一个元素。函数 $h$ 没有反函数，因为集合\textbf{d} 中没有元素映射到集合\textbf{F}中的元素 $T$ 。}
+  \end{center}
+}
+
+一个双射的例子是 $f : \mathbb{R} \mapsto \mathbb{R},\ f(x) = x^3$。它的反函数为 $f^{-1}(x) = \sqrt[3]{x}$ 。这个例子表明，标准的符号可能有些笨拙，因为 $x$ 在 $f$ 和 $f^{-1}$ 中都被用作虚拟变量（\textit{dummy variable}）。有时使用不同的虚拟变量会更直观，比如写成$y = f(x)$和$x=f^{-1}(y)$的形式。这就有了更直观的 $y = x^3$ 和 $x = \sqrt[3]{y}$。一个没有反函数的例子是 $sqr : \mathbb{R} \mapsto \mathbb{R},\ sqr(x) = x^2$。它没有反函数的原因有两个：首先 $x^2 = (-x)^2$，其次定义域中没有成员映射到目标的负数部分。请注意，如果我们把定义域和值域限制在 $\mathbb{R^+}$，还是可以定义一个反函数的。如此一来 $\sqrt{x}$ 就是一个有效的反函数。
+
+\subsection{区间}
+
+通常情况下，我们希望让一个函数处理的实数局限在某个范围内，实现这种约束的一个方法就是规定一个区间（\textit{interval}）。区间的一个例子是“0和1之间的实数、不包括0或1”，我们把它表示为 $(0,1)$。因为它不包括其端点，所以被称为开区间。相对应的闭区间则包含其端点，用方括号表示：$[0,1]$。这种符号可以混合使用；比如，$[0,1)$包括0，但不包括1。当写一个区间 $[a,b]$ 时，我们假定 $a \leq b$。表示一个区间的三种常见方法如图2.3所示。区间的笛卡尔积经常被使用。例如，为了表示点 $x$ 在三维的单位立方体中，我们说$x \in [0, 1]^3$。
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.3.png}
+    \captionof{figure}{三个表示方式是等效的，都能用于表示“从$a$到$b$、包含$b$但不包含$a$的实数区间”。}
+  \end{center}
+}
+
+区间在与常常与集合运算结合在一起使用：交集（\textit{intersection}）、并集（\textit{union}）和差集（\textit{difference}）。例如，两个区间的交集是它们公共点的集合，符号 $\cap$ 用来表示交集。例如，$[3,5) \cap [4,6] = [4,5)$。而并集使用符号 $\cup$ 来表示两个区间中的点合并后产生的集合。例如，$[3,5) \cup [4,6] = [3,6]$。差集运算符与前两个运算符不同，它根据参数顺序产生不同结果。减号用于差集运算，它返回在左侧区间但不在右侧区间的点。例如，$[3,5) - [4,6] = [3,4]$，以及 $[4,6] - [3,5] = [5,6]$。这些操作用区间图就能很直观地表现出来（图2.4）。
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.4.png}
+    \captionof{figure}{在 $[3,5)$ 和 $[4,6]$ 上的区间操作。}
+  \end{center}
+}
+
+\subsection{对数函数}
+
+尽管今天对数（\textit{logarithm}）已不像使用计算器之前那么普遍了，但它在具有指数项的方程问题中仍然很有用。根据定义，每个对数都有一个基数$a$（\textit{base $a$}，也称“底”）。$x$的以 $a$ 为底的对数通常被写作 $\log_ax$，并且它被定义为若要得到 $x$ 需要将 $a$ 乘幂的指数值。即：
+\[
+  y = \log_ax \iff a^y = x.
+\]
+请注意，以 $a$ 为底数的对数函数和以 $a$ 为底数的幂函数是互逆的。这个基本定义可引申出几个结论：
+\[
+  \begin{aligned}
+    a^{\log_a(x)} & = x;               \\
+    \log_a(a^x)   & = x;               \\
+    \log_a(xy)    & = \log_ax+\log_ay; \\
+    \log_a(x/y)   & = \log_ax-\log_ay; \\
+    \log_ax       & = \log_ab\log_bx.
+  \end{aligned}
+\]
+当我们将微积分应用于对数时，经常会出现特殊数字 $e=2.718\ldots $。以 $e$ 为底的对数被称为自然对数（\textit{natural logarithm}）。我们一般用简写 $ln$ 来表示：
+\[
+  \ln x \equiv \log_ex.
+\]
+“ $\equiv$ ”符号的意思是“根据定义恒等”。像 $\pi$ 一样，特殊数字 $e$ 在很多情况下都会出现。除了 $e$ 以外，在许多领域还使用特定的基数进行操作，并在其写法中省略基数，即 $\log x$ 的形式。例如，天文学家经常使用以10为底的对数，理论计算机科学家经常使用以2为底的对数。由于计算机图形学借鉴了许多其他领域的技术，我们将避免这种缩写。
+
+对数的导数和指数的导数阐明了为什么自然对数是“自然的”：
+\[
+  \begin{aligned}
+    \frac{d}{d x} \log _{a} x & =\frac{1}{x \ln a}; \\
+    \frac{d}{d x} a^{x}       & =a^{x} \ln a.
+  \end{aligned}
+\]
+上面的常数乘数只有在 $a = e$ 时才等于1。
+
+\section{求解二次方程}
+
+一个二次方程（\textit{quadratic equation}）满足如下格式：
+\[
+  Ax^2+Bx+C=0,
+\]
+其中 $x$ 是一个未知的实数，而 $A$、$B$ 和 $C$ 是已知的常数。如果你能联想到 $y=Ax^2+Bx+C$ 的二维 $xy$ 图，那么该二次方程的解就是函数 $y$ 与 $x$ 轴交点的横坐标值。因为 $y=Ax^2+Bx+C$ 是一条抛物线，根据抛物线是否未相交、相切或相交于 $x$ 轴，将有零个、一个或两个实数解（图2.5）。
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.5.png}
+    \captionof{figure}{二次方程根的几何解释是抛物线与 $x$ 轴的交点。}
+  \end{center}
+}
+
+为了求解二次方程，我们先将方程除以A：
+\[
+  x^2+\frac{B}{A} x+\frac{C}{A}=0.
+\]
+然后，我们通过“构造平方项”的方式来合并项：
+\[
+  \left(x+\frac{B}{2 A}\right)^{2}-\frac{B^{2}}{4 A^{2}}+\frac{C}{A}=0.
+\]
+将常数部分移到等号右边，然后取平方根，得到：
+\[
+  x+\frac{B}{2 A}=\pm \sqrt{\frac{B^{2}}{4 A^{2}}-\frac{C}{A}}.
+\]
+从两边减去 $\frac{B}{2 A}$，然后用分母 $2A$ 合并分式，就得到了我们熟悉的形式:\footnote[1]{一个比较稳健的实现会使用等价的表达式 $\frac{2C}{\left(-B \mp \sqrt{B^{2}-4 A C}\right)}$ 来根据B的符号计算其中一个根（练习7）。}
+\begin{equation}
+  x=\frac{-B \pm \sqrt{B^{2}-4AC}}{2A}.
+\end{equation}
+此处的“$\pm$”符号意味着有两个解，一个是正号，一个是负号。因此，$3\pm1$ 等于2或4。请注意，决定实数解数量的项是：
+\[
+  D \equiv B^{2}-4AC,
+\]
+这被称为二次方程的判别式（\textit{discriminant}）。如果 $D>0$，有两个实数解（也叫根（\textit{root}））；如果 $D=0$，有一个实数解（一个双根（\textit{a "double" root}））；如果 $D<0$则没有实数解。
+
+例如，$2x^2+6x+4=0$ 的根是 $x=-1$ 和 $x=-2$，方程 $x^2+x+1=0$ 没有实数解。这些方程的判别式分别是 $D=4$ 和 $D=-3$，且我们都按预期得到了解的数量。在程序中，我们通常先评估 $D$ 值，如果 $D$ 为负数，则直接返回无根（\textit{no roots}）而不取平方根。
+
+\section{三角函数}
+
+在图形学中，我们在许多情况下都会用到基本三角函数。一般来说它平平无奇，但能记住基础定义往往是有帮助的。
+
+\subsection{角}
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.6.png}
+    \captionof{figure}{两条射线将单位圆切割成两条弧线。任意一条弧线的长度都是这两条射线“之间”的有效角。我们可以使用“较小弧线长度是角”的约定，或者这种约定：“将两条射线按一定顺序指定、确定角 $\phi$ 的弧是从第一条射线到第二条射线逆时针扫过的弧。}
+  \end{center}
+}
+
+尽管我们认为角的概念是理所当然的，但我们应重温其定义，以便我们将角的概念扩展到球体上。角是在两条半直线（从一个原点出发的无限射线）或方向之间形成的，如图2.6所示，两条射线会形成两个角，我们还需要通过一些约定来决定使用哪个角。角（\textit{angle}）是由射线在单位圆上切出的弧段的长度来定义的。一个常见的约定是使用较小的弧长，而角的符号由两条射线被指定的顺序决定。在该约定的约束下，所有角都在 $[-\pi, \pi]$ 范围内。
+
+这两个角中的任何一个都可以通过两条射线“切割”的单位圆的弧长来度量。因为单位圆的周长是 $2\pi$，所以两个可能的角总和为 $2\pi$，这种弧长的单位是弧度（\textit{radians}）。另一个常见的单位是角度（\textit{degrees}），圆的周角是 $360^\circ$。因此，一个弧度为 $\pi$ 的角的角度是 $180^\circ$，通常表示为 $180^\circ$。角度和弧度之间的转换是：
+
+\[
+  \begin{aligned}
+    \text{角度} & =\frac{180}{\pi} \text{弧度}; \\
+    \text{弧度} & =\frac{\pi}{180} \text{角度}.
+  \end{aligned}
+\]
+
+\subsection{三角函数}
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.7.png}
+    \captionof{figure}{勾股定理的几何证明。}
+  \end{center}
+}
+
+给出一个边长为 $a$、$o$、$h$ 的直角三角形，其中 $h$ 是最长边的长度（总是与直角相对），或者叫斜边（\textit{hypotenuse}），勾股定理（\textit{Pythagorean theorem}）描述了一种重要的关系：
+\[
+  a^2+o^2=h^2.
+\]
+你可以从图2.7中看到这一点，大正方形的面积为 $(a+o)^2$，四个三角形的面积合计为 $2a0$，中心正方形的面积为 $h^2$。
+
+由于三角形和中心正方形均匀地细分了较大的正方形，所以我们可以很容易地取得如下公式 $2ao+h^2=(a+o)^2$。通过直角三角形，我们可以定义角 $\phi$ 的 $\sin$ 值和 $\cos$ 值，以及其他基于比值的三角表达式：
+\[
+  \begin{aligned}
+    \sin \phi & \equiv \frac{o}{h}; \\
+    \csc \phi & \equiv \frac{h}{o}; \\
+    \cos \phi & \equiv \frac{a}{h}; \\
+    \sec \phi & \equiv \frac{h}{a}; \\
+    \tan \phi & \equiv \frac{o}{a}; \\
+    \cot \phi & \equiv \frac{a}{o}.
+  \end{aligned}
+\]
+
+这些定义允许我们建立极坐标系（\textit{polar coordinates}），其中任何一个点都被编码为其与原点的距离及其与 $x$ 轴正半轴的角（带符号），如图 2.8 所示。请注意，角的范围是 $\phi\in(-\pi,\pi]$，且正数角是从 $x$ 轴正半轴逆时针方向旋转取得的。“将逆时针方向映射到一个正数”这个约定是主观性的，但它被应用于图形学很多场景中，因此值得一记。
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.8.png}
+    \captionof{figure}{点 $(x_a,y_a)$ 的极坐标为 $(r_a,\phi_a)=(2,\frac{\pi}{3})$。}
+  \end{center}
+}
+
+三角函数是周期性的，可以接受任何角作为参数。例如，$\sin(A) = \sin(A + 2\pi)$ 。这意味着当我们考虑整个 $\mathbb{R}$ 域时，这些函数是不可逆的。这个问题可以通过限制标准反函数的值域来避免。这在几乎所有现代数学库中都是以标准方式进行的（例如，Plauger（1991））。定义域和值域如下：
+\begin{equation}
+  \begin{aligned}
+     & \operatorname{asin}:[-1,1] \mapsto[-\frac{\pi}{2}, \frac{\pi}{2}];      \\
+     & \operatorname{acos}:[-1,1] \mapsto[0, \pi];                             \\
+     & \operatorname{atan}: \mathbb{R} \mapsto[-\frac{\pi}{2}, \frac{\pi}{2}]; \\
+     & \operatorname{atan} 2: \mathbb{R}^{2} \mapsto[-\pi, \pi].
+  \end{aligned}
+\end{equation}
+最后一个函数 $\operatorname{atan}2(s,c)$ 往往很有用。它采用与 $\sin A$ 成比例的值 $s$ 以及与 $\cos A$ 成比例的值 $c$ ，两者具有相同的因子，最后返回值 $A$（假定因子为正数）。一种思考方式是它返回了二维笛卡尔点 $(c,s)$ 在极坐标中的角（图2.9）。
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.9.png}
+    \captionof{figure}{函数 $\operatorname{atan}2(s,c)$ 返回 $A$ 的角，这在图形学中往往很有用。}
+  \end{center}
+}
+
+\subsection{有用的恒等式}
+
+本节未经推导地列出了各种有用的三角恒等式。
+
+移位恒等式（\textit{shifting identities}）：
+\[
+  \begin{aligned}
+    \sin (-A)              & =-\sin A            \\
+    \cos (-A)              & =\phantom{-} \cos A \\
+    \tan (-A)              & =-\tan A            \\
+    \sin (\frac{\pi}{2}-A) & =\phantom{-}\cos A  \\
+    \cos (\frac{\pi}{2}-A) & =\phantom{-}\sin A  \\
+    \tan (\frac{\pi}{2}-A) & =\phantom{-}\cot A
+  \end{aligned}
+\]
+
+毕达哥拉斯恒等式（\textit{Pythagorean identities}）：
+\[
+  \begin{array}{r}
+    \sin ^{2} A+\cos ^{2} A=1 \\
+    \sec ^{2} A-\tan ^{2} A=1 \\
+    \csc ^{2} A-\cot ^{2} A=1
+  \end{array}
+\]
+
+加减法恒等式（\textit{addition and subtraction identities}）：
+\[
+  \begin{aligned}
+    \sin (A+B) & =\sin A \cos B+\sin B \cos A             \\
+    \sin (A-B) & =\sin A \cos B-\sin B \cos A             \\
+    \sin (2 A) & =2 \sin A \cos A                         \\
+    \cos (A+B) & =\cos A \cos B-\sin A \sin B             \\
+    \cos (A-B) & =\cos A \cos B+\sin A \sin B             \\
+    \cos (2 A) & =\cos ^{2} A-\sin ^{2} A                 \\
+    \tan (A+B) & =\frac{\tan A+\tan {B}}{1-\tan A \tan B} \\
+    \tan (A-B) & =\frac{\tan A-\tan B}{1+\tan A \tan B}   \\
+    \tan (2 A) & =\frac{2 \tan A}{1-\tan^{2}A}
+  \end{aligned}
+\]
+
+半角恒等式（\textit{half-angle identities}）：
+\[
+  \begin{aligned}
+     & \sin ^{2}(\frac{A}{2})=\frac{1-\cos A}{2} \\
+     & \cos ^{2}(\frac{A}{2})=\frac{1+\cos A}{2}
+  \end{aligned}
+\]
+
+乘法恒等式（\textit{product identities}）：
+\[
+  \begin{aligned}
+     & \sin A \sin B=-\frac{\cos (A+B)-\cos (A-B)}{2}           \\
+     & \sin A \cos B=\phantom{-}\frac{\sin (A+B)+\sin (A-B)}{2} \\
+     & \cos A \cos B=\phantom{-}\frac{\cos (A+B)+\cos (A-B)}{2}
+  \end{aligned}
+\]
+
+以下恒等式适用于边长为 $a$、$b$ 和 $c$ 的任意三角形，每边相对的角分别为 $A$、$B$、$C$（图 2.10），
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.10.png}
+    \captionof{figure}{三角定律的几何示意图。}
+  \end{center}
+}
+
+\[
+  \begin{aligned}
+    \frac{\sin A}{a}=\frac{\sin B}{b}=\frac{\sin C}{c}\quad                                      & \text{（正弦定理）} \\
+    c^{2}=a^{2}+b^{2}-2 a b \cos C\quad                                                          & \text{（余弦定律）} \\
+    \frac{a+b}{a-b}=\frac{\tan \left(\frac{A+B}{2}\right)}{\tan \left(\frac{A-B}{2}\right)}\quad & \text{（正切定律）}
+  \end{aligned}
+\]
+
+三角形的面积也可以根据这些边长计算：
+\[
+  \text { 三角形面积 }=\frac{1}{4} \sqrt{(a+b+c)(-a+b+c)(a-b+c)(a+b-c)} .
+\]
+
+\subsection{立体角和球面三角学}
+
+本节中的传统三角学涉及平面上的三角形。三角形也可以定义在非平面上，这在很多领域都会出现，比如天文学中就有定义在单位半径球体上的三角形。这些球面三角形（\textit{spherical triangles}）的边是球面上的大圆（单位半径的圆）的线段。对这类三角形的研究是一个称为球面三角学（\textit{spherical trigonometry}）的领域，其在图形学中一般并不常用，但当它出现时便不可忽视。我们不会在这里讨论它的细节，但希望读者知道当相关问题出现时存在这样一个研究领域，并且该领域有很多有用的规则，例如球面余弦定律和球面正弦定律。关于使用球面三角学机制的一个例子，请看一篇关于三角形光照采样（\textit{sampling triangle lights}）（投影到一个球面三角形）的论文（Arvo，1995b）。
+
+对计算机图形学而言，立体角（\textit{solid angles}）的概念更加重要。角可以让我们量化一些东西，比如“在我的视野中这两根柱子的距离是多少”，而立体角则能让我们量化“那架飞机在我的视野中覆盖了多少面积”这样的问题。对于传统的角，我们把线段投射到单位圆上，并在单位圆上测量投射的两点之间的弧长。我们经常使用这个弧长作为角，以至于许多人都会忘记这个定义，因为在当下它对我们来说是如此直观。立体角也同样简单，但它们可能看起来更令人困惑，因为我们大多数人都是在成年后才了解它们的。对于立体角，我们把“看到”飞机的可见方向投射到单位球体上，并测量其面积。这个面积就是立体角，与“弧长就是角”的方式相同。角以弧度测量，总和为 $2\pi$（单位圆的总长度），而立体角则以立体弧度（\textit{steradians}）测量，总和为 $4\pi$（单位球的总表面积）。
+
+\section{向量}
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.11.png}
+    \captionof{figure}{这两个向量是相同的，因为它们拥有相同的长度和方向。}
+  \end{center}
+}
+
+向量（\textit{vector}）同时描述了长度和方向，它总是用箭头表示。如果两个向量具有相同的长度和方向，则它们是相等的，即使在我们看来它们处于不同的位置（图 2.11）。您应该尽可能地将向量视为箭头，而不是坐标或者数字。尽管有时在程序中我们不得不将向量表示为数字，但即使在代码中，他们也应该以对象的形式来操作，并且只有低级向量操作才能知道他们的数字表示（DeRose，1989）。向量用粗体字符表示，例如\textbf{a}。向量的长度表示为$\|\mathbf{a}\|$。单位向量（\textit{unit vector}）是长度为一的向量。零向量（\textit{zero vector}）是零长度的向量，零向量的方向未定义。
+
+向量可以用来表示许多不同的东西。例如，它们可用来存储偏移量（\textit{offset}），或者叫位移（\textit{displacement}）。如果我们知道“宝藏埋在秘密会议地点以东两步，以北三步”，那么我们就可以知道偏移量，但我们不知道起点在哪。向量也可以用来存储一个位置（\textit{location}），或者说用来表达位置（\textit{position}）或点（\textit{point}）。一个位置可以表示为另一个位置的位移。通常我们有一个已知的原点位置，所有其他位置都存储为相对于它的偏移量。请注意，位置不是向量。正如我们将讨论的那样，您可以将两个向量相加。但将两个位置相加通常没有意义，除非它是计算某个位置加权平均值的中间操作（Goldman，1985年）。将两个偏移量相加则确实有意义，所以这就是偏移量是向量的原因之一。这再次强调了位置本身不是偏移量，它是来自特定原点的偏移量，偏移量本身也不是位置。
+
+\subsection{向量运算}
+
+实数的算术运算向量基本也有。两个向量相等当且仅当它们具有相同的长度和方向。根据平行四边形法则（\textit{parallelogram rule}）将两个向量相加。这条规则表明，两个向量的和是通过将任一向量的尾部放在另一个向量的头部来求得的（图 2.12）。和向量是与两个向量共同“构成三角形”的向量。平行四边形是通过两个向量的任意求和顺序构成的。这表明向量加法具有可交换性：
+\[
+  \mathbf{a}+\mathbf{b}=\mathbf{b}+\mathbf{a}.
+\]
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.12.png}
+    \captionof{figure}{两个向量通过头尾相连来实现相加，相加的顺序是任意的。}
+  \end{center}
+}
+请注意，平行四边形法则只是形式化了我们对位移的直观感受。想象沿着一个向量从头走到尾，然后沿着另一个向量走。净位移只是平行四边形的对角线。您还可以为向量添加一元负号（\textit{unary minus}）： $-\mathbf{a}$（图 2.13）是一个与 $\mathbf{a}$ 长度相同但方向相反的向量。这样我们就能定义向量的减法：
+\[
+  \mathbf{b}-\mathbf{a} \equiv -\mathbf{a}+\mathbf{b}.
+\]
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.13.png}
+    \captionof{figure}{向量 $-\mathbf{a}$ 拥有与向量 $\mathbf{a}$ 相同的长度但是方向相反。}
+  \end{center}
+}
+您可以使用平行四边形法则可视化向量减法（图 2.14）。我们也可以将向量减法写成这种形式：
+\[
+  \mathbf{a}+(\mathbf{b}-\mathbf{a})=\mathbf{b}.
+\]
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.14.png}
+    \captionof{figure}{向量减法只是第二个参数反转的矢量加法。}
+  \end{center}
+}
+向量也可以相乘，事实上向量乘法不止一种。首先我们可以通过对向量乘以实数 $k$ 来缩放（\textit{scale}）向量，这种乘法只改变向量的长度而不改变其方向。例如，$3.5a$ 是与 $a$ 方向相同的向量，但它的长度是 $a$ 的3.5倍。我们会在本节后面讨论涉及到两个向量的两种乘积，点乘（\textit{dot product}）和叉乘（\textit{cross product}），以及第6章中涉及到三个向量的乘积（行列式，\textit{determinant}）。
+
+\subsection{向量的笛卡尔坐标系}
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.15.png}
+    \captionof{figure}{任意二维向量 $\mathbf{c}$ 都是任意两个不平行二维向量 $\mathbf{a}$ 和 $\mathbf{b}$ 的加权和。}
+  \end{center}
+}
+
+一个二维向量可以由任意两个不平行的非零向量构造而来，这两个向量的性质叫做线性独立（\textit{linear independence}）。两个线性独立的向量构成了一个二维基（或称“基底”，\textit{basis}），相关向量也因此被称作基向量（\textit{basis vectors}）。比如一个向量 $\mathbf{c}$ 可以表示成两个基向量 $\mathbf{a}$ 和 $\mathbf{b}$ 的组合形式（图 2.15）：
+\begin{equation}
+  \mathbf{c} = a_c\mathbf{a} + b_c\mathbf{b}.
+\end{equation}
+注意权重 $a_c$ 和 $b_c$ 是独一无二的。在这两个向量是正交（\textit{orthogonal}）的情况下基特别有用（也就是说这两个向量构成了一个直角）；如果它们还是单位向量的话就更有用了，这时它们是标准正交的（\textit{orthonormal}）。如果我们假设这样两个特殊的向量 $\mathbf{x}$ 和 $\mathbf{y}$ 是已知的，那我们就能用它们表示笛卡尔坐标系（\textit{Cartesian coordinate system}）中的所有其他向量了，每个向量都可以用两个实数来表示。比如一个向量 $\mathbf{a}$ 可以表示成：
+\[
+  \mathbf{a} = x_a\mathbf{x} + y_a\mathbf{y},
+\]
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.16.png}
+    \captionof{figure}{向量的二维笛卡尔基。}
+  \end{center}
+}
+其中 $x_a$ 和 $y_a$ 是二维向量 $\mathbf{a}$ 的实数笛卡尔坐标（图 2.16）。注意这和公式 2.3 并没有什么本质区别，尽管公式 2.3 中的基向量不是标准正交的。而使用笛卡尔坐标系会有一些好处，例如，根据勾股定理，$\mathbf{a}$ 的长度是：
+\[
+  \| \mathbf{a} \| = \sqrt{x_a^2 + y_a^2},
+\]
+在笛卡尔坐标系中计算点乘、叉乘、向量坐标也很简单，这点我们在接下来的章节里就会看到。
+
+按照惯例，我们在写向量 $\mathbf{a}$ 的坐标时可以写成有序数对 $(x_a,\ y_a)$ 的形式，也可以写成列矩阵（\textit{column matrix}）的形式：
+\[
+  \mathbf{a} = \begin{bmatrix}
+    x_a \\
+    y_a
+  \end{bmatrix}.
+\]
+矩阵的形式取决于排版惯例，我们偶尔也会将其写成行矩阵（\textit{row matrix}）的形式，这时我们会用 $\mathbf{a}^T$ 的形式：
+\[
+  \mathbf{a}^T = \begin{bmatrix}
+    x_a & y_a
+  \end{bmatrix}.
+\]
+我们也可以用这种方法描述笛卡尔坐标系中三维或更高维的向量。对于三维向量，我们会额外使用一个同时与向量 $\mathbf{x}$、向量$\mathbf{y}$ 正交的基向量 $\mathbf{z}$。
+
+\subsection{点乘}
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.17.png}
+    \captionof{figure}{点乘与长度和角相关，它是图形学中最重要的公式之一。}
+  \end{center}
+}
+
+点乘（\textit{dot product}）是将两个向量相乘的最简单途径。向量 $\mathbf{a}$ 和向量 $\mathbf{b}$ 的点乘记为  $\mathbf{a} \cdot \mathbf{b}$，由于其返回的结果是个标量，它也因此被称为标量乘法（\textit{scalar product}）。点乘返回的结果取决于两个向量的长度和它们之间的夹角 $\phi$（图 2.17）：
+\begin{equation}
+  \mathbf{a} \cdot \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\| \cos\phi,
+\end{equation}
+在图形学程序中，点乘最常见的用途便是计算两向量间夹角的余弦值了。
+
+除此以外点乘还可以计算一个向量在另一个向量上的投影值。向量 $\mathbf{a}$ 在向量 $\mathbf{b}$ 上的投影 $\mathbf{a} \to \mathbf{b}$ 是以直角投射上去的（图 2.18）：
+\begin{equation}
+  \mathbf{a} \to \mathbf{b} = \|\mathbf{a}\| \cos\phi = \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{b}\|},
+\end{equation}
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.18.png}
+    \captionof{figure}{向量 $\mathbf{a}$ 在向量 $\mathbf{b}$ 上的投影是根据公式 2.5 推导出来的。}
+  \end{center}
+}
+点乘也遵循实数计算中常见的结合律和分配律：
+\begin{equation}
+  \begin{aligned}
+    \mathbf{a} \cdot \mathbf{b}                & = \mathbf{b} \cdot \mathbf{a},                                   \\
+    \mathbf{a} \cdot (\mathbf{b} + \mathbf{c}) & = \mathbf{a} \cdot \mathbf{b} + \mathbf{a} \cdot \mathbf{c},     \\
+    (k\mathbf{a}) \cdot \mathbf{b}             & = \mathbf{a} \cdot (k\mathbf{b}) = k\mathbf{a} \cdot \mathbf{b}.
+  \end{aligned}
+\end{equation}
+如果二维向量 $\mathbf{a}$ 和 $\mathbf{b}$ 以笛卡尔坐标的形式表示，我们可以利用 $\mathbf{x} \cdot \mathbf{x} = \mathbf{y} \cdot \mathbf{y} = 1$ 和 $\mathbf{x} \cdot \mathbf{y} = 0$ 这两个公式来推导出如下点乘公式：
+\[
+  \begin{aligned}
+    \mathbf{a} \cdot \mathbf{b} & = (x_a\mathbf{x}+y_a\mathbf{y}) \cdot (x_b\mathbf{x}+y_b\mathbf{y})                                                                            \\
+                                & =x_ax_b(\mathbf{x}\cdot\mathbf{x}) + x_ay_b(\mathbf{x}\cdot\mathbf{y}) + x_by_a(\mathbf{y}\cdot\mathbf{x}) + y_ay_b(\mathbf{y}\cdot\mathbf{y}) \\
+                                & = x_ax_b + y_ay_b.
+  \end{aligned}
+\]
+同理对于三维向量可得：
+\[
+  \mathbf{a} \cdot \mathbf{b} = x_ax_b + y_ay_b + z_az_b.
+\]
+
+\subsection{叉乘}
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.19.png}
+    \captionof{figure}{叉乘 $\mathbf{a}\times\mathbf{b}$ 的结果是一个同时与向量 $\mathbf{a}$ 和向量 $\mathbf{b}$ 垂直的三维向量，且 $\mathbf{a}\times\mathbf{b}$ 的长度等于上图所示平行四边形的面积。}
+  \end{center}
+}
+
+叉乘 $\mathbf{a}\times\mathbf{b}$ 往往只用于三维向量，本章末尾笔记中的参考文献对广义叉乘（\textit{generalized cross products}）进行了讨论。叉乘返回一个与其两个乘数垂直的三维向量，结果向量的长度与 $\sin\phi.$ 相关：
+\[
+  \|\mathbf{a}\times\mathbf{b}\|=\|\mathbf{a}\|\,\|\mathbf{b}\|\sin\phi.
+\]
+$\|\mathbf{a}\times\mathbf{b}\|$ 的数值等于向量 $\mathbf{a}$ 和向量 $\mathbf{b}$ 构成的平行四边形的面积大小。此外，$\mathbf{a}\times\mathbf{b}$ 同时与向量 $\mathbf{a}$ 和向量 $\mathbf{b}$ 垂直（图 2.19）。注意这样一个向量有两种可能的方向。根据定义，$x-$ 轴、$y-$ 轴、$z-$ 轴的方向向量被定义为：
+\[
+  \begin{array}{r c l}{\mathbf{x}}&{=}&{(1,0,0),}\\ {\mathbf{y}}&{=}&{(0,1,0),}\\ {\mathbf{z}}&{=}&{(0,0,1),}\end{array}
+\]
+然后我们约定如下：$\mathbf{x}\times\mathbf{y}$ 的方向必须在$z-$ 轴正半轴方向或负半轴方向。具体方向选择是随意的，但如下公式是确定的：
+\[
+  \mathbf{z}=\mathbf{x}\times\mathbf{y}.
+\]
+三个笛卡尔单位向量的所有可能的排列如下所示：
+\[
+  \begin{array}{r c l}{{\mathbf{x}\times\mathbf{y}}}&{{=}}&{{+\mathbf{z},}}\\ {{\mathbf{y}\times\mathbf{x}}}&{{=}}&{{-\mathbf{z},}}\\ {{\mathbf{y}\times\mathbf{z}}}&{{=}}&{{+\mathbf{x},}}\\ {{\mathbf{z}\times\mathbf{y}}}&{{=}}&{{-\mathbf{x},}}\\ {{\mathbf{z}\times\mathbf{x}}}&{{=}}&{{+\mathbf{y},}}\\ {{\mathbf{x}\times\mathbf{z}}}&{{=}}&{{-\mathbf{y}.}}\end{array}
+\]
+
+由于 $\sin\phi$ 的特性，我们也可以知道一个向量自身的叉乘是零向量，例如：$\mathbf{x}\times\mathbf{x}=\mathbf{0}$。注意叉乘不满足交换律，也就是说 $\mathbf{x}\times\mathbf{y} \neq \mathbf{y}\times\mathbf{x}$。细心的读者可能会发现以上讨论无法让我们清晰描绘出三个笛卡尔轴之间的关系。更确切地说，如果我们把 $\mathbf{x}$ 轴和 $\mathbf{y}$ 轴放在人行道上并让 $\mathbf{x}$ 轴指向东边、 $\mathbf{y}$ 轴指向北边，那么 $\mathbf{z}$ 轴会指向天空还是地面呢？一般我们会使用名为“右手坐标系”的系统，其名称来源于以右手为参考的记忆体系：用右手手掌和手指“抓住” $\mathbf{x}$ 轴、然后朝 $\mathbf{y}$ 轴的方向旋转，向量 $\mathbf{z}$ 应该会沿着大拇指方向（如图 2.20 所示）\footnote[1]{译注：这几句话原文如下：“This name comes from the memory scheme of "grabbing" x with your right palm and fingers and rotating it toward y. The vector z should align with your thumb.” 。此处表达非常晦涩难懂且图片完全无法展示右手动作，建议此处按照国内老师对于右手坐标系的讲解进行学习，或参考维基百科（笛卡尔坐标系\#三维空间）上的图片。}。
+
+\marginpar{
+  \begin{center}
+    \includegraphics[width=0.25\textwidth]{2.20.png}
+    \captionof{figure}{叉乘的“右手定则”。试想一下将右掌根放在向量 $\mathbf{a}$ 和向量 $\mathbf{b}$ 的尾部交叉处、然后将向量 $\mathbf{a}$ 的箭头推向向量 $\mathbf{b}$，你右手拇指所指方向就是 $\mathbf{a}\times\mathbf{b}$ 的方向。}
+  \end{center}
+}
+
+叉乘遵循结合律和分配律：
+\[
+  \begin{aligned}
+    \mathbf{a}\times(\mathbf{b}+\mathbf{c}) & =\mathbf{a}\times\mathbf{b}+\mathbf{a}\times\mathbf{c}, \\
+    \mathbf{a}\times(k\mathbf{b})           & =k(\mathbf{a}\times\mathbf{b}).
+  \end{aligned}
+\]
+但根据“右手定则”，叉乘不满足交换律：
+\[
+  \mathbf{a}\times\mathbf{b}=-(\mathbf{b}\times\mathbf{a}).
+\]
+如果用笛卡尔坐标表示向量，我们可以用一个清晰明确的展开式来计算叉乘：
+\begin{equation}
+  \begin{aligned}
+    \mathbf{a}\times\mathbf{b}
+     & =(x_{a}\mathbf{x}+y_{a}\mathbf{y}+z_{a}\mathbf{z})\times(x_{b}\mathbf{x}+y_{b}\mathbf{y}+z_{b}\mathbf{z})             \\
+     & =x_{a}x_{b}\mathbf{x}\times\mathbf{x}+x_{a}y_{b}\mathbf{x}\times\mathbf{y}+x_{a}z_{b}\mathbf{x}\times\mathbf{z}       \\
+     & \quad +y_{a}x_{b}\mathbf{y}\times\mathbf{x}+y_{a}y_{b}\mathbf{y}\times\mathbf{y}+y_{a}z_{b}\mathbf{y}\times\mathbf{z} \\
+     & \quad +z_{a}x_{b}\mathbf{z}\times\mathbf{x}+z_{a}y_{b}\mathbf{z}\times\mathbf{y}+z_{a}z_{b}\mathbf{z}\times\mathbf{z} \\
+     & =(y_{a}z_{b}-z_{a}y_{b})\mathbf{x}+(z_{a}x_{b}-x_{a}z_{b})\mathbf{y}+(x_{a}y_{b}-y_{a}x_{b})\mathbf{z}.
+  \end{aligned}
+\end{equation}
+进一步可得坐标公式如下：
+\begin{equation}
+  \mathbf{a}\times\mathbf{b}=(y_{a}z_{b}-z_{a}y_{b},z_{a}x_{b}-x_{a}z_{b},x_{a}y_{b}-y_{a}x_{b}).
+\end{equation}
+
+\subsection{标准正交基和坐标框架}
+
+管理坐标系是几乎所有图形程序的核心任务之一，这项任务的关键是管理标准正交基（\textit{orthonormal bases}）。任意两个正交（互相垂直）且长度均为单位 1 的二维向量 $\mathbf{u}$ 和 $\mathbf{v}$ 的集合都能构成一个标准正交基，也就是说：
+\[
+  \begin{aligned}
+    \|\mathbf{u}\|=\|\mathbf{v}\| & =1, \\
+    \mathbf{u}\cdot\mathbf{v}     & =0.
+  \end{aligned}
+\]
+在三维空间中，满足以下两个条件的三个向量 $\mathbf{u}$、$\mathbf{v}$、$\mathbf{w}$ 共同构成标准正交基：
+\[
+  \begin{aligned}
+    \|\mathbf{u}\|=\|\mathbf{v}\|=\|\mathbf{w}\|                                  & =1, \\
+    \mathbf{u}\cdot\mathbf{v}=\mathbf{v}\cdot\mathbf{w}=\mathbf{w}\cdot\mathbf{u} & =0.
+  \end{aligned}
+\]
+如果以下公式成立，则该标准正交基是右旋的（\textit{right-handed}）,否则是左旋的（\textit{left-handed}）:
+\[
+  \mathbf{w}=\mathbf{u}\times\mathbf{v},
+\]
+
+注意笛卡尔规范标准正交基（\textit{Cartesian canonical orthonormal basis}）只是无数可能标准正交基中的一种，真正让它与众不同的是它和它的隐式原点位置在程序中用作底层表示。因此，向量 $\mathbf{x}$、$\mathbf{y}$、$\mathbf{z}$ 从不显式存储，也不会规定规范原点位置 $\mathbf{o}$。全局模型往往存储在这个规范坐标系中，它也因此常被称为全局坐标系（\textit{global coordinate system}）。但如果我们想使用另一个使用原点 $\mathbf{p}$ 和正交基 $\mathbf{u}$、$\mathbf{v}$、$\mathbf{w}$ 的坐标系就必须显式存储这些向量。这样一个坐标系被称为参考系（\textit{frame of reference}）或坐标框架（\textit{coordinate frame}）。比如在一个飞行模拟器中，我们可能想要储存一个原点在飞机机鼻处、标准正交基与飞机方向一致的坐标系；同时我们还需要一个主要的规范坐标系（图 2.21）。和一个特定物体（比如飞机）绑定的坐标系，往往被称为局部坐标系（\textit{local coordinate system}）。
+
+
+
+\[
+  \mathbf{u}=x_{u}\mathbf{x}+y_{u}\mathbf{y}+z_{u}\mathbf{z}.
+\]
+
+\[
+  {\bf p}\,=\,{\bf o}\,+\,x_{p}{\bf x}\,+\,y_{p}{\bf y}\,+\,z_{p}{\bf z},
+\]
+
+\[
+  \mathbf{a}=u_{a}\mathbf{u}+v_{a}\mathbf{v}+w_{a}\mathbf{w}.
+\]
+
+\[
+  u_{b}={\bf u}\cdot{\bf b};\quad v_{b}={\bf v}\cdot{\bf b};\quad w_{b}={\bf w}\cdot{\bf b}.
+\]
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=1.0\textwidth]{2.21.png}
+  \caption{}
+\end{figure}
+
+\[
+  u_{b}\mathbf{u}+v_{b}\mathbf{v}+w_{b}\mathbf{w}=\mathbf{b},
+\]
+
+\[
+  \begin{aligned}
+    \mathbf{u \cdot b} & =u_{b}(\mathbf{u \cdot u})+v_{b}(\mathbf{u \cdot v})+w_{b}(\mathbf{u \cdot w}) \\
+                       & =u_{b}.
+  \end{aligned}
+\]
+
+\[
+  \mathbf{w}={\frac{\mathbf{a}}{\|\mathbf{a}\|}}.
+\]
+
+\[
+  \mathbf{u}={\frac{\mathbf{t}\times\mathbf{w}}{\left||\mathbf{t}\times\mathbf{w}|\right|}}.
+\]
+
+\[
+  \mathbf{v}=\mathbf{w}\times\mathbf{u}.
+\]
+
+\[
+  \begin{aligned}
+    \mathbf{w} & ={\frac{\mathbf{a}}{\|\mathbf{a}\|}},                                 \\
+    \mathbf{u} & ={\frac{\mathbf{b}\times\mathbf{w}}{\|\mathbf{b}\times\mathbf{w}\|}}, \\
+    \mathbf{v} & =\mathbf{w}\times\mathbf{u}.
+  \end{aligned}
+\]
+
+\section{积分}
+
+\[
+  \int_{\pi}^{2\pi}\mathrm{sin}(x) dx
+\]
+
+\[
+  \int_{\pi}^{2\pi} dx
+\]
+
+\begin{lstlisting}
+  float area = integrate(sin(), [pi,2pi]).
+\end{lstlisting}
+
+\begin{lstlisting}
+  float area = integrate(cos(), unit-sphere)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float volume = integrate(elevation(), country)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float averageElevation = integrate(elevation(),
+        country) / integrate(1, country)
+\end{lstlisting}
+
+\begin{lstlisting}
+  Float averageElevation = average(elevation, country)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float weightedAverageElevation =
+        integrate(temperature()*elevation(),
+        country) / integrate(temperature(), country)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float shade = integrate(cos()*f*(),
+        unit-hemisphere)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float shade = integrate((1/pi)*cos()*f*(),
+        unit-hemisphere)
+\end{lstlisting}
+
+\[
+  S\,=\,\int_{v\in H}\frac{1}{\pi}(v\cdot n)f(v)(v\cdot n)d\sigma(v)
+\]
+
+\[
+  S=\int_{\phi=0}^{2\pi}\int_{\theta=0}^{\pi}\frac{1}{\pi}(v\cdot n)f(\theta,\phi)\mathrm{cos}\theta\mathrm{sin}\theta d\theta d\phi
+\]
+
+\section{密度函数}
+
+\[
+  E=\int_{2p m}^{4p m}P(t) dt
+\]
+
+\section{曲线和曲面}
+
+\[
+  f(x,y)=0.
+\]
+
+\begin{equation}
+  f(x,y)=(x-x_{c})^{2}+(y-y_{c})^{2}-r^{2},
+\end{equation}
+
+\[
+  (\mathbf{p}-\mathbf{c})\cdot(\mathbf{p}-\mathbf{c})-r^{2}=0.
+\]
+
+\[
+  \|\mathbf{p}-\mathbf{c}\|^{2}-r^{2}=0,
+\]
+
+\[
+  \|\mathbf{p}-\mathbf{c}\|-r=0.
+\]
+
+\[
+  \nabla f(x,y)=\left({\frac{\partial f}{\partial x}},{\frac{\partial f}{\partial y}}\right).
+\]
+
+\begin{equation}
+  {\frac{d y}{d x}}\equiv\operatorname*{lim}_{\Delta x\to0}{\frac{\Delta y}{\Delta x}}=\operatorname*{lim}_{\Delta x\to0}{\frac{g(x+\Delta x)-g(x)}{\Delta x}}.
+\end{equation}
+
+\[
+  {\frac{\partial f}{\partial x}}\equiv\operatorname*{lim}_{\Delta x\to0}{\frac{f(x+\Delta x,y)-f(x,y)}{\Delta x}}.
+\]
+
+\begin{equation}
+  (\nabla f)\cdot{\bf a}\equiv(x_{\nabla},y_{\nabla})\cdot(x_{a},y_{a})=x_{\nabla}\Delta x+y_{\nabla}\Delta y=0.
+\end{equation}
+
+\[
+  \Delta f={\frac{\partial f}{\partial x}}\Delta x+{\frac{\partial f}{\partial y}}\Delta y\equiv{\frac{\partial f}{\partial x}}x_{a}+{\frac{\partial f}{\partial y}}y_{a}=0.
+\]
+
+\begin{equation}
+  (x_{a},y_{a})=k\left({\frac{\partial f}{\partial y}},-{\frac{\partial f}{\partial x}}\right).
+\end{equation}
+
+\[
+  (x_{\nabla},y_{\nabla})=k^{\prime}\left({\frac{\partial f}{\partial x}},{\frac{\partial f}{\partial y}}\right),
+\]
+
+\begin{equation}
+  y=mx+b.
+\end{equation}
+
+\begin{equation}
+  y-mx-b=0
+\end{equation}
+
+\[
+  2y-2mx-2b=0
+\]
+
+\begin{equation}
+  Ax+By+C=0,
+\end{equation}
+
+\[
+  \begin{array}{c}{{A x_{0}+B y_{0}+C=0,}}\\ {{A x_{1}+B y_{1}+C=0.}}\end{array}
+\]
+
+\[
+  Ax+By+1=0,
+\]
+
+\begin{equation}
+  (y_{0}-y_{1})x+(x_{1}-x_{0})y+C=0.
+\end{equation}
+
+\begin{equation}
+  (y_{0}-y_{1})x+(x_{1}-x_{0})y+x_{0}y_{1}-x_{1}y_{0}=0.
+\end{equation}
+
+\[
+  y={\frac{y_{1}-y_{0}}{x_{1}-x_{0}}}x+{\frac{x_{1}y_{0}-x_{0}y_{1}}{x_{1}-x_{0}}}.
+\]
+
+\begin{equation}
+  \mathrm{distance}=k\sqrt{A^{2}+B^{2}}.
+\end{equation}
+
+\begin{equation}
+  \begin{aligned}
+    f(x+k A,y+k B) & =A x+k A^{2}+B y+k B^{2}+C \\
+                   & =k(A^{2}+B^{2}).
+  \end{aligned}
+\end{equation}
+
+\[
+  \mathrm{Distance}={\frac{f(a,b)}{\sqrt{A^{2}+B^{2}}}}.
+\]
+
+\begin{equation}
+  \begin{aligned}
+    f(x,y) & ={\frac{y_{0}-y_{1}}{\sqrt{(x_{1}-x_{0})^{2}+(y_{0}-y_{1})^{2}}}}x               \\
+           & \quad+{\frac{x_{1}-x_{0}}{\sqrt{(x_{1}-x_{0})^{2}+(y_{0}-y_{1})^{2}}}}y          \\
+           & \quad+{\frac{x_{0}y_{1}-x_{1}y_{0}}{\sqrt{(x_{1}-x_{0})^{2}+(y_{0}-y_{1})^{2}}}} \\
+           & =0.
+  \end{aligned}
+\end{equation}
+
+\[
+  A x^{2}+B x y+C y^{2}+D x+E y+F=0,
+\]
+
+\[
+  (x-x_{c})^{2}+(y-y_{c})^{2}-r^{2}=0,
+\]
+
+\[
+  {\frac{(x-x_{c})^{2}}{a^{2}}}+{\frac{(y-y_{c})^{2}}{b^{2}}}-1=0,
+\]
+
+\[
+  f(x,y,z)=0.
+\]
+
+\[
+  f({\bf p})=0.
+\]
+
+\[
+  \mathbf{n}=\nabla f(\mathbf{p})=\left({\frac{\partial f(\mathbf{p})}{\partial x}},{\frac{\partial f(\mathbf{p})}{\partial y}},{\frac{\partial f(\mathbf{p})}{\partial z}}\right).
+\]
+
+\begin{equation}
+  (\mathbf{p}-\mathbf{a})\cdot\mathbf{n}=0.
+\end{equation}
+
+\[
+  \mathbf{n}=(\mathbf{b}-\mathbf{a})\times(\mathbf{c}-\mathbf{a}).
+\]
+
+\begin{equation}
+  (\mathbf{p}-\mathbf{a})\cdot((\mathbf{b}-\mathbf{a})\times(\mathbf{c}-\mathbf{a}))=0.
+\end{equation}
+
+\begin{equation}
+  \begin{vmatrix}
+    x-x_a   & y-y_a   & z-z_a   \\
+    x_b-x_a & y_b-y_a & z_b-z_a \\
+    x_c-x_a & y_c-y_a & z_c-z_a
+  \end{vmatrix}=0
+\end{equation}
+
+\[
+  f({\bf p})=\,({\bf p}-{\bf c})^{2}-r^{2}=0,
+\]
+
+\[
+  f({\bf p})=\frac{(x-x_{c})^{2}}{a^{2}}+\frac{(y-y_{c})^{2}}{b^{2}}+\frac{(z-z_{c})^{2}}{c^{2}}-1=0.
+\]
+
+\[
+  \begin{array}{c l c r}{{f({\bf p})=0,}}\\ {{g({\bf p})=0.}}\end{array}
+\]
+
+\[
+  \begin{bmatrix}
+    x \\
+    y
+  \end{bmatrix}=
+  \begin{bmatrix}
+    g(t) \\
+    h(t)
+  \end{bmatrix}.
+\]
+
+\[
+  \mathbf{p}=f(t),
+\]
+
+\[
+  \begin{bmatrix}
+    x \\
+    y
+  \end{bmatrix}=
+  \begin{bmatrix}
+    x_0+t(x_1-x_0) \\
+    y_0+t(y_1-y_0)
+  \end{bmatrix}.
+\]
+
+\[
+  \mathbf{p}(t)=\mathbf{p}_{0}+t(\mathbf{p}_{1}-\mathbf{p}_{0}).
+\]
+
+\[
+  \mathbf{p}(t)=\mathbf{o}+t(\mathbf{d}).
+\]
+
+\[
+  \begin{bmatrix}
+    x \\
+    y
+  \end{bmatrix}=
+  \begin{bmatrix}
+    x_c+r\cos\phi \\
+    y_c+r\sin\phi
+  \end{bmatrix}.
+\]
+
+\[
+  \begin{bmatrix}
+    x \\
+    y
+  \end{bmatrix}=
+  \begin{bmatrix}
+    x_c+a\cos\phi \\
+    y_c+b\sin\phi
+  \end{bmatrix}.
+\]
+
+\[
+  \begin{aligned}
+    x & =f(t), \\
+    y & =g(t), \\
+    z & =h(t).
+  \end{aligned}
+\]
+
+\[
+  \begin{aligned}
+    x & =\cos t, \\
+    y & =\sin t, \\
+    z & =t.
+  \end{aligned}
+\]
+
+\[
+  \begin{bmatrix}
+    x \\
+    y \\
+    z
+  \end{bmatrix}={\bf p}(t).
+\]
+
+\[
+  \begin{aligned}
+    x & =2+7t, \\
+    y & =1+2t, \\
+    z & =3-5t.
+  \end{aligned}
+\]
+
+\[
+  \mathbf{p}=\mathbf{o}+t\mathbf{d},
+\]
+
+\[
+  \begin{aligned}
+    \mathbf{o} & =(2,1,\phantom{-}3), \\
+    \mathbf{d} & =(7,2,-5).
+  \end{aligned}
+\]
+
+\[
+  \begin{aligned}
+    x & =f(u,v), \\
+    y & =g(u,v), \\
+    z & =h(u,v).
+  \end{aligned}
+\]
+
+\[
+  \begin{bmatrix}
+    x \\
+    y \\
+    z
+  \end{bmatrix}={\bf p}(u,v).
+\]
+
+\begin{equation}
+  \begin{aligned}
+    x & =r\cos\phi\sin\theta, \\
+    y & =r\sin\phi\sin\theta, \\
+    z & =r\cos\theta.
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  \begin{aligned}
+    \theta & =\operatorname{acos}(\frac{z}{\sqrt{x^{2}+y^{2}+z^{2}}}), \\
+    \phi   & =\operatorname{atan2}(y,x).
+  \end{aligned}
+\end{equation}
+
+\[
+  \mathbf{n}=\mathbf{p}_{u}\times\mathbf{p}_{v}
+\]
+
+\[
+  S\,=\,\{{\bf p}\,|f({\bf p})=0\,\}.
+\]
+
+\[
+  S=\{{\bf p}(t)\,|t\in D\}.
+\]
+
+\[
+  S\,=\,\{{\bf p}(u,v)\,|(u,v)\in D\}.
+\]
+
+\section{线性插值}
+
+\begin{equation}
+  f(x)=y_{i}+{\frac{x-x_{i}}{x_{i+1}-x_{i}}}(y_{i+1}-y_{i}).
+\end{equation}
+
+\[
+  t={\frac{x-x_{i}}{x_{i+1}-x_{i}}}.
+\]
+
+\section{三角形}
+
+\begin{equation}
+  \begin{aligned}
+    \mathrm{Area} & = \frac{1}{2}
+    \begin{vmatrix}
+      x_b-x_a & x_c-x_a \\
+      y_b-y_a & y_c-y_a
+    \end{vmatrix}                                                                                   \\
+                  & = \frac{1}{2}(x_{a}y_{b}+x_{b}y_{c}+x_{c}y_{a}-x_{a}y_{c}-x_{b}y_{a}-x_{c}y_{b})\,.
+  \end{aligned}
+\end{equation}
+
+\begin{equation}
+  \mathbf{p}=\mathbf{a}+\beta(\mathbf{b}-\mathbf{a})+\gamma(\mathbf{c}-\mathbf{a}).
+\end{equation}
+
+\[
+  \mathbf{p}=(1-{\boldsymbol{\beta}}-\gamma)\mathbf{a}+{\boldsymbol{\beta}}\mathbf{b}+{\boldsymbol{\gamma}}\mathbf{c}.
+\]
+
+\[
+  \alpha\equiv1-\beta-\gamma,
+\]
+
+\begin{equation}
+  {\bf p}(\alpha,\beta,\gamma)=\alpha{\bf a}+\beta{\bf b}+\gamma{\bf c},
+\end{equation}
+
+\begin{equation}
+  \alpha+\beta+\gamma=1.
+\end{equation}
+
+\[
+  \begin{array}{c}{{0<\alpha<1,}}\\ {{0<\beta<1,}}\\ {{0<\gamma<1.}}\end{array}
+\]
+
+\begin{equation}
+  \begin{bmatrix}
+    x_b-x_a & x_c-x_a \\
+    y_b-y_a & y_c-y_a
+  \end{bmatrix}
+  \begin{bmatrix}
+    \beta \\
+    \gamma
+  \end{bmatrix}=
+  \begin{bmatrix}
+    x_p-x_a \\
+    y_p-y_a
+  \end{bmatrix}.
+\end{equation}
+
+\begin{equation}
+  \beta=\frac{f_{a c}(x,y)}{f_{a c}(x_{b},y_{b})},
+\end{equation}
+
+\[
+  f_{a b}(x,y)\equiv(y_{a}-y_{b})x+(x_{b}-x_{a})y+x_{a}y_{b}-x_{b}y_{a}=0.
+\]
+
+\[
+  \gamma=\frac{(y_{a}-y_{b})x+(x_{b}-x_{a})y+x_{a}y_{b}-x_{b}y_{a}}{(y_{a}-y_{b})x_{c}+(x_{b}-x_{a})y_{c}+x_{a}y_{b}-x_{b}y_{a}}.
+\]
+
+\[
+  \begin{aligned}
+    \beta  & =\frac{(y_{a}-y_{c})x+(x_{c}-x_{a})y+x_{a}y_{c}-x_{c}y_{a}}{(y_{a}-y_{c})x_{b}+(x_{c}-x_{a})y_{b}+x_{a}y_{c}-x_{c}y_{a}}, \\
+    \alpha & =1-B-\gamma.
+  \end{aligned}
+\]
+
+\begin{equation}
+  \begin{aligned}
+    \alpha & =A_{a}/A, \\
+    \beta  & =A_{b}/A, \\
+    \gamma & =A_{c}/A,
+  \end{aligned}
+\end{equation}
+
+\[
+  \mathbf{p}=(1-\beta-\gamma)\mathbf{a}+\beta\mathbf{b}+\gamma\mathbf{c}.
+\]
+
+\begin{equation}
+  \mathbf{n}=(\mathbf{b}-\mathbf{a})\times(\mathbf{c}-\mathbf{a}).
+\end{equation}
+
+\begin{equation}
+  \mathrm{area}={\frac{1}{2}}\|(\mathbf{b}-\mathbf{a})\times(\mathbf{c}-\mathbf{a})\|.
+\end{equation}
+
+\[
+  \mathbf{a \cdot b}=\|\mathbf{a}\|\|\mathbf{b}\|\mathbf{cos}\phi,
+\]
+
+\[
+  \begin{aligned}
+    \alpha & ={\frac{\mathbf{n}\cdot\mathbf{n}_a}{\|\mathbf{n}\|^{2}}}, \\
+    \beta  & ={\frac{\mathbf{n}\cdot\mathbf{n}_b}{\|\mathbf{n}\|^{2}}}, \\
+    \gamma & ={\frac{\mathbf{n}\cdot\mathbf{n}_c}{\|\mathbf{n}\|^{2}}},
+  \end{aligned}
+\]
+
+\begin{equation}
+  \begin{aligned}
+    {\bf n}_{a} & =({\bf c}-{\bf b})\times({\bf p}-{\bf b}), \\
+    {\bf n}_{b} & =({\bf a}-{\bf c})\times({\bf p}-{\bf c}), \\
+    {\bf n}_{c} & =({\bf b}-{\bf a})\times({\bf p}-{\bf a}).
+  \end{aligned}
+\end{equation}
+
+\section{离散概率}
+
+\begin{lstlisting}
+  int X = rand_from(1,6)
+\end{lstlisting}
+
+\[
+  E X=\frac{1}{6}(1)+\frac{1}{6}(2)+\frac{1}{6}(3)+\frac{1}{6}(4)+\frac{1}{6}(5)+\frac{1}{6}(6)=3.5
+\]
+
+\[
+  V(X)={\mathrm{average}}((X-EX)^{2})
+\]
+
+\[
+  V(X)=E((X-E(X))^{2})
+\]
+
+\[
+  V(X)=E(X^{2})-E(X)^{2}
+\]
+
+\[
+  E(Z)\,=\,E(X\,+\,Y)\,=\,E(X\,)\,+\,E(Y)
+\]
+
+\[
+  V(Z)=V(X+Y)=V(X)+V(Y)
+\]
+
+\[
+  \sigma(X)=\sqrt{V(X)}
+\]
+
+\section{连续概率}
+
+\begin{lstlisting}
+  X = continuous_random_from(-2.3, 10.9).
+\end{lstlisting}
+
+\verb"X = continuous_random_from(-2.3, 10.9)."
+
+\section{蒙特卡洛积分}
+
+\begin{lstlisting}
+  float shade = average(f(), hemisphere)
+\end{lstlisting}
+
+\begin{lstlisting}
+  float sum = 0.0
+  N = 10000; // 或者其他一些由用户设置的大数字
+  For (int i = 1 to N)
+    vec3 v = random_point_on_hemisphere()
+    sum = sum + f(v)
+  Average = sum / N
+\end{lstlisting}
+
+\begin{lstlisting}
+  do
+    X = random_from(-1,1)
+    Y = random_from(-1,1)
+    Z = random_from(-1,1)
+  while (xˆ2 + yˆ2 + zˆ2 > 1)
+\end{lstlisting}
+
+\begin{lstlisting}
+  If (Z < 0) Z = -Z
+\end{lstlisting}
+
+\begin{lstlisting}
+  v = unit_vector(X, Y, Z).
+\end{lstlisting}
+
+\begin{lstlisting}
+  average(f(), domain) = integrate(f(), domain) /
+                          integrate(1, domain)
+\end{lstlisting}
+
+\begin{lstlisting}
+  integrate(f(), domain) = average(f(), domain) *
+                            integrate(1, domain)
+\end{lstlisting}
+
+\begin{lstlisting}
+  integrate = average_of_nonuniform_samples(f()/p(),
+              domain).
+\end{lstlisting}
+
+\verb"p() = 1/ integrate(1, domain)"
+
+\begin{lstlisting}
+  
+\end{lstlisting}

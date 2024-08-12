@@ -1,15 +1,16 @@
 .idea/*
 
-tex/FundamentalsComputerGraphics.aux
-tex/FundamentalsComputerGraphics.bcf
-tex/FundamentalsComputerGraphics.log
-tex/FundamentalsComputerGraphics.out
-tex/FundamentalsComputerGraphics.run.xml
-tex/FundamentalsComputerGraphics.synctex.gz
-tex/FundamentalsComputerGraphics.synctex(busy)
-tex/FundamentalsComputerGraphics.toc
-tex/FundamentalsComputerGraphics.pdf
+tex/*.aux
+tex/*.bcf
 tex/*.log
+tex/*.out
+tex/*.run.xml
+tex/*.synctex.gz
+tex/*.synctex(busy)
+tex/*.toc
+tex/*.pdf
+tex/*.log
+
 *.fls
 *.bbl
 *.fdb_latexmk
