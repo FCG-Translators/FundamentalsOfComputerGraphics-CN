@@ -56,7 +56,7 @@ git clone git@github.com:FCG-Translators/FundamentalsOfComputerGraphics-CN.git
 cd FundamentalsOfComputerGraphics-CN
 ```
 
-### Usage - 用法
+### Usage - 使用指南
 
 * 使用 mdBook
   ```bash
@@ -92,27 +92,6 @@ cd FundamentalsOfComputerGraphics-CN
 ```LaTeX
 KISS（“保持简单、愚蠢”，\textit{"keep it simple, stupid"}）
 ```
-* 原书中所有的边栏备注请使用如下设置：
-```LaTeX
-\marginpar{
-  \begin{center}
-    \begin{note}\\
-      %文字或公式
-    \end{note}
-  \end{center}
-}
-```
-* 原书中所有的边栏图片请使用如下设置：
-```LaTeX
-\marginpar{
-\begin{center}
-  \includegraphics[width=0.25\textwidth]{xxx.png}
-  \captionof{figure}{图片说明}
-\end{center}
-}
-```
-* 边栏（`\marginpar{}`）的排版与正文独立且不会自动排版，如果发现某个边栏图片或边栏备注被页脚空白遮挡，请手动调整其位置。
-* 需要补充“译注”的地方请使用 `\footnote[]{}`。
 * 原书中 "such as..." 引导的成分以及其他举例子、解释说明成分请放到（）中：
 ```LaTeX
 原文：A key part of any graphics program is to have goodclasses 
