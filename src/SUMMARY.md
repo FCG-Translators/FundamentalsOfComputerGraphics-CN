@@ -31,3 +31,7 @@
 	- [阿尔法合成](./chapter_3_4.md)
 	- [FAQ](./chapter_3_5.md)
 	- [练习](./chapter_3_6.md)
+- [光线追踪](./chapter_4.md)
+    - [基本光线追踪算法](./chapter_4_1.md)
+    - [透视](./chapter_4_2.md)
+    - [计算视线](./chapter_4_3.md)
